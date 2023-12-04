@@ -3,8 +3,7 @@ export default function Player() {
         <>
       <mesh position={[0, 0.5, 0]} rotation={[0, 0, 0]} scale={[1, 1, 1]}>
       <boxGeometry attach="geometry" />
-      <meshBasicMaterial attach="material" color="blue" />
+      <meshBasicMaterial attach="material" color="#8CABFF" />
     </mesh>
     </>
-
 )}

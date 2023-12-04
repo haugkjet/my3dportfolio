@@ -15,17 +15,15 @@ export default function Experience() {
             near: 0.1,
             far: 200,
             position: [ 2.5, 4, 6 ]
-        } } style={{ background: 'lightblue' }}>
+        } } style={{ background: '#8CABFF' }}>
        <Perf position="top-left" />      
        <OrbitControls />
+       <gridHelper args={[50, 50, 0x35155D, '#512B81']} />
 
-       <mesh position={[0, 0, 0]} rotation={[Math.PI / 2, 0, 0]} scale={[50, 50, 1]}>
-      {/*
-        The thing that gives the mesh its shape
-        In this case the shape is a flat plane
-      */}
+      <mesh position={[0, -0.01, 0]} rotation={[Math.PI / 2, 0, 0]} scale={[50, 50, 1]}>
+
       <planeGeometry  attach="geometry" />
-      <meshBasicMaterial color="green" side={DoubleSide} />
+      <meshBasicMaterial color="#4477CE" side={DoubleSide} />
       </mesh>
       <Player/>
 
