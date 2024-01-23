@@ -1,31 +1,17 @@
-import { useRef } from "react";
-import { useFrame } from "@react-three/fiber";
+import { PointLight } from "three";
 
 export default function Lights() {
-  const light = useRef();
-
-  useFrame((state) => {
-    light.current.position.z = state.camera.position.z + 1 - 4;
-    light.current.target.position.z = state.camera.position.z - 4;
-    light.current.target.updateMatrixWorld();
-  });
-
   return (
     <>
-      <directionalLight
-        ref={light}
-        castShadow
-        position={[4, 4, 1]}
-        intensity={1.5}
-        shadow-mapSize={[1024, 1024]}
-        shadow-camera-near={1}
-        shadow-camera-far={10}
-        shadow-camera-top={10}
-        shadow-camera-right={10}
-        shadow-camera-bottom={-10}
-        shadow-camera-left={-10}
+      <pointLight
+        position={[-5, 3, 3]}
+        intensity={100}
+        color="#fff"
+        castShadow={true}
       />
-      <ambientLight intensity={1.5} />
+      ;
+      <pointLight position={[5, 5, 4]} intensity={100} color="#fff" />;
+      <pointLight position={[9, 7, 1]} intensity={2} color="#fff" />;
     </>
   );
 }

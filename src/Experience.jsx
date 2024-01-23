@@ -5,7 +5,9 @@ import { KeyboardControls } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import { DoubleSide } from "three";
 import Player from "./Player";
+import Cube from "./Cube";
 import Lights from "./Lights";
+import { Environment } from "@react-three/drei";
 
 export default function Experience() {
   return (
@@ -20,6 +22,7 @@ export default function Experience() {
         ]}
       >
         <Canvas
+          flat={true}
           shadows
           camera={{
             fov: 45,
@@ -27,23 +30,24 @@ export default function Experience() {
             far: 200,
             position: [2.5, 4, 6],
           }}
-          style={{ background: "#8CABFF" }}
+          style={{ background: "#d9d9d9" }}
         >
+          <Environment preset="forest"></Environment>
           <Perf position="top-left" />
-          <OrbitControls />
-          <Lights />
-
-          <gridHelper args={[50, 50, 0x35155d, "#512B81"]} />
-
+          <OrbitControls dampingFactor={0.9} />
+          <gridHelper args={[15, 10, "#5f5f5f", "#5f5f5f"]} />
           <mesh
             position={[0, -0.01, 0]}
             rotation={[Math.PI / 2, 0, 0]}
             scale={[50, 50, 1]}
           >
             <planeGeometry attach="geometry" />
-            <meshBasicMaterial color="#4477CE" side={DoubleSide} />
+            <meshBasicMaterial color="#d0d0d0" side={DoubleSide} />
           </mesh>
-          <Player />
+          {/*<Player*/}
+          <Lights />
+
+          <Cube />
         </Canvas>
       </KeyboardControls>
     </>
