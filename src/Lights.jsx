@@ -10,8 +10,20 @@ export default function Lights() {
         castShadow={true}
       />
       ;
-      <pointLight position={[5, 5, 4]} intensity={100} color="#fff" />;
-      <pointLight position={[9, 7, 1]} intensity={2} color="#fff" />;
+      <pointLight
+        position={[5, 5, -4]}
+        intensity={200}
+        color="#fff"
+        castShadow={true}
+      />
+      ;
+      <pointLight
+        position={[9, 7, 1]}
+        intensity={200}
+        color="#fff"
+        castShadow={true}
+      />
+      ;
     </>
   );
 }
