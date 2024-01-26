@@ -1,0 +1,73 @@
+[
+  {
+    "position": [-3.5, 0.0, 0],
+    "scale": [1, 1, 1],
+    "text": "JsonCube1",
+    "color": "lightgreen",
+    "value": "3"
+  },
+  {
+    "position": [-2, 0, 0],
+    "scale": [1, 1, 1],
+    "text": "JsonStacked1",
+    "color": "lightblue",
+    "value": "5"
+  },
+  {
+    "position": [-0.5, 0, 0],
+    "scale": [1, 1, 1],
+    "text": "JsonStacked2",
+    "color": "green",
+    "value": "6"
+  },
+  {
+    "position": [1, 0, 0],
+    "scale": [1, 1, 1],
+    "text": "JsonStacked1",
+    "color": "lightgreen",
+    "value": "4"
+  },
+  {
+    "position": [2.5, 0, 0],
+    "scale": [1, 1, 1],
+    "text": "JsonStacked2",
+    "color": "cyan",
+    "value": "1"
+  },
+
+  {
+    "position": [-3.5, 0.0, 3],
+    "scale": [1, 1, 1],
+    "text": "JsonCube1",
+    "color": "green",
+    "value": "1"
+  },
+  {
+    "position": [-2, 0, 3],
+    "scale": [1, 1, 1],
+    "text": "JsonStacked1",
+    "color": "red",
+    "value": "2"
+  },
+  {
+    "position": [-0.5, 0, 3],
+    "scale": [1, 1, 1],
+    "text": "JsonStacked2",
+    "color": "lightblue",
+    "value": "3"
+  },
+  {
+    "position": [1, 0, 3],
+    "scale": [1, 1, 1],
+    "text": "JsonStacked1",
+    "color": "yellow",
+    "value": "1"
+  },
+  {
+    "position": [2.5, 0, 3],
+    "scale": [1, 1, 1],
+    "text": "JsonStacked2",
+    "color": "cyan",
+    "value": "2"
+  }
+]
