@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
@@ -12,8 +12,19 @@ import Ground from "./Ground";
 
 import Cube from "./Cube";
 import MyCylinder from "./MyCylinder";
+import CubeExtruded from "./CubeExtruded";
 
 export default function Experience() {
+  const [cubeDataList, setCubeDataList] = useState(null);
+
+  useEffect(() => {
+    // Fetch the JSON file containing cube properties
+    fetch("data/cubes.json")
+      .then((response) => response.json())
+      .then((data) => setCubeDataList(data))
+      .catch((error) => console.error("Error fetching cube data:", error));
+  }, []);
+
   const loader = new THREE.CubeTextureLoader();
   loader.setPath("https://threejs.org/examples/textures/cube/pisa/");
 
@@ -55,136 +66,30 @@ export default function Experience() {
 
         <Lights />
         <Ground />
-        <MyCylinder textureCube={textureCube} />
 
-        <Cube
-          position={[-4, 0.51, 0]}
-          scale={[1, 1, 1]}
-          text={"Cube1"}
-          color={"red"}
-          textureCube={textureCube}
-        />
-        <Cube
-          position={[-2.5, 0.51, 0]}
-          scale={[1, 1, 1]}
-          text={"Cube2"}
-          color={"lightgreen"}
-          textureCube={textureCube}
-        />
-        <Cube
-          position={[-1, 0.51, 0]}
-          scale={[1, 1, 1]}
-          text={"Cube3"}
-          color={"cyan"}
-          textureCube={textureCube}
-        />
-        <Cube
-          position={[0.5, 0.51, 0]}
-          scale={[1, 1, 1]}
-          text={"Cube4"}
-          color={"brown"}
-          textureCube={textureCube}
-        />
-        <Cube
-          position={[2, 0.51, 0]}
-          scale={[1, 1, 1]}
-          text={"Cube5"}
-          color={"purple"}
-          textureCube={textureCube}
-        />
-        <Cube
-          position={[3.5, 0.51, 0]}
-          scale={[1, 1, 1]}
-          text={"Cube6"}
-          color={"green"}
-          textureCube={textureCube}
-        />
+        {/*cubeDataList &&
+          cubeDataList.map((cubeData, index) => (
+            <Cube
+              key={index}
+              position={cubeData.position}
+              scale={cubeData.scale}
+              text={cubeData.text}
+              color={cubeData.color}
+            />
+          ))*/}
 
-        <Cube
-          position={[-4, 0.51, 2]}
-          scale={[1, 1, 1]}
-          text={"Cube1"}
-          color={"red"}
-          textureCube={textureCube}
-        />
-        <Cube
-          position={[-2.5, 0.51, 2]}
-          scale={[1, 1, 1]}
-          text={"Cube2"}
-          color={"lightgreen"}
-          textureCube={textureCube}
-        />
-        <Cube
-          position={[-1, 0.51, 2]}
-          scale={[1, 1, 1]}
-          text={"Cube3"}
-          color={"cyan"}
-          textureCube={textureCube}
-        />
-        <Cube
-          position={[0.5, 0.51, 2]}
-          scale={[1, 1, 1]}
-          text={"Cube4"}
-          color={"brown"}
-          textureCube={textureCube}
-        />
-        <Cube
-          position={[2, 0.51, 2]}
-          scale={[1, 1, 1]}
-          text={"Cube5"}
-          color={"purple"}
-          textureCube={textureCube}
-        />
-        <Cube
-          position={[3.5, 0.51, 2]}
-          scale={[1, 1, 1]}
-          text={"Cube6"}
-          color={"green"}
-          textureCube={textureCube}
-        />
-
-        <Cube
-          position={[-4, 2.51, 0]}
-          scale={[1, 1, 1]}
-          text={"Cube1"}
-          color={"red"}
-          textureCube={textureCube}
-        />
-        <Cube
-          position={[-2.5, 2.51, 0]}
-          scale={[1, 1, 1]}
-          text={"Cube2"}
-          color={"lightgreen"}
-          textureCube={textureCube}
-        />
-        <Cube
-          position={[-1, 2.51, 0]}
-          scale={[1, 1, 1]}
-          text={"Cube3"}
-          color={"cyan"}
-          textureCube={textureCube}
-        />
-        <Cube
-          position={[0.5, 2.51, 0]}
-          scale={[1, 1, 1]}
-          text={"Cube4"}
-          color={"brown"}
-          textureCube={textureCube}
-        />
-        <Cube
-          position={[2, 2.51, 0]}
-          scale={[1, 1, 1]}
-          text={"Cube5"}
-          color={"purple"}
-          textureCube={textureCube}
-        />
-        <Cube
-          position={[3.5, 2.51, 0]}
-          scale={[1, 1, 1]}
-          text={"Cube6"}
-          color={"green"}
-          textureCube={textureCube}
-        />
+        {cubeDataList &&
+          cubeDataList.map((cubeData, index) => (
+            <CubeExtruded
+              key={index}
+              position={cubeData.position}
+              value={cubeData.value}
+              scale={cubeData.scale}
+              text={cubeData.text}
+              color={cubeData.color}
+              textureCube={textureCube}
+            />
+          ))}
       </Canvas>
     </>
   );
