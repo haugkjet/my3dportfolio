@@ -1,14 +1,31 @@
 import * as THREE from "three";
 import React from "react";
+
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { Perf } from "r3f-perf";
-import { DoubleSide, LinearSRGBColorSpace, SRGBColorSpace } from "three";
-import Cube from "./Cube";
-import Lights from "./Lights";
+import { SRGBColorSpace } from "three";
 import { Environment } from "@react-three/drei";
 
+import Lights from "./Lights";
+import Ground from "./Ground";
+
+import Cube from "./Cube";
+import MyCylinder from "./MyCylinder";
+
 export default function Experience() {
+  const loader = new THREE.CubeTextureLoader();
+  loader.setPath("https://threejs.org/examples/textures/cube/pisa/");
+
+  const textureCube = loader.load([
+    "px.png",
+    "nx.png",
+    "py.png",
+    "ny.png",
+    "pz.png",
+    "nz.png",
+  ]);
+
   return (
     <>
       <Canvas
@@ -32,52 +49,142 @@ export default function Experience() {
           gl.shadowMap.type = THREE.PCFSoftShadowMap;
         }}
       >
-        {/* Your 3D scene components go here */}
-
         <Environment preset="forest"></Environment>
         <Perf position="top-left" />
         <OrbitControls dampingFactor={0.9} />
-        <gridHelper
-          args={[10, 10, "#5f5f5f", "#5f5f5f"]}
-          position={[0, 0.001, 0]}
-        />
-        <gridHelper
-          rotation={[Math.PI / 2, 0, 0]}
-          position={[0, 0.0, -0.6999]}
-          args={[10, 10, "#5f5f5f", "#5f5f5f"]}
-        />
-        <mesh
-          receiveShadow={true}
-          position={[0, 0, 0]}
-          rotation={[Math.PI / 2, 0, 0]}
-          scale={[20, 20, 1]}
-        >
-          <planeGeometry attach="geometry" />
-          <meshStandardMaterial
-            color="#8e8e8e"
-            side={DoubleSide}
-            metalness={0.0}
-            roughness={0.2}
-          />
-        </mesh>
-        <mesh
-          receiveShadow={true}
-          position={[0, 0, -0.7]}
-          rotation={[0, 0, 0]}
-          scale={[20, 20, 1]}
-        >
-          <planeGeometry attach="geometry" />
-          <meshStandardMaterial
-            color="#d9d9d9"
-            side={DoubleSide}
-            metalness={0.0}
-            roughness={0.2}
-          />
-        </mesh>
 
         <Lights />
+        <Ground />
+        <MyCylinder textureCube={textureCube} />
 
-        <Cube />
+        <Cube
+          position={[-4, 0.51, 0]}
+          scale={[1, 1, 1]}
+          text={"Cube1"}
+          color={"red"}
+          textureCube={textureCube}
+        />
+        <Cube
+          position={[-2.5, 0.51, 0]}
+          scale={[1, 1, 1]}
+          text={"Cube2"}
+          color={"lightgreen"}
+          textureCube={textureCube}
+        />
+        <Cube
+          position={[-1, 0.51, 0]}
+          scale={[1, 1, 1]}
+          text={"Cube3"}
+          color={"cyan"}
+          textureCube={textureCube}
+        />
+        <Cube
+          position={[0.5, 0.51, 0]}
+          scale={[1, 1, 1]}
+          text={"Cube4"}
+          color={"brown"}
+          textureCube={textureCube}
+        />
+        <Cube
+          position={[2, 0.51, 0]}
+          scale={[1, 1, 1]}
+          text={"Cube5"}
+          color={"purple"}
+          textureCube={textureCube}
+        />
+        <Cube
+          position={[3.5, 0.51, 0]}
+          scale={[1, 1, 1]}
+          text={"Cube6"}
+          color={"green"}
+          textureCube={textureCube}
+        />
+
+        <Cube
+          position={[-4, 0.51, 2]}
+          scale={[1, 1, 1]}
+          text={"Cube1"}
+          color={"red"}
+          textureCube={textureCube}
+        />
+        <Cube
+          position={[-2.5, 0.51, 2]}
+          scale={[1, 1, 1]}
+          text={"Cube2"}
+          color={"lightgreen"}
+          textureCube={textureCube}
+        />
+        <Cube
+          position={[-1, 0.51, 2]}
+          scale={[1, 1, 1]}
+          text={"Cube3"}
+          color={"cyan"}
+          textureCube={textureCube}
+        />
+        <Cube
+          position={[0.5, 0.51, 2]}
+          scale={[1, 1, 1]}
+          text={"Cube4"}
+          color={"brown"}
+          textureCube={textureCube}
+        />
+        <Cube
+          position={[2, 0.51, 2]}
+          scale={[1, 1, 1]}
+          text={"Cube5"}
+          color={"purple"}
+          textureCube={textureCube}
+        />
+        <Cube
+          position={[3.5, 0.51, 2]}
+          scale={[1, 1, 1]}
+          text={"Cube6"}
+          color={"green"}
+          textureCube={textureCube}
+        />
+
+        <Cube
+          position={[-4, 2.51, 0]}
+          scale={[1, 1, 1]}
+          text={"Cube1"}
+          color={"red"}
+          textureCube={textureCube}
+        />
+        <Cube
+          position={[-2.5, 2.51, 0]}
+          scale={[1, 1, 1]}
+          text={"Cube2"}
+          color={"lightgreen"}
+          textureCube={textureCube}
+        />
+        <Cube
+          position={[-1, 2.51, 0]}
+          scale={[1, 1, 1]}
+          text={"Cube3"}
+          color={"cyan"}
+          textureCube={textureCube}
+        />
+        <Cube
+          position={[0.5, 2.51, 0]}
+          scale={[1, 1, 1]}
+          text={"Cube4"}
+          color={"brown"}
+          textureCube={textureCube}
+        />
+        <Cube
+          position={[2, 2.51, 0]}
+          scale={[1, 1, 1]}
+          text={"Cube5"}
+          color={"purple"}
+          textureCube={textureCube}
+        />
+        <Cube
+          position={[3.5, 2.51, 0]}
+          scale={[1, 1, 1]}
+          text={"Cube6"}
+          color={"green"}
+          textureCube={textureCube}
+        />
       </Canvas>
     </>
   );
