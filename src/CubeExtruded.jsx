@@ -1,12 +1,11 @@
 import * as THREE from "three";
 
 import React, { useRef } from "react";
-import { RoundedBox } from "@react-three/drei";
+
 import { Text } from "@react-three/drei";
 
 export default function CubeExtruded({
   position,
-  scale,
   value,
   text,
   color,
@@ -43,6 +42,14 @@ export default function CubeExtruded({
           roughness={0.1}
           side={THREE.DoubleSide}
         />
+        <Text
+          position={[0, -0.61, 0.6]}
+          rotation={[Math.PI / 2, 0, 0]}
+          color={0x000000}
+          fontSize={0.1}
+        >
+          {text}
+        </Text>
       </mesh>
     </>
   );

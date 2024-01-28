@@ -10,7 +10,7 @@ export default function Cube({ position, scale, text, color, textureCube }) {
       <RoundedBox
         position={position}
         scale={scale}
-        castShadow={true}
+        castShadow={false}
         bevelSegments={4}
         radius={0.05}
       >
@@ -21,7 +21,6 @@ export default function Cube({ position, scale, text, color, textureCube }) {
           opacity={0.4}
           metalness={0.9}
           roughness={0.1}
-          side={THREE.DoubleSide}
         />
 
         <Text position={[-0.1, 0.25, 0.51]} color={0x000000} fontSize={0.1}>

@@ -20,7 +20,7 @@ export default function Ground() {
         scale={[30, 30, 1]}
       >
         <planeGeometry attach="geometry" />
-        <meshStandardMaterial color="#8e8e8e" metalness={0.0} roughness={0.2} />
+        <meshStandardMaterial color="#8e8e8e" metalness={0.4} roughness={0.1} />
         <Text position={[-0.15, -0.2, 0.1]} color={0x000000} fontSize={0.025}>
           X-Axis
         </Text>
@@ -32,7 +32,7 @@ export default function Ground() {
         scale={[30, 30, 1]}
       >
         <planeGeometry attach="geometry" />
-        <meshStandardMaterial color="#d9d9d9" metalness={0.0} roughness={0.2} />
+        <meshStandardMaterial color="#d9d9d9" metalness={0.4} roughness={0.1} />
         <Text position={[-0.15, 0.2, 0.01]} color={0x000000} fontSize={0.025}>
           Y-Axis
         </Text>
