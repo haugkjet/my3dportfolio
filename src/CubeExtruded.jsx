@@ -40,7 +40,6 @@ export default function CubeExtruded({
           opacity={0.6}
           metalness={0.9}
           roughness={0.1}
-          side={THREE.DoubleSide}
         />
         <Text
           position={[0, -0.61, 0.6]}

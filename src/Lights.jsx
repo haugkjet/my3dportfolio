@@ -5,7 +5,7 @@ export default function Lights() {
     <>
       <pointLight
         position={[-5, 3, 5]}
-        intensity={200}
+        intensity={100}
         color="#fff"
         castShadow={true}
       />

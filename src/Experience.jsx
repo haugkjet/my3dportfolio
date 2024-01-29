@@ -15,8 +15,39 @@ import Cube from "./Cube";
 import MyCylinder from "./MyCylinder";
 import CubeExtruded from "./CubeExtruded";
 
+const getRandomValue = () => Math.floor(Math.random() * 4) + 1;
+const getRandomElement = (array) =>
+  array[Math.floor(Math.random() * array.length)];
+
+const generateObject = (textList, colorList) => {
+  const text = getRandomElement(textList);
+  const color = getRandomElement(colorList);
+  const value = getRandomValue();
+
+  return {
+    text,
+    color,
+    value,
+  };
+};
+
 export default function Experience() {
   const [cubeDataList, setCubeDataList] = useState(null);
+
+  const cubesData = [];
+
+  const colorList = ["lightgreen", "lightblue", "green", "cyan", "yellow"];
+  const textList = ["Cube", "CubeCool", "Cubebig"];
+
+  for (let i = 0; i < 10; i++) {
+    for (let j = 0; j < 10; j++) {
+      const { text, color, value } = generateObject(textList, colorList);
+      const position = [i * 1.5 - 8, 0.01, j * 1.5]; // Adjust the position based on your needs
+      const scale = [1, 1, 1]; // Adjust the scale based on your needs
+
+      cubesData.push({ text, color, position, scale, value });
+    }
+  }
 
   useEffect(() => {
     // Fetch the JSON file containing cube properties
@@ -79,8 +110,20 @@ export default function Experience() {
             />
           ))*/}
 
-        {cubeDataList &&
+        {/*cubeDataList &&
           cubeDataList.map((cubeData, index) => (
+            <CubeExtruded
+              key={index}
+              position={cubeData.position}
+              value={cubeData.value}
+              scale={cubeData.scale}
+              text={cubeData.text}
+              color={cubeData.color}
+              textureCube={textureCube}
+            />
+          ))*/}
+        {cubesData &&
+          cubesData.map((cubeData, index) => (
             <CubeExtruded
               key={index}
               position={cubeData.position}
