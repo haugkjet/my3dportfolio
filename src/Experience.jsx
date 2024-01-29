@@ -40,7 +40,7 @@ export default function Experience() {
   const textList = ["Cube", "CubeCool", "Cubebig"];
 
   for (let i = 0; i < 10; i++) {
-    for (let j = 0; j < 10; j++) {
+    for (let j = 0; j < 1; j++) {
       const { text, color, value } = generateObject(textList, colorList);
       const position = [i * 1.5 - 8, 0.01, j * 1.5]; // Adjust the position based on your needs
       const scale = [1, 1, 1]; // Adjust the scale based on your needs
@@ -76,7 +76,7 @@ export default function Experience() {
           fov: 50,
           near: 0.1,
           far: 200,
-          position: [14, 6, 11],
+          position: [-10, 6, 15],
         }}
         style={{ background: "#d9d9d9" }}
         onCreated={({ gl }) => {
