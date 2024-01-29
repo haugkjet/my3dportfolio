@@ -36,13 +36,10 @@ export default function CubeExtruded({
       const interpolatedDepth = value * progress;
 
       // Create a new ExtrudeGeometry with updated depth
-      const updatedGeometry = new THREE.ExtrudeGeometry(
-        geometryRef.current.shape,
-        {
-          depth: interpolatedDepth,
-          bevelEnabled: false,
-        }
-      );
+      const updatedGeometry = new THREE.ExtrudeGeometry(shape, {
+        depth: interpolatedDepth,
+        bevelEnabled: false,
+      });
 
       // Update the depth property of the ExtrudeGeometry
       geometryRef.current.geometry = updatedGeometry;
@@ -81,7 +78,15 @@ export default function CubeExtruded({
           position={[0, -0.61, 0.3]}
           rotation={[Math.PI / 2, 0, 0]}
           color={0x000000}
-          fontSize={0.15}
+          fontSize={0.3}
+        >
+          {value}
+        </Text>
+        <Text
+          position={[0, -0.91, 0.001]}
+          rotation={[0, 0, 0]}
+          color={0x000000}
+          fontSize={0.3}
         >
           {value}
         </Text>
