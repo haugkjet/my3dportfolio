@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import React, { useState, useEffect } from "react";
 import { Pathtracer } from "@react-three/gpu-pathtracer";
+import { useControls } from "leva";
 
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
@@ -32,6 +33,9 @@ const generateObject = (textList, colorList) => {
 };
 
 export default function Experience() {
+  const backgroundcolor = useControls({
+    value: "green",
+  });
   const [cubeDataList, setCubeDataList] = useState(null);
 
   const cubesData = [];
@@ -78,7 +82,7 @@ export default function Experience() {
           far: 200,
           position: [-5, 6, 20],
         }}
-        style={{ background: "#d9d9d9" }}
+        style={{ background: backgroundcolor.value }}
         onCreated={({ gl }) => {
           // Enable sRGBEncoding
           //gl.outputColorSpace = SRGBColorSpace;

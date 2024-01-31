@@ -1,6 +1,7 @@
 import * as THREE from "three";
 
 import React, { useRef, useEffect } from "react";
+import { useControls } from "leva";
 
 import { Text } from "@react-three/drei";
 
