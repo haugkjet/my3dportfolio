@@ -47,7 +47,6 @@ export default function CubeExtruded({
 
       if (progress < 1) {
         requestAnimationFrame(animate);
-        console.log(progress, "Animating");
       }
     };
     animate();

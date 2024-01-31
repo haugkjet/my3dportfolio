@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Pathtracer } from "@react-three/gpu-pathtracer";
 import { useControls } from "leva";
 
@@ -9,57 +9,28 @@ import { Perf } from "r3f-perf";
 import { SRGBColorSpace } from "three";
 import { Environment } from "@react-three/drei";
 
+import Scene1Chart from "./scene1chart/Scene1Chart";
+import Scene2Box from "./scene2box/Scene2Box";
+
 import Lights from "./Lights";
 import Ground from "./Ground";
 
-import Cube from "./Cube";
-import MyCylinder from "./MyCylinder";
-import CubeExtruded from "./CubeExtruded";
-
-const getRandomValue = () => Math.floor(Math.random() * 4) + 1;
-const getRandomElement = (array) =>
-  array[Math.floor(Math.random() * array.length)];
-
-const generateObject = (textList, colorList) => {
-  const text = getRandomElement(textList);
-  const color = getRandomElement(colorList);
-  const value = getRandomValue();
-
-  return {
-    text,
-    color,
-    value,
-  };
-};
-
 export default function Experience() {
-  const backgroundcolor = useControls({
-    value: "green",
+  const sceneRef = useRef();
+  const [currentScene, setCurrentScene] = useState("sceneOne");
+
+  // Define Leva controls
+  const { sceneSelector } = useControls({
+    sceneSelector: {
+      value: currentScene,
+      options: { SceneOne: "sceneOne", SceneTwo: "sceneTwo" },
+      onChange: (value) => setCurrentScene(value),
+    },
   });
-  const [cubeDataList, setCubeDataList] = useState(null);
 
-  const cubesData = [];
-
-  const colorList = ["red", "lightgreen", "green", "cyan", "yellow"];
-  const textList = ["Cube", "CubeCool", "Cubebig"];
-
-  for (let i = 0; i < 10; i++) {
-    for (let j = 0; j < 1; j++) {
-      const { text, color, value } = generateObject(textList, colorList);
-      const position = [i * 1.2 - 8, 0.01, j * 1.5]; // Adjust the position based on your needs
-      const scale = [1, 1, 1]; // Adjust the scale based on your needs
-
-      cubesData.push({ text, color, position, scale, value });
-    }
-  }
-
-  useEffect(() => {
-    // Fetch the JSON file containing cube properties
-    fetch("data/cubes.json")
-      .then((response) => response.json())
-      .then((data) => setCubeDataList(data))
-      .catch((error) => console.error("Error fetching cube data:", error));
-  }, []);
+  const backgroundcolor = useControls({
+    value: "white",
+  });
 
   const loader = new THREE.CubeTextureLoader();
   loader.setPath("https://threejs.org/examples/textures/cube/pisa/");
@@ -102,42 +73,12 @@ export default function Experience() {
 
         <Lights />
         <Ground />
-
-        {/*cubeDataList &&
-          cubeDataList.map((cubeData, index) => (
-            <Cube
-              key={index}
-              position={cubeData.position}
-              scale={cubeData.scale}
-              text={cubeData.text}
-              color={cubeData.color}
-            />
-          ))*/}
-
-        {/*cubeDataList &&
-          cubeDataList.map((cubeData, index) => (
-            <CubeExtruded
-              key={index}
-              position={cubeData.position}
-              value={cubeData.value}
-              scale={cubeData.scale}
-              text={cubeData.text}
-              color={cubeData.color}
-              textureCube={textureCube}
-            />
-          ))*/}
-        {cubesData &&
-          cubesData.map((cubeData, index) => (
-            <CubeExtruded
-              key={index}
-              position={cubeData.position}
-              value={cubeData.value}
-              scale={cubeData.scale}
-              text={cubeData.text}
-              color={cubeData.color}
-              textureCube={textureCube}
-            />
-          ))}
+        {currentScene === "sceneOne" && (
+          <Scene1Chart textureCube={textureCube} />
+        )}
+        {currentScene === "sceneTwo" && <Scene2Box />}
+        <gridHelper args={[10, 10]} />
+        <axesHelper args={[1]} />
       </Canvas>
     </>
   );
