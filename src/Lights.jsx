@@ -7,7 +7,7 @@ export default function Lights() {
         position={[-5, 3, 5]}
         intensity={500}
         color="#fff"
-        castShadow={true} // whether the light should cast shadows
+        castShadow={false} // whether the light should cast shadows
         shadow-mapSize-width={1024} // width of the shadow map
         shadow-mapSize-height={1024} // height of the sh
       />
@@ -16,7 +16,7 @@ export default function Lights() {
         position={[5, 5, -4]}
         intensity={1000}
         color="#fff"
-        castShadow={true} // whether the light should cast shadows
+        castShadow={false} // whether the light should cast shadows
         shadow-mapSize-width={1024} // width of the shadow map
         shadow-mapSize-height={1024} // height of the sh
       />
@@ -25,7 +25,7 @@ export default function Lights() {
         position={[9, 7, 5]}
         intensity={1000}
         color="#fff"
-        castShadow={true} // whether the light should cast shadows
+        castShadow={false} // whether the light should cast shadows
         shadow-mapSize-width={1024} // width of the shadow map
         shadow-mapSize-height={1024} // height of the sh
       />
@@ -34,7 +34,7 @@ export default function Lights() {
         rotation={[0, 0, 0]} // x, y, z
         intensity={5} // strength of the light
         color="#ffffff" // color of the light
-        castShadow={true} // whether the light should cast shadows
+        castShadow={false} // whether the light should cast shadows
         shadow-mapSize-width={128} // width of the shadow map
         shadow-mapSize-height={128} // height of the sh // whether the light should cast shadows
       />
@@ -43,7 +43,7 @@ export default function Lights() {
         rotation={[0, 0, 0]} // x, y, z
         intensity={5} // strength of the light
         color="#ffffff" // color of the light
-        castShadow={true} // whether the light should cast shadows
+        castShadow={false} // whether the light should cast shadows
         shadow-mapSize-width={128} // width of the shadow map
         shadow-mapSize-height={128} // height of the sh // whether the light should cast shadows
       />

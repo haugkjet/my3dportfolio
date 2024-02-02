@@ -47,7 +47,7 @@ export default function CubeExtruded({
           opacity={0.9}
           metalness={0.7}
           roughness={0.015}
-          castShadow={true}
+          castShadow={false}
         />
         <Text
           position={[0, -0.61, 0.3]}

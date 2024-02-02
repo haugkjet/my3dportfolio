@@ -14,7 +14,7 @@ export default function Ground() {
         args={[100, 100, "#d9d9d9", "#d9d9d9"]}
   />*/}
       <mesh
-        receiveShadow={true}
+        receiveShadow={false}
         position={[0, 0, 0]}
         rotation={[-Math.PI / 2, 0, 0]}
         scale={[500, 500, 1]}
