@@ -13,7 +13,7 @@ export default function CubeExtruded({
   textureCube,
 }) {
   let shape = new THREE.Shape();
-  let angleStep = Math.PI * 0.5;
+  let angleStep = Math.PI * 0.0;
   let radius = 0.05;
 
   shape.absarc(0.5, 0.5, radius, angleStep * 0, angleStep * 1, false);
@@ -50,7 +50,7 @@ export default function CubeExtruded({
           castShadow={false}
         />
         <Text
-          position={[0, -0.61, 0.3]}
+          position={[0, -0.61, value - 0.5]}
           rotation={[Math.PI / 2, 0, 0]}
           color={0x000000}
           fontSize={0.3}

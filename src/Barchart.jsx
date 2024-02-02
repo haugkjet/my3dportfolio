@@ -23,6 +23,7 @@ export default function Barchart({
   posx,
   posy,
   posz,
+  roty,
   length,
   title,
 }) {
@@ -45,36 +46,38 @@ export default function Barchart({
 
   return (
     <>
-      {cubesData &&
-        cubesData.map((cubeData, index) => (
-          <CubeExtruded
-            key={index}
-            position={cubeData.position}
-            value={cubeData.value}
-            scale={cubeData.scale}
-            text={cubeData.text}
-            color={cubeData.color}
-            textureCube={textureCube}
-          />
-        ))}
-      <Text
-        position={[-posx + length / 2, posy + 0.05, posz + 3]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        color={0x000000}
-        fontSize={1}
-      >
-        {title}
-      </Text>
-      <pointLight
-        position={[-posx - 2, posy + 4, posz + 2]}
-        intensity={100}
-        color="#fff"
-      />
-      <pointLight
-        position={[-posx + length + 2, posy + 4, posz + 2]}
-        intensity={100}
-        color="#fff"
-      />
+      <mesh rotation={[0, roty, 0]}>
+        {cubesData &&
+          cubesData.map((cubeData, index) => (
+            <CubeExtruded
+              key={index}
+              position={cubeData.position}
+              value={cubeData.value}
+              scale={cubeData.scale}
+              text={cubeData.text}
+              color={cubeData.color}
+              textureCube={textureCube}
+            />
+          ))}
+        <Text
+          position={[-posx + length / 2, posy + 0.05, posz + 3]}
+          rotation={[-Math.PI / 2, 0, 0]}
+          color={0x000000}
+          fontSize={1}
+        >
+          {title}
+        </Text>
+        <pointLight
+          position={[-posx - 2, posy + 4, posz + 2]}
+          intensity={100}
+          color="#fff"
+        />
+        <pointLight
+          position={[-posx + length + 2, posy + 4, posz + 2]}
+          intensity={100}
+          color="#fff"
+        />
+      </mesh>
     </>
   );
 }

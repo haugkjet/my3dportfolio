@@ -47,7 +47,7 @@ export default function Experience() {
           fov: 50,
           near: 0.1,
           far: 2000,
-          position: [75, 30, 100],
+          position: [30, 15, 75],
         }}
         onCreated={({ gl, scene }) => {
           // Enable sRGBEncoding
