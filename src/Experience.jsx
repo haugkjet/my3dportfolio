@@ -7,16 +7,16 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import { SRGBColorSpace } from "three";
-import { Environment } from "@react-three/drei";
+import { Environment, Sky } from "@react-three/drei";
 
 import Scene1Chart from "./scene1chart/Scene1Chart";
 import Scene2Box from "./scene2box/Scene2Box";
+import { Fog } from "three";
 
 import Lights from "./Lights";
 import Ground from "./Ground";
 
 export default function Experience() {
-  const sceneRef = useRef();
   const [currentScene, setCurrentScene] = useState("sceneOne");
 
   // Define Leva controls
@@ -26,10 +26,6 @@ export default function Experience() {
       options: { SceneOne: "sceneOne", SceneTwo: "sceneTwo" },
       onChange: (value) => setCurrentScene(value),
     },
-  });
-
-  const backgroundcolor = useControls({
-    value: "white",
   });
 
   const loader = new THREE.CubeTextureLoader();
@@ -50,24 +46,24 @@ export default function Experience() {
         camera={{
           fov: 50,
           near: 0.1,
-          far: 200,
-          position: [-5, 6, 20],
+          far: 2000,
+          position: [75, 30, 100],
         }}
-        style={{ background: backgroundcolor.value }}
-        onCreated={({ gl }) => {
+        onCreated={({ gl, scene }) => {
           // Enable sRGBEncoding
           //gl.outputColorSpace = SRGBColorSpace;
 
           // Alternatively, you can use LinearEncoding if sRGBEncoding is not desired
           gl.outputColorSpace = SRGBColorSpace;
           gl.shadowMap.enabled = true;
+          gl.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
 
           gl.toneMapping = THREE.ACESFilmicToneMapping;
-          gl.toneMappingExposure = 2.0;
-          gl.shadowMap.type = THREE.PCFSoftShadowMap;
+          gl.toneMappingExposure = 0.5;
+
+          scene.fog = new Fog(0xffffff, 0.015, 350);
         }}
       >
-        <Environment preset="forest"></Environment>
         <Perf position="top-left" />
         <OrbitControls dampingFactor={0.9} />
 
@@ -77,8 +73,6 @@ export default function Experience() {
           <Scene1Chart textureCube={textureCube} />
         )}
         {currentScene === "sceneTwo" && <Scene2Box />}
-        <gridHelper args={[10, 10]} />
-        <axesHelper args={[1]} />
       </Canvas>
     </>
   );

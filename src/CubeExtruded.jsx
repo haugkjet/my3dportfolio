@@ -24,36 +24,9 @@ export default function CubeExtruded({
   const geometryRef = useRef();
 
   // Animate the depth of the ExtrudeGeometry
-  useEffect(() => {
-    const startTime = Date.now();
-    const duration = 1000; // Animation duration in milliseconds
-
-    const animate = () => {
-      const currentTime = Date.now();
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1); // Ensure progress is capped at 1
-
-      // Interpolate depth from 0 to the specified value
-      const interpolatedDepth = value * progress;
-
-      // Create a new ExtrudeGeometry with updated depth
-      const updatedGeometry = new THREE.ExtrudeGeometry(shape, {
-        depth: interpolatedDepth,
-        bevelEnabled: false,
-      });
-
-      // Update the depth property of the ExtrudeGeometry
-      geometryRef.current.geometry = updatedGeometry;
-
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      }
-    };
-    animate();
-  }, [value]);
 
   const initialGeometry = new THREE.ExtrudeGeometry(shape, {
-    depth: 0,
+    depth: value,
     bevelEnabled: false,
   });
 
@@ -61,30 +34,24 @@ export default function CubeExtruded({
     <>
       <mesh
         geometry={initialGeometry}
-        ref={geometryRef}
         position={position}
         rotation={[-Math.PI / 2, 0, 0]}
         scale={[1, 1, 1]}
+        castShadow={true}
+        receiveShadows={true}
       >
         <meshStandardMaterial
           color={color}
           envMap={textureCube}
           transparent={true}
-          opacity={0.6}
-          metalness={0.9}
-          roughness={0.1}
+          opacity={0.9}
+          metalness={0.7}
+          roughness={0.015}
+          castShadow={true}
         />
         <Text
           position={[0, -0.61, 0.3]}
           rotation={[Math.PI / 2, 0, 0]}
-          color={0x000000}
-          fontSize={0.3}
-        >
-          {value}
-        </Text>
-        <Text
-          position={[0, -0.91, 0.001]}
-          rotation={[0, 0, 0]}
           color={0x000000}
           fontSize={0.3}
         >
