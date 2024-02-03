@@ -13,7 +13,7 @@ export default function CubeExtruded({
   textureCube,
 }) {
   let shape = new THREE.Shape();
-  let angleStep = Math.PI * 0.0;
+  let angleStep = Math.PI * 0.5;
   let radius = 0.05;
 
   shape.absarc(0.5, 0.5, radius, angleStep * 0, angleStep * 1, false);
@@ -44,7 +44,7 @@ export default function CubeExtruded({
           color={color}
           envMap={textureCube}
           transparent={true}
-          opacity={0.9}
+          opacity={0.8}
           metalness={0.7}
           roughness={0.015}
           castShadow={false}

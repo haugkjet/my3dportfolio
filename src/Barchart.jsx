@@ -1,6 +1,7 @@
 import CubeExtruded from "./CubeExtruded";
 import React, { useState, useEffect, useRef } from "react";
-import { Text } from "@react-three/drei";
+import { RoundedBox, Text } from "@react-three/drei";
+import { Box } from "@react-three/drei";
 
 const getRandomValue = () => Math.floor(Math.random() * 10) + 1;
 const getRandomElement = (array) =>
@@ -78,6 +79,26 @@ export default function Barchart({
           color="#fff"
         />
       </mesh>
+
+      <RoundedBox
+        position={[-posx + length / 2 + 1, posy + 5, posz - 1.5]}
+        rotation={[0, roty, 0]}
+        args={[length + 6, 13, 0.3]}
+      >
+        {" "}
+        <meshStandardMaterial
+          color="white"
+          transparent={true}
+          opacity={0.6}
+          metalness={0.1}
+          roughness={0.015}
+        />
+        {/*<gridHelper
+          args={[length + 3, 10, "orange", "grey"]}
+          position={[0, posy, 0.2]}
+          rotation={[-Math.PI / 2, roty, 0]}
+          />*/}
+      </RoundedBox>
     </>
   );
 }
