@@ -12,9 +12,14 @@ export default function CubeExtruded({
   color,
   textureCube,
 }) {
+  // Givs interesting shape on bar
+  //let shape = new THREE.Shape();
+  //let angleStep = Math.PI * 1.5;
+  //let radius = 0.025;
+
   let shape = new THREE.Shape();
   let angleStep = Math.PI * 0.5;
-  let radius = 0.05;
+  let radius = 0.01;
 
   shape.absarc(0.5, 0.5, radius, angleStep * 0, angleStep * 1, false);
   shape.absarc(-0.5, 0.5, radius, angleStep * 1, angleStep * 2, false);
