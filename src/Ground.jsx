@@ -4,10 +4,7 @@ import { Text } from "@react-three/drei";
 export default function Ground() {
   return (
     <>
-      <gridHelper
-        args={[500, 100, "orange", "grey"]}
-        position={[0, 0.001, 0]}
-      />
+      <gridHelper args={[500, 50, "orange", "grey"]} position={[0, 0.001, 0]} />
       {/*<gridHelper
         rotation={[Math.PI / 2, 0, 0]}
         position={[0, 0.0, -0.6999]}

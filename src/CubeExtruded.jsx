@@ -57,6 +57,14 @@ export default function CubeExtruded({
         >
           {value}
         </Text>
+        <Text
+          position={[0, -1, 0]}
+          rotation={[0, 0, 0]}
+          color={0x000000}
+          fontSize={0.3}
+        >
+          {value}
+        </Text>
       </mesh>
     </>
   );

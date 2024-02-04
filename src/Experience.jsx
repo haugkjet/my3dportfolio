@@ -11,6 +11,7 @@ import { Environment, Sky } from "@react-three/drei";
 
 import Scene1Chart from "./scene1chart/Scene1Chart";
 import Scene2Box from "./scene2box/Scene2Box";
+import Scene3Dashboard from "./scene3dashboard/Scene3Dashboard";
 import { Fog } from "three";
 
 import Lights from "./Lights";
@@ -23,7 +24,11 @@ export default function Experience() {
   const { sceneSelector } = useControls({
     sceneSelector: {
       value: currentScene,
-      options: { SceneOne: "sceneOne", SceneTwo: "sceneTwo" },
+      options: {
+        SceneOne: "sceneOne",
+        SceneTwo: "sceneTwo",
+        SceneThree: "sceneThree",
+      },
       onChange: (value) => setCurrentScene(value),
     },
   });
@@ -73,6 +78,7 @@ export default function Experience() {
           <Scene1Chart textureCube={textureCube} />
         )}
         {currentScene === "sceneTwo" && <Scene2Box />}
+        {currentScene === "sceneThree" && <Scene3Dashboard />}
       </Canvas>
     </>
   );

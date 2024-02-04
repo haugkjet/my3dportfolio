@@ -1,8 +1,45 @@
 import Barchart from "../Barchart";
+import { RoundedBox } from "@react-three/drei";
 
 export default function Scene1Chart({ textureCube }) {
   return (
     <>
+      <RoundedBox
+        position={[-60, 25, 0]}
+        rotation={[0, Math.PI / 2, 0]}
+        args={[150, 50, 0.3]}
+      >
+        <meshStandardMaterial
+          color="white"
+          transparent={true}
+          opacity={0.25}
+          metalness={0.9}
+          roughness={0.9}
+        />
+        {/*<gridHelper
+          args={[length + 3, 10, "orange", "grey"]}
+          position={[0, posy, 0.2]}
+          rotation={[-Math.PI / 2, roty, 0]}
+          />*/}
+      </RoundedBox>
+      <RoundedBox
+        position={[15, 25, -75]}
+        rotation={[0, 0, 0]}
+        args={[150, 50, 0.3]}
+      >
+        <meshStandardMaterial
+          color="white"
+          transparent={true}
+          opacity={0.5}
+          metalness={0.9}
+          roughness={0.9}
+        />
+        {/*<gridHelper
+          args={[length + 3, 10, "orange", "grey"]}
+          position={[0, posy, 0.2]}
+          rotation={[-Math.PI / 2, roty, 0]}
+          />*/}
+      </RoundedBox>
       <Barchart
         posx={10}
         posy={0}
