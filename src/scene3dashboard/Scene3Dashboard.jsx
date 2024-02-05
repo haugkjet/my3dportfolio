@@ -1,6 +1,7 @@
 import Barchart from "../Barchart";
 import { RoundedBox, Text } from "@react-three/drei";
 import MyPieChart from "../MyPieChart";
+import MyLineChart from "../MyLineChart";
 
 export default function Scene3Dashboard({ textureCube }) {
   const data1 = [
@@ -9,9 +10,9 @@ export default function Scene3Dashboard({ textureCube }) {
   ];
 
   const data2 = [
-    { value: 12.5, color: "red" },
+    { value: 12.5, color: "pink" },
     { value: 12.5, color: "green" },
-    { value: 25, color: "blue" },
+    { value: 25, color: "lightblue" },
     { value: 25, color: "orange" },
     { value: 25, color: "brown" },
   ];
@@ -21,8 +22,18 @@ export default function Scene3Dashboard({ textureCube }) {
     { value: 10, color: "lightgreen" },
     { value: 25, color: "lightblue" },
     { value: 50, color: "darkgrey" },
-    { value: 10, color: "grey" },
+    { value: 10, color: "cyan" },
   ];
+
+  const linedata = [
+    { x: -10, y: 5 }, // Assuming all points lie on a flat plane (z=0)
+    { x: -9, y: 6 },
+    { x: -1, y: 1 },
+
+    { x: 1, y: 1 },
+    { x: 7, y: 5 },
+  ];
+  const linethickness = 0.1; // Thickness of the line
 
   return (
     <>
@@ -193,6 +204,30 @@ export default function Scene3Dashboard({ textureCube }) {
           roty={Math.PI / 2}
           title={"Bar12"}
           maxheight={30}
+        />
+      </group>
+      <group position={[0, 2, -0.7]}>
+        <MyLineChart data={linedata} thickness={linethickness} />
+      </group>
+      <group
+        position={[-13.5, 2, 5]}
+        rotation={[0, Math.PI / 2, 0]}
+        scale={[0.5, 0.5, 0.5]}
+      >
+        <MyLineChart data={linedata} thickness={linethickness} />
+      </group>
+      <group scale={[1, 0.5, 1]}>
+        <gridHelper
+          args={[20, 10, "orange", "grey"]}
+          position={[-3, 10, 0 - 1]}
+          rotation={[Math.PI / 2, 0, 0]}
+        />
+      </group>
+      <group scale={[0.2, 0.2, 0.2]}>
+        <gridHelper
+          args={[20, 10, "orange", "grey"]}
+          position={[-55, 0.1, 40]}
+          rotation={[0, 0, 0]}
         />
       </group>
     </>
