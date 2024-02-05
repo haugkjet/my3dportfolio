@@ -34,7 +34,7 @@ export default function Barchart({
 }) {
   const cubesData = [];
 
-  const colorList = ["lightblue", "lightgreen"];
+  const colorList = ["#007bff", "#ffa04c", "lightgrey"];
   const textList = ["Cube", "CubeCool", "Cubebig"];
 
   for (let i = 0; i < length; i++) {

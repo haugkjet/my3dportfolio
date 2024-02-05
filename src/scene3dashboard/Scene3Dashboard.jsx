@@ -5,13 +5,13 @@ import MyLineChart from "../MyLineChart";
 
 export default function Scene3Dashboard({ textureCube }) {
   const data1 = [
-    { value: 75, color: "red" },
-    { value: 25, color: "green" },
+    { value: 75, color: "#007bff" },
+    { value: 25, color: "#ffa04c" },
   ];
 
   const data2 = [
     { value: 12.5, color: "pink" },
-    { value: 12.5, color: "green" },
+    { value: 12.5, color: "orange" },
     { value: 25, color: "lightblue" },
     { value: 25, color: "orange" },
     { value: 25, color: "brown" },
@@ -37,7 +37,7 @@ export default function Scene3Dashboard({ textureCube }) {
 
   return (
     <>
-      <RoundedBox
+      {/*  <RoundedBox
         args={[3, 0.05, 3]}
         position={[0, 0, 5]}
         radius={0.01}
@@ -70,7 +70,7 @@ export default function Scene3Dashboard({ textureCube }) {
         smoothness={0.1}
       >
         <meshStandardMaterial color="red" metalness={0.9} roughness={0.7} />
-      </RoundedBox>
+      </RoundedBox> */}
 
       <Barchart
         posx={10}
@@ -175,13 +175,13 @@ export default function Scene3Dashboard({ textureCube }) {
       />
       <group scale={[0.5, 0.5, 0.5]}>
         <Barchart
-          posx={-3}
-          posy={0}
-          posz={2}
-          length={4}
-          roty={0}
+          posx={-5}
+          posy={1}
+          posz={-14}
+          length={10}
+          roty={-Math.PI / 2}
           title={"Bar11"}
-          maxheight={3}
+          maxheight={5}
         />
       </group>
       <group scale={[0.3, 0.3, 0.3]}>
@@ -210,7 +210,7 @@ export default function Scene3Dashboard({ textureCube }) {
         <MyLineChart data={linedata} thickness={linethickness} />
       </group>
       <group
-        position={[-13.5, 2, 5]}
+        position={[-13.5, 7, 5]}
         rotation={[0, Math.PI / 2, 0]}
         scale={[0.5, 0.5, 0.5]}
       >
@@ -228,6 +228,20 @@ export default function Scene3Dashboard({ textureCube }) {
           args={[20, 10, "orange", "grey"]}
           position={[-55, 0.1, 40]}
           rotation={[0, 0, 0]}
+        />
+      </group>
+      <group scale={[0.2, 0.2, 0.5]}>
+        <gridHelper
+          args={[20, 10, "orange", "grey"]}
+          position={[28, 0.1, 10]}
+          rotation={[0, 0, 0]}
+        />
+      </group>
+      <group scale={[0.2, 0.2, 0.5]}>
+        <gridHelper
+          args={[20, 10, "orange", "grey"]}
+          position={[-67, 40, 10]}
+          rotation={[0, 0, Math.PI / 2]}
         />
       </group>
     </>
