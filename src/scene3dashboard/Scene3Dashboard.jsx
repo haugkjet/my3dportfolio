@@ -1,7 +1,29 @@
 import Barchart from "../Barchart";
 import { RoundedBox, Text } from "@react-three/drei";
+import MyPieChart from "../MyPieChart";
 
 export default function Scene3Dashboard({ textureCube }) {
+  const data1 = [
+    { value: 75, color: "red" },
+    { value: 25, color: "green" },
+  ];
+
+  const data2 = [
+    { value: 12.5, color: "red" },
+    { value: 12.5, color: "green" },
+    { value: 25, color: "blue" },
+    { value: 25, color: "orange" },
+    { value: 25, color: "brown" },
+  ];
+
+  const data3 = [
+    { value: 5, color: "pink" },
+    { value: 10, color: "lightgreen" },
+    { value: 25, color: "lightblue" },
+    { value: 50, color: "darkgrey" },
+    { value: 10, color: "grey" },
+  ];
+
   return (
     <>
       <RoundedBox
@@ -46,6 +68,7 @@ export default function Scene3Dashboard({ textureCube }) {
         length={15}
         roty={0}
         title={"Sales 2024"}
+        maxheight={10}
       />
       <RoundedBox
         args={[22.5, 12, 0.25]}
@@ -92,10 +115,86 @@ export default function Scene3Dashboard({ textureCube }) {
           rotation={[0, 0, 0]}
           color={"white"}
           fontSize={0.6}
-        >
-          Yearly Results
-        </Text>
+        ></Text>
       </RoundedBox>
+      <RoundedBox
+        args={[12, 12, 0.25]}
+        position={[-13.35, 6, 5]}
+        rotation={[0, Math.PI / 2, 0]}
+        radius={0.1}
+        smoothness={4}
+      >
+        <meshStandardMaterial
+          color="white"
+          transparent={true}
+          opacity={0.7}
+          metalness={0.3}
+          roughness={0.015}
+          castShadow={false}
+          doubleSided={true}
+        />
+        <Text
+          position={[-9, -5.5, 0.15]}
+          rotation={[0, 0, 0]}
+          color={"white"}
+          fontSize={0.6}
+        ></Text>
+      </RoundedBox>
+
+      <MyPieChart
+        data={data1}
+        position={[-6, 0.2, 3]}
+        radius={1}
+        title={"Dividend"}
+        depth={0.5}
+      />
+      <MyPieChart
+        data={data2}
+        position={[-6, 0.4, 6]}
+        radius={1}
+        title={"EPS"}
+        depth={0.2}
+      />
+      <MyPieChart
+        data={data3}
+        position={[1, 1, 6]}
+        radius={1.5}
+        title={"Yield"}
+        depth={2}
+      />
+      <group scale={[0.5, 0.5, 0.5]}>
+        <Barchart
+          posx={-3}
+          posy={0}
+          posz={2}
+          length={4}
+          roty={0}
+          title={"Bar11"}
+          maxheight={3}
+        />
+      </group>
+      <group scale={[0.3, 0.3, 0.3]}>
+        <Barchart
+          posx={30}
+          posy={0}
+          posz={-40}
+          length={4}
+          roty={Math.PI / 2}
+          title={"Bar12"}
+          maxheight={10}
+        />
+      </group>
+      <group scale={[0.3, 0.3, 0.3]}>
+        <Barchart
+          posx={20}
+          posy={0}
+          posz={-42}
+          length={15}
+          roty={Math.PI / 2}
+          title={"Bar12"}
+          maxheight={30}
+        />
+      </group>
     </>
   );
 }

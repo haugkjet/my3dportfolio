@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { Text } from "@react-three/drei";
 import axios from "axios";
+import MyPieChart from "../MyPieChart";
 
 // Helper function to fetch cryptocurrency prices
 const fetchPrice = async (currencyPair) => {
@@ -36,6 +37,15 @@ const PriceCube = ({ position, currencyPair }) => {
 };
 
 function Scene2Box() {
+  // Sample data for the pie chart
+  const data = [
+    { value: 12.5, color: "red" },
+    { value: 12.5, color: "green" },
+    { value: 25, color: "blue" },
+    { value: 25, color: "yellow" },
+    { value: 25, color: "lightblue" },
+  ];
+
   return (
     <>
       <ambientLight />

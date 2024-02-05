@@ -47,6 +47,7 @@ export default function Scene1Chart({ textureCube }) {
         length={10}
         roty={0}
         title={"Barchart 1"}
+        maxheight={10}
       />
       <Barchart
         posx={20}
@@ -55,6 +56,7 @@ export default function Scene1Chart({ textureCube }) {
         length={10}
         roty={0}
         title={"Barchart 2"}
+        maxheight={10}
       />
 
       <Barchart
@@ -64,6 +66,7 @@ export default function Scene1Chart({ textureCube }) {
         length={7}
         roty={0}
         title={"Barchart 3"}
+        maxheight={10}
       />
       <Barchart
         posx={30}
@@ -72,6 +75,7 @@ export default function Scene1Chart({ textureCube }) {
         length={20}
         roty={0}
         title={"Barchart 4"}
+        maxheight={10}
       />
       <Barchart
         posx={-5}
@@ -80,6 +84,7 @@ export default function Scene1Chart({ textureCube }) {
         length={10}
         roty={0}
         title={"Barchart 5"}
+        maxheight={10}
       />
       <Barchart
         posx={25}
@@ -88,6 +93,7 @@ export default function Scene1Chart({ textureCube }) {
         length={20}
         roty={0}
         title={"Barchart 6"}
+        maxheight={10}
       />
       <Barchart
         posx={-15}
@@ -96,6 +102,7 @@ export default function Scene1Chart({ textureCube }) {
         length={10}
         roty={Math.PI / 2}
         title={"Barchart 7"}
+        maxheight={10}
       />
       <Barchart
         posx={55}
@@ -104,6 +111,7 @@ export default function Scene1Chart({ textureCube }) {
         length={30}
         roty={0}
         title={"Barchart 8"}
+        maxheight={10}
       />
       <Barchart
         posx={5}
@@ -112,6 +120,7 @@ export default function Scene1Chart({ textureCube }) {
         length={15}
         roty={Math.PI / 2}
         title={"Barchart 9"}
+        maxheight={10}
       />
       <Barchart
         posx={35}
@@ -120,6 +129,7 @@ export default function Scene1Chart({ textureCube }) {
         length={7}
         roty={0}
         title={"Barchart 10"}
+        maxheight={10}
       />
       {/* <Barchart
         posx={70}
