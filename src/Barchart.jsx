@@ -34,7 +34,7 @@ export default function Barchart({
 }) {
   const cubesData = [];
 
-  const colorList = ["#007bff", "#ffa04c", "lightgrey"];
+  const colorList = ["#007bff", "#ffa04c"];
   const textList = ["Cube", "CubeCool", "Cubebig"];
 
   for (let i = 0; i < length; i++) {
@@ -74,7 +74,7 @@ export default function Barchart({
         >
           {title}
         </Text>
-        <pointLight
+        {/*<pointLight
           position={[-posx - 2, posy + 4, posz + 2]}
           intensity={100}
           color="#fff"
@@ -83,7 +83,7 @@ export default function Barchart({
           position={[-posx + length + 2, posy + 4, posz + 2]}
           intensity={100}
           color="#fff"
-        />
+          />*/}
       </mesh>
     </>
   );

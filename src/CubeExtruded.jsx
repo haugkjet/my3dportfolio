@@ -19,7 +19,7 @@ export default function CubeExtruded({
 
   let shape = new THREE.Shape();
   let angleStep = Math.PI * 0.5;
-  let radius = 0.01;
+  let radius = 0.02;
 
   shape.absarc(0.5, 0.5, radius, angleStep * 0, angleStep * 1, false);
   shape.absarc(-0.5, 0.5, radius, angleStep * 1, angleStep * 2, false);
@@ -42,17 +42,14 @@ export default function CubeExtruded({
         position={position}
         rotation={[-Math.PI / 2, 0, 0]}
         scale={[1, 1, 1]}
-        castShadow={true}
-        receiveShadows={true}
       >
         <meshStandardMaterial
           color={color}
           envMap={textureCube}
-          transparent={true}
+          transparent={false}
           opacity={0.8}
-          metalness={0.7}
-          roughness={0.015}
-          castShadow={false}
+          metalness={0.0}
+          roughness={0.2}
         />
         <Text
           position={[0, -0.61, value - 0.5]}

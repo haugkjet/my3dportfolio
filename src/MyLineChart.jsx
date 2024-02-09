@@ -13,7 +13,7 @@ const Line = ({ points, thickness }) => {
   }, [points]);
 
   const tubeGeometry = useMemo(
-    () => new THREE.TubeGeometry(path, 100, thickness, 8, false),
+    () => new THREE.TubeGeometry(path, 10, thickness, 3, false),
     [path, thickness]
   );
 

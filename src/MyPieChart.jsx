@@ -17,7 +17,7 @@ const PieSegment = ({ radius, angle, angleStart, color, depth }) => {
     shape.lineTo(0, 0);
 
     const extrudeSettings = {
-      steps: 5,
+      steps: 4,
       depth: depth,
       bevelEnabled: false,
       bevelThickness: 0.1,
@@ -29,11 +29,11 @@ const PieSegment = ({ radius, angle, angleStart, color, depth }) => {
 
   return (
     <mesh ref={ref} geometry={geometry} rotation={[Math.PI / 2, 0, angleStart]}>
-      <meshStandardMaterial color={color} />
+      <meshStandardMaterial color={color} metalness={0.0} roughness={0.3} />
       <Text
-        position={[radius * 0.5, 0.1, -0.1]}
+        position={[radius * 0.5, 0.1, -0.02]}
         rotation={[0, Math.PI, 0]}
-        color={0xffffff}
+        color={"black"}
         fontSize={0.15}
       >
         10%
@@ -69,9 +69,9 @@ const MyPieChart = ({ data, position, radius, title, depth }) => {
           return segmentComponent;
         })}
         <Text
-          position={[0, -depth / 2 + 0.3, radius + 0.3]}
+          position={[0, -0.05, radius + 0.3]}
           rotation={[-Math.PI / 2, 0, 0]}
-          color={0xffffff}
+          color={"grey"}
           fontSize={0.2 * radius}
         >
           {title}

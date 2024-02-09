@@ -60,7 +60,7 @@ export default function Experience() {
 
           // Alternatively, you can use LinearEncoding if sRGBEncoding is not desired
           gl.outputColorSpace = SRGBColorSpace;
-          gl.shadowMap.enabled = true;
+          gl.shadowMap.enabled = false;
           gl.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
 
           gl.toneMapping = THREE.ACESFilmicToneMapping;
