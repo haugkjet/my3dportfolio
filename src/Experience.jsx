@@ -12,10 +12,8 @@ import { Environment, Sky } from "@react-three/drei";
 import Scene1Chart from "./scene1chart/Scene1Chart";
 import Scene2Box from "./scene2box/Scene2Box";
 import Scene3Dashboard from "./scene3dashboard/Scene3Dashboard";
+import Scene4 from "./scene4/Scene4";
 import { Fog } from "three";
-
-import Lights from "./Lights";
-import Ground from "./Ground";
 
 export default function Experience() {
   const [currentScene, setCurrentScene] = useState("sceneOne");
@@ -28,22 +26,11 @@ export default function Experience() {
         SceneOne: "sceneOne",
         SceneTwo: "sceneTwo",
         SceneThree: "sceneThree",
+        SceneFour: "sceneFour",
       },
       onChange: (value) => setCurrentScene(value),
     },
   });
-
-  const loader = new THREE.CubeTextureLoader();
-  loader.setPath("https://threejs.org/examples/textures/cube/pisa/");
-
-  const textureCube = loader.load([
-    "px.png",
-    "nx.png",
-    "py.png",
-    "ny.png",
-    "pz.png",
-    "nz.png",
-  ]);
 
   return (
     <>
@@ -72,13 +59,10 @@ export default function Experience() {
         <Perf position="top-left" />
         <OrbitControls dampingFactor={0.9} />
 
-        <Lights />
-        <Ground />
-        {currentScene === "sceneOne" && (
-          <Scene1Chart textureCube={textureCube} />
-        )}
+        {currentScene === "sceneOne" && <Scene1Chart />}
         {currentScene === "sceneTwo" && <Scene2Box />}
         {currentScene === "sceneThree" && <Scene3Dashboard />}
+        {currentScene === "sceneFour" && <Scene4 />}
       </Canvas>
     </>
   );

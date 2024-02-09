@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Lights from "../Lights";
+import Ground from "../Ground";
 
 import { Text } from "@react-three/drei";
 import axios from "axios";
@@ -48,8 +50,8 @@ function Scene2Box() {
 
   return (
     <>
-      <ambientLight />
-      <pointLight position={[10, 10, 10]} />
+      <Ground />
+      <Lights />
       <PriceCube position={[-2, 0, 0]} currencyPair="BTC-USD" />
       <PriceCube position={[0, 0, 0]} currencyPair="ETH-USD" />
       <PriceCube position={[2, 0, 0]} currencyPair="ADA-USD" />

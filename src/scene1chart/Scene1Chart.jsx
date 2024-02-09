@@ -1,9 +1,14 @@
 import Barchart from "../Barchart";
 import { RoundedBox } from "@react-three/drei";
+import { Environment, Sky } from "@react-three/drei";
+import Lights from "../Lights";
+import Ground from "../Ground";
 
-export default function Scene1Chart({ textureCube }) {
+export default function Scene1Chart() {
   return (
     <>
+      <Ground />
+      <Lights />
       <RoundedBox
         position={[-60, 25, 0]}
         rotation={[0, Math.PI / 2, 0]}
