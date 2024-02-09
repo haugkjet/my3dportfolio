@@ -4,7 +4,12 @@ import { Pathtracer } from "@react-three/gpu-pathtracer";
 import { useControls } from "leva";
 
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import {
+  BakeShadows,
+  SoftShadows,
+  useHelper,
+  OrbitControls,
+} from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import { SRGBColorSpace } from "three";
 import { Environment, Sky } from "@react-three/drei";
@@ -35,6 +40,7 @@ export default function Experience() {
   return (
     <>
       <Canvas
+        shadows={true}
         camera={{
           fov: 50,
           near: 0.1,
@@ -44,18 +50,15 @@ export default function Experience() {
         onCreated={({ gl, scene }) => {
           // Enable sRGBEncoding
           //gl.outputColorSpace = SRGBColorSpace;
-
           // Alternatively, you can use LinearEncoding if sRGBEncoding is not desired
-          gl.outputColorSpace = SRGBColorSpace;
-          gl.shadowMap.enabled = false;
-          gl.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
-
-          gl.toneMapping = THREE.ACESFilmicToneMapping;
-          gl.toneMappingExposure = 0.5;
-
-          scene.fog = new Fog(0xffffff, 0.015, 350);
+          //gl.outputColorSpace = SRGBColorSpace;
+          //gl.toneMapping = THREE.ACESFilmicToneMapping;
+          //gl.toneMappingExposure = 0.5;
+          //scene.fog = new Fog(0xffffff, 0.015, 350);
         }}
       >
+        <BakeShadows />
+        <SoftShadows size={50} samples={200} focus={0} />
         <Perf position="top-left" />
         <OrbitControls dampingFactor={0.9} />
 

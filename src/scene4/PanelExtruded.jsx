@@ -20,7 +20,7 @@ export default function PanelExtruded({ position, scale }) {
     // Animate the depth of the ExtrudeGeometry
 
     const initialGeometry = new THREE.ExtrudeGeometry(shape, {
-      depth: 0.1,
+      depth: 0.2,
       bevelEnabled: false,
     });
 
@@ -31,6 +31,7 @@ export default function PanelExtruded({ position, scale }) {
           rotation={[-Math.PI / 2, 0, 0]}
           scale={scale}
           position={position}
+          castShadow={true}
         >
           <meshStandardMaterial
             color={"white"}

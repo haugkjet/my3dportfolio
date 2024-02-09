@@ -3,7 +3,7 @@ import { RoundedBox, Text } from "@react-three/drei";
 import MyPieChart from "../MyPieChart";
 import MyLineChart from "../MyLineChart";
 import { Environment, Sky } from "@react-three/drei";
-import Lights from "../Lights";
+import S4Lights from "./S4Lights";
 import Ground from "../Ground";
 import PanelExtruded from "./PanelExtruded";
 
@@ -54,8 +54,7 @@ export default function Scene3({ textureCube }) {
   warehouse: 'empty_warehouse_01_1k.hdr',
   */}
 
-      {/*<Environment preset="studio" background blur={0.9} />*/}
-      <Lights />
+      <S4Lights />
       <Ground />
       <PanelExtruded position={[-10, 0.21, 5]} scale={[3, 3, 1]} />
       <PanelExtruded position={[2, 0.21, 5]} scale={[3, 3, 1]} />
@@ -76,12 +75,13 @@ export default function Scene3({ textureCube }) {
         position={[-2, 6, -0.7]}
         radius={0.0}
         smoothness={4}
+        receiveShadow={true}
       >
-        <meshStandardMaterial color="white" metalness={0.0} roughness={0.3} />
+        <meshStandardMaterial color="white" metalness={0.0} roughness={0.01} />
         <Text
           position={[-9, 4.5, 0.2]}
           rotation={[0, 0, 0]}
-          color={"grey"}
+          color={"white"}
           fontSize={0.6}
         >
           Light test
@@ -93,8 +93,9 @@ export default function Scene3({ textureCube }) {
         rotation={[-Math.PI / 2, 0, 0]}
         radius={0.0}
         smoothness={4}
+        receiveShadow={true}
       >
-        <meshStandardMaterial color="white" metalness={0.0} roughness={0.3} />
+        <meshStandardMaterial color="white" metalness={0.0} roughness={0.01} />
         <Text
           position={[-9, -5.5, 0.15]}
           rotation={[0, 0, 0]}
