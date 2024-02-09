@@ -5,6 +5,7 @@ import MyLineChart from "../MyLineChart";
 import { Environment, Sky } from "@react-three/drei";
 import Lights from "../Lights";
 import Ground from "../Ground";
+import PanelExtruded from "./PanelExtruded";
 
 export default function Scene3({ textureCube }) {
   const data1 = [
@@ -56,6 +57,10 @@ export default function Scene3({ textureCube }) {
       {/*<Environment preset="studio" background blur={0.9} />*/}
       <Lights />
       <Ground />
+      <PanelExtruded position={[-10, 0.21, 5]} scale={[3, 3, 1]} />
+      <PanelExtruded position={[2, 0.21, 5]} scale={[3, 3, 1]} />
+
+      <PanelExtruded position={[2, 0.21, 9]} scale={[2, 1, 1]} />
 
       <Barchart
         posx={5}
@@ -64,7 +69,7 @@ export default function Scene3({ textureCube }) {
         length={3}
         roty={0}
         title={""}
-        maxheight={3}
+        maxheight={2}
       />
       <RoundedBox
         args={[22.5, 12, 0.25]}

@@ -19,7 +19,7 @@ export default function CubeExtruded({
 
   let shape = new THREE.Shape();
   let angleStep = Math.PI * 0.5;
-  let radius = 0.02;
+  let radius = 0.0;
 
   shape.absarc(0.5, 0.5, radius, angleStep * 0, angleStep * 1, false);
   shape.absarc(-0.5, 0.5, radius, angleStep * 1, angleStep * 2, false);
