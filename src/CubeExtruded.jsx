@@ -19,7 +19,7 @@ export default function CubeExtruded({
 
   let shape = new THREE.Shape();
   let angleStep = Math.PI * 0.5;
-  let radius = 0.0;
+  let radius = 0.05;
 
   shape.absarc(0.5, 0.5, radius, angleStep * 0, angleStep * 1, false);
   shape.absarc(-0.5, 0.5, radius, angleStep * 1, angleStep * 2, false);
@@ -49,8 +49,8 @@ export default function CubeExtruded({
           envMap={textureCube}
           transparent={false}
           opacity={0.8}
-          metalness={0.0}
-          roughness={0.2}
+          metalness={0.5}
+          roughness={0.1}
         />
         <Text
           position={[0, -0.61, value - 0.5]}

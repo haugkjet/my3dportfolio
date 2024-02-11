@@ -21,11 +21,7 @@ const PieChartSlice = ({ radius, startAngle, endAngle, color }) => {
 
   return (
     <mesh geometry={geometry} ref={sliceRef}>
-      <meshStandardMaterial
-        attach="material"
-        color={color}
-        side={THREE.DoubleSide}
-      />
+      <meshStandardMaterial attach="material" color={color} />
     </mesh>
   );
 };

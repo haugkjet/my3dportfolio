@@ -21,7 +21,7 @@ const PieSegment = ({ radius, angle, angleStart, color, depth }) => {
       depth: depth,
       bevelEnabled: false,
       bevelThickness: 0.1,
-      bevelSize: 0.1,
+      bevelSize: 0.0,
       bevelSegments: 1,
     };
     return new THREE.ExtrudeGeometry(shape, extrudeSettings);
@@ -34,7 +34,7 @@ const PieSegment = ({ radius, angle, angleStart, color, depth }) => {
       geometry={geometry}
       rotation={[Math.PI / 2, 0, angleStart]}
     >
-      <meshStandardMaterial color={color} metalness={0.0} roughness={0.3} />
+      <meshStandardMaterial color={color} metalness={0.4} roughness={0.1} />
       <Text
         position={[radius * 0.5, 0.1, -0.02]}
         rotation={[0, Math.PI, 0]}

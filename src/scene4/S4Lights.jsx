@@ -20,7 +20,7 @@ export default function S4Lights() {
         position={[15, 10, -10]}
         intensity={5}
         color="#ffffff"
-        castShadow={true}
+        castShadow={false}
         shadow-mapSize={[1024, 1024]}
         shadow-camera-near={1}
         shadow-camera-far={10}
@@ -34,7 +34,7 @@ export default function S4Lights() {
         position={[0, -1, 1]}
         intensity={10}
         color="#ffffff"
-        castShadow={true}
+        castShadow={false}
         shadow-mapSize={[1024, 1024]}
         shadow-camera-near={1}
         shadow-camera-far={10}
