@@ -42,6 +42,7 @@ export default function CubeExtruded({
         position={position}
         rotation={[-Math.PI / 2, 0, 0]}
         scale={[1, 1, 1]}
+        castShadow={true}
       >
         <meshStandardMaterial
           color={color}

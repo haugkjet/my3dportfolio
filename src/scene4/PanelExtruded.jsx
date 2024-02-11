@@ -32,11 +32,12 @@ export default function PanelExtruded({ position, scale }) {
           scale={scale}
           position={position}
           castShadow={true}
+          receiveShadow={true}
         >
           <meshStandardMaterial
             color={"white"}
-            metalness={0.1}
-            roughness={0.2}
+            metalness={0.5}
+            roughness={0.1}
           />
         </mesh>
       </group>

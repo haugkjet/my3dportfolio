@@ -28,7 +28,12 @@ const PieSegment = ({ radius, angle, angleStart, color, depth }) => {
   }, [radius, angle]);
 
   return (
-    <mesh ref={ref} geometry={geometry} rotation={[Math.PI / 2, 0, angleStart]}>
+    <mesh
+      castShadow={true}
+      ref={ref}
+      geometry={geometry}
+      rotation={[Math.PI / 2, 0, angleStart]}
+    >
       <meshStandardMaterial color={color} metalness={0.0} roughness={0.3} />
       <Text
         position={[radius * 0.5, 0.1, -0.02]}

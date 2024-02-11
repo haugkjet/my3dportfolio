@@ -58,7 +58,7 @@ export default function Experience() {
         }}
       >
         <BakeShadows />
-        <SoftShadows size={50} samples={200} focus={0} />
+        <SoftShadows size={25} samples={50} focus={0} />
         <Perf position="top-left" />
         <OrbitControls dampingFactor={0.9} />
 

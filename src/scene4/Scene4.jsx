@@ -3,6 +3,7 @@ import { RoundedBox, Text } from "@react-three/drei";
 import MyPieChart from "../MyPieChart";
 import MyLineChart from "../MyLineChart";
 import { Environment, Sky } from "@react-three/drei";
+import Lights from "../Lights";
 import S4Lights from "./S4Lights";
 import Ground from "../Ground";
 import PanelExtruded from "./PanelExtruded";
@@ -61,15 +62,17 @@ export default function Scene3({ textureCube }) {
 
       <PanelExtruded position={[2, 0.21, 9]} scale={[2, 1, 1]} />
 
-      <Barchart
-        posx={5}
-        posy={0.3}
-        posz={4}
-        length={3}
-        roty={0}
-        title={""}
-        maxheight={2}
-      />
+      <group scale={[0.5, 0.5, 0.5]}>
+        <Barchart
+          posx={21.5}
+          posy={0.9}
+          posz={10}
+          length={3}
+          roty={0}
+          title={""}
+          maxheight={2}
+        />
+      </group>
       <RoundedBox
         args={[22.5, 12, 0.25]}
         position={[-2, 6, -0.7]}
@@ -77,7 +80,7 @@ export default function Scene3({ textureCube }) {
         smoothness={4}
         receiveShadow={true}
       >
-        <meshStandardMaterial color="white" metalness={0.0} roughness={0.01} />
+        <meshStandardMaterial color="white" metalness={0.5} roughness={0.1} />
         <Text
           position={[-9, 4.5, 0.2]}
           rotation={[0, 0, 0]}
@@ -95,7 +98,7 @@ export default function Scene3({ textureCube }) {
         smoothness={4}
         receiveShadow={true}
       >
-        <meshStandardMaterial color="white" metalness={0.0} roughness={0.01} />
+        <meshStandardMaterial color="grey" metalness={0.5} roughness={0.1} />
         <Text
           position={[-9, -5.5, 0.15]}
           rotation={[0, 0, 0]}
@@ -103,6 +106,27 @@ export default function Scene3({ textureCube }) {
           fontSize={0.6}
         ></Text>
       </RoundedBox>
+      <MyPieChart
+        data={data1}
+        position={[2, 0.5, 5]}
+        radius={1}
+        title={"Dividend"}
+        depth={0.1}
+      />
+      <MyPieChart
+        data={data1}
+        position={[2.5, 0.5, 9]}
+        radius={0.3}
+        title={"Dividend"}
+        depth={0.05}
+      />
+      <MyPieChart
+        data={data1}
+        position={[1.5, 0.5, 9]}
+        radius={0.3}
+        title={"Dividend"}
+        depth={0.05}
+      />
     </>
   );
 }
