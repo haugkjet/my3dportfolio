@@ -62,6 +62,14 @@ export default function Scene3({ textureCube }) {
 
       <PanelExtruded position={[2, 0.21, 9]} scale={[2, 1, 1]} />
 
+      <group rotation={[Math.PI / 2, 0, 0]}>
+        <PanelExtruded position={[-8, -0.6, -5]} scale={[3, 3, 1]} />
+      </group>
+
+      <group rotation={[Math.PI / 2, 0, 0]}>
+        <PanelExtruded position={[2, -0.6, -5]} scale={[3, 3, 1]} />
+      </group>
+
       <group scale={[0.5, 0.5, 0.5]}>
         <Barchart
           posx={21.5}
@@ -80,11 +88,11 @@ export default function Scene3({ textureCube }) {
         smoothness={4}
         receiveShadow={true}
       >
-        <meshStandardMaterial color="white" metalness={0.5} roughness={0.1} />
+        <meshStandardMaterial color="grey" metalness={0.5} roughness={0.1} />
         <Text
           position={[-9, 4.5, 0.2]}
           rotation={[0, 0, 0]}
-          color={"white"}
+          color={"black"}
           fontSize={0.6}
         >
           Light test
@@ -98,7 +106,7 @@ export default function Scene3({ textureCube }) {
         smoothness={4}
         receiveShadow={true}
       >
-        <meshStandardMaterial color="grey" metalness={0.5} roughness={0.1} />
+        <meshStandardMaterial color="grey" metalness={0.01} roughness={0.01} />
         <Text
           position={[-9, -5.5, 0.15]}
           rotation={[0, 0, 0]}
