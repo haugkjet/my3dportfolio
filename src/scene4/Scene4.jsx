@@ -58,7 +58,9 @@ export default function Scene3({ textureCube }) {
       <S4Lights />
       <Ground />
       <PanelExtruded position={[-10, 0.21, 5]} scale={[3, 3, 1]} />
+      <PanelExtruded position={[-4, 0.21, 5]} scale={[3, 3, 1]} />
       <PanelExtruded position={[2, 0.21, 5]} scale={[3, 3, 1]} />
+      <PanelExtruded position={[-4, 0.21, 9]} scale={[1, 2, 1]} />
 
       <PanelExtruded position={[2, 0.21, 9]} scale={[2, 1, 1]} />
 
@@ -78,9 +80,21 @@ export default function Scene3({ textureCube }) {
           length={3}
           roty={0}
           title={""}
-          maxheight={2}
+          maxheight={5}
         />
       </group>
+      <group scale={[0.5, 0.5, 0.5]}>
+        <Barchart
+          posx={10}
+          posy={0.9}
+          posz={10}
+          length={3}
+          roty={0}
+          title={""}
+          maxheight={5}
+        />
+      </group>
+
       <RoundedBox
         args={[22.5, 12, 0.25]}
         position={[-2, 6, -0.7]}
@@ -88,7 +102,7 @@ export default function Scene3({ textureCube }) {
         smoothness={4}
         receiveShadow={true}
       >
-        <meshStandardMaterial color="grey" metalness={0.5} roughness={0.1} />
+        <meshStandardMaterial color="#ededed" metalness={0.5} roughness={0.1} />
         <Text
           position={[-9, 4.5, 0.2]}
           rotation={[0, 0, 0]}
@@ -106,7 +120,7 @@ export default function Scene3({ textureCube }) {
         smoothness={4}
         receiveShadow={true}
       >
-        <meshStandardMaterial color="grey" metalness={0.01} roughness={0.01} />
+        <meshStandardMaterial color="white" metalness={0.01} roughness={0.01} />
         <Text
           position={[-9, -5.5, 0.15]}
           rotation={[0, 0, 0]}
@@ -135,6 +149,25 @@ export default function Scene3({ textureCube }) {
         title={"Dividend"}
         depth={0.05}
       />
+
+      <group rotation={[Math.PI / 2, 0, 0]}>
+        <MyPieChart
+          data={data1}
+          position={[2, -0.25, -5.2]}
+          radius={1.2}
+          title={"Dividend"}
+          depth={0.1}
+        />
+      </group>
+      <group rotation={[Math.PI / 2, 0, 0]}>
+        <MyPieChart
+          data={data1}
+          position={[-8, -0.25, -5.2]}
+          radius={1.2}
+          title={"Dividend"}
+          depth={0.1}
+        />
+      </group>
     </>
   );
 }
