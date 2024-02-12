@@ -2,7 +2,7 @@ import Barchart from "../Barchart";
 import { RoundedBox, Text } from "@react-three/drei";
 import MyPieChart from "../MyPieChart";
 import MyLineChart from "../MyLineChart";
-import { Environment, Sky } from "@react-three/drei";
+
 import Lights from "../Lights";
 import S4Lights from "./S4Lights";
 import Ground from "../Ground";
@@ -31,12 +31,12 @@ export default function Scene3({ textureCube }) {
   ];
 
   const linedata = [
-    { x: -10, y: 5 }, // Assuming all points lie on a flat plane (z=0)
-    { x: -9, y: 6 },
+    { x: -10, y: 1 }, // Assuming all points lie on a flat plane (z=0)
+    { x: -9, y: 3 },
     { x: -1, y: 6 },
 
-    { x: 1, y: 6 },
-    { x: 7, y: 5 },
+    { x: 1, y: 7 },
+    { x: 7, y: 8 },
   ];
   const linethickness = 0.1; // Thickness of the line
 
@@ -93,6 +93,13 @@ export default function Scene3({ textureCube }) {
           rotation={[0, 0, 0]}
         />
       </group>
+      <group
+        position={[2.3, 0.45, 3]}
+        scale={[0.15, 0.25, 0.15]}
+        rotation={[-Math.PI / 2, 0, 0]}
+      >
+        <MyLineChart data={linedata} thickness={linethickness} />
+      </group>
 
       <group scale={[0.3, 0.3, 0.3]}>
         <gridHelper
@@ -105,7 +112,7 @@ export default function Scene3({ textureCube }) {
       {/*Middle row panels*/}
       <PanelExtruded position={[-4, 0.21, 6]} scale={[3, 3, 1]} />
       <PanelExtruded position={[2, 0.21, 6]} scale={[3, 3, 1]} />
-      <PanelExtruded position={[-4, 0.21, 9]} scale={[1, 2, 1]} />
+      <PanelExtruded position={[-10, 0.21, 6]} scale={[3, 3, 1]} />
 
       {/*Middle row charts*/}
       <MyPieChart
@@ -137,7 +144,9 @@ export default function Scene3({ textureCube }) {
       </group>
 
       {/*Front row panels*/}
-      <PanelExtruded position={[-10, 0.21, 6]} scale={[3, 3, 1]} />
+
+      <PanelExtruded position={[-10, 0.21, 9]} scale={[2, 1, 1]} />
+      <PanelExtruded position={[-4, 0.21, 9]} scale={[2, 1, 1]} />
       <PanelExtruded position={[2, 0.21, 9]} scale={[2, 1, 1]} />
 
       {/*Front row charts*/}
@@ -155,43 +164,74 @@ export default function Scene3({ textureCube }) {
         title={"EBITDA"}
         depth={0.05}
       />
+      <group scale={[0.3, 0.3, 0.3]}>
+        <Barchart
+          posx={15}
+          posy={1.5}
+          posz={30}
+          length={4}
+          roty={0}
+          title={""}
+          maxheight={3}
+        />
+      </group>
+      <Text
+        position={[-10, 0.42, 9]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        color={"#007bff"}
+        fontSize={0.3}
+      >
+        3500 USD
+      </Text>
 
       {/* Wall behind panels*/}
       <group rotation={[Math.PI / 2, 0, 0]}>
-        <PanelExtruded position={[-8, -0.6, -5]} scale={[3, 3, 1]} />
+        <PanelExtruded position={[-10, -0.6, -4]} scale={[3, 3, 1]} />
       </group>
 
       <group rotation={[Math.PI / 2, 0, 0]}>
-        <PanelExtruded position={[2, -0.6, -5]} scale={[3, 3, 1]} />
+        <PanelExtruded position={[-4, -0.6, -4]} scale={[3, 3, 1]} />
       </group>
 
       <group rotation={[Math.PI / 2, 0, 0]}>
-        <PanelExtruded position={[-3, -0.6, -5]} scale={[3, 3, 1]} />
+        <PanelExtruded position={[1, -0.6, -4]} scale={[3, 3, 1]} />
+      </group>
+
+      <group rotation={[Math.PI / 2, 0, 0]}>
+        <PanelExtruded position={[1, -0.6, -7]} scale={[2, 1, 1]} />
+      </group>
+
+      <group rotation={[Math.PI / 2, 0, 0]}>
+        <PanelExtruded position={[-4, -0.6, -7]} scale={[2, 1, 1]} />
+      </group>
+
+      <group rotation={[Math.PI / 2, 0, 0]}>
+        <PanelExtruded position={[-10, -0.6, -7]} scale={[2, 1, 1]} />
       </group>
 
       {/* Behind wall*/}
       <RoundedBox
-        args={[22.5, 12, 0.25]}
-        position={[-2, 6, -0.7]}
+        args={[20, 10, 0.25]}
+        position={[-4, 5, -0.7]}
         radius={0.0}
         smoothness={4}
         receiveShadow={true}
       >
         <meshStandardMaterial color="#ededed" metalness={0.5} roughness={0.1} />
         <Text
-          position={[-9, 4.5, 0.2]}
+          position={[-7, 3.5, 0.2]}
           rotation={[0, 0, 0]}
-          color={"black"}
+          color={"#007bff"}
           fontSize={0.6}
         >
-          Light test
+          Gondar AS
         </Text>
       </RoundedBox>
 
-      <group scale={[1, 0.4, 0.55]}>
+      <group scale={[0.75, 0.4, 0.55]}>
         <gridHelper
-          args={[20, 10, "orange", "white"]}
-          position={[-2.5, 12, -1]}
+          args={[20, 10, "#d9d9d9", "#d9d9d9"]}
+          position={[-6.5, 12, -1]}
           rotation={[Math.PI / 2, 0, 0]}
         />
       </group>
@@ -200,7 +240,7 @@ export default function Scene3({ textureCube }) {
       <group rotation={[Math.PI / 2, 0, 0]}>
         <MyPieChart
           data={data1}
-          position={[2, -0.25, -5.2]}
+          position={[1, -0.25, -4.2]}
           radius={1.2}
           title={"Sales"}
           depth={0.1}
@@ -209,7 +249,7 @@ export default function Scene3({ textureCube }) {
       <group rotation={[Math.PI / 2, 0, 0]}>
         <MyPieChart
           data={data1}
-          position={[-8, -0.25, -5.2]}
+          position={[-10, -0.25, -4.2]}
           radius={1.2}
           title={"Dividend"}
           depth={0.1}
@@ -218,8 +258,8 @@ export default function Scene3({ textureCube }) {
 
       <group scale={[0.3, 0.3, 0.3]}>
         <Barchart
-          posx={14}
-          posy={12.5}
+          posx={17}
+          posy={9.5}
           posz={-1.7}
           length={7}
           roty={0}
@@ -227,10 +267,39 @@ export default function Scene3({ textureCube }) {
         />
       </group>
 
+      <group scale={[0.15, 0.15, 0.15]}>
+        <Barchart
+          posx={-2}
+          posy={44}
+          posz={-1.7}
+          length={7}
+          roty={0}
+          maxheight={4}
+        />
+      </group>
+
+      <Text
+        position={[-4.1, 7, -0.36]}
+        rotation={[0, 0, 0]}
+        color={"#007bff"}
+        fontSize={0.3}
+      >
+        5000 NOK
+      </Text>
+
+      <Text
+        position={[-10.1, 7, -0.36]}
+        rotation={[0, 0, 0]}
+        color={"#ffa04c"}
+        fontSize={0.3}
+      >
+        7000 EUR
+      </Text>
+
       {/*Floor*/}
       <RoundedBox
-        args={[22.5, 12, 0.25]}
-        position={[-2, 0.1, 5]}
+        args={[20, 12, 0.25]}
+        position={[-4, 0.1, 5]}
         rotation={[-Math.PI / 2, 0, 0]}
         radius={0.0}
         smoothness={4}
@@ -244,6 +313,23 @@ export default function Scene3({ textureCube }) {
           fontSize={0.6}
         ></Text>
       </RoundedBox>
+      {/*Left Wall*/}
+      {/*<RoundedBox
+        args={[12.5, 12, 0.25]}
+        position={[-13.5, 6, 5.5]}
+        rotation={[0, -Math.PI / 2, 0]}
+        radius={0.0}
+        smoothness={4}
+        receiveShadow={true}
+      >
+        <meshStandardMaterial color="white" metalness={0.01} roughness={0.01} />
+        <Text
+          position={[-9, -5.5, 0.15]}
+          rotation={[0, 0, 0]}
+          color={"white"}
+          fontSize={0.6}
+        ></Text>
+</RoundedBox>*/}
     </>
   );
 }

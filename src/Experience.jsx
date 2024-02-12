@@ -59,7 +59,7 @@ export default function Experience() {
       >
         <color attach="background" args={["#dfecfa"]} />
         <BakeShadows />
-        <SoftShadows size={25} samples={50} focus={0} />
+        <SoftShadows size={25} samples={50} focus={0.01} />
         <Perf position="top-left" />
         <OrbitControls dampingFactor={0.9} />
 
