@@ -4,7 +4,7 @@ import { Text } from "@react-three/drei";
 export default function Ground() {
   return (
     <>
-      <gridHelper args={[500, 10, "orange", "grey"]} position={[0, 0.001, 0]} />
+      <gridHelper args={[500, 1, "orange", "grey"]} position={[0, 0.001, 0]} />
       {/*<gridHelper
         rotation={[Math.PI / 2, 0, 0]}
         position={[0, 0.0, -0.6999]}
@@ -16,7 +16,7 @@ export default function Ground() {
         scale={[500, 500, 1]}
       >
         <planeGeometry attach="geometry" />
-        <meshStandardMaterial color="white" metalness={0.2} roughness={0.3} />
+        <meshStandardMaterial color="#4fa7ff" metalness={0.1} roughness={0.6} />
       </mesh>
     </>
   );

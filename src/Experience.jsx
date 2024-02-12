@@ -54,10 +54,10 @@ export default function Experience() {
           //gl.outputColorSpace = SRGBColorSpace;
           //gl.toneMapping = THREE.ACESFilmicToneMapping;
           //gl.toneMappingExposure = 0.5;
-          scene.fog = new Fog(0xffffff, 0.015, 350);
+          scene.fog = new Fog(0xe7f3ff, 0.015, 350);
         }}
       >
-        <color attach="background" args={["#dfecfa"]} />
+        <color attach="background" args={["#e7f3ff"]} />
         <BakeShadows />
         <SoftShadows size={25} samples={50} focus={0.01} />
         <Perf position="top-left" />

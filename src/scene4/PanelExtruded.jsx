@@ -22,6 +22,10 @@ export default function PanelExtruded({ position, scale, color }) {
     const initialGeometry = new THREE.ExtrudeGeometry(shape, {
       depth: 0.2,
       bevelEnabled: false,
+      bevelSegments: 2,
+      steps: 2,
+      bevelSize: 0.01,
+      bevelThickness: 0.01,
     });
 
     return (
