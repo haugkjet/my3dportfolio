@@ -88,7 +88,7 @@ export default function Scene3({ textureCube }) {
       </group>
       <group scale={[0.3, 0.3, 0.3]}>
         <gridHelper
-          args={[10, 10, "orange", "#ededed"]}
+          args={[10, 10, "orange", "#d9d9d9"]}
           position={[6.5, 1.5, 7]}
           rotation={[0, 0, 0]}
         />
@@ -103,7 +103,7 @@ export default function Scene3({ textureCube }) {
 
       <group scale={[0.3, 0.3, 0.3]}>
         <gridHelper
-          args={[10, 10, "#ededed", "#ededed"]}
+          args={[10, 10, "#d9d9d9", "#d9d9d9"]}
           position={[-13, 1.5, 7]}
           rotation={[0, 0, 0]}
         />
@@ -140,6 +140,13 @@ export default function Scene3({ textureCube }) {
           roty={Math.PI / 2}
           title={""}
           maxheight={10}
+        />
+      </group>
+      <group scale={[0.3, 0.3, 0.3]}>
+        <gridHelper
+          args={[10, 10, "#d9d9d9", "#d9d9d9"]}
+          position={[-33, 1.5, 20]}
+          rotation={[0, 0, 0]}
         />
       </group>
 
@@ -186,27 +193,51 @@ export default function Scene3({ textureCube }) {
 
       {/* Wall behind panels*/}
       <group rotation={[Math.PI / 2, 0, 0]}>
-        <PanelExtruded position={[-10, -0.6, -4]} scale={[3, 3, 1]} />
+        <PanelExtruded
+          position={[-10, -0.6, -4]}
+          scale={[3, 3, 1]}
+          color={"#b9b9b9"}
+        />
       </group>
 
       <group rotation={[Math.PI / 2, 0, 0]}>
-        <PanelExtruded position={[-4, -0.6, -4]} scale={[3, 3, 1]} />
+        <PanelExtruded
+          position={[-4, -0.6, -4]}
+          scale={[3, 3, 1]}
+          color={"#b9b9b9"}
+        />
       </group>
 
       <group rotation={[Math.PI / 2, 0, 0]}>
-        <PanelExtruded position={[1, -0.6, -4]} scale={[3, 3, 1]} />
+        <PanelExtruded
+          position={[1, -0.6, -4]}
+          scale={[3, 3, 1]}
+          color={"#b9b9b9"}
+        />
       </group>
 
       <group rotation={[Math.PI / 2, 0, 0]}>
-        <PanelExtruded position={[1, -0.6, -7]} scale={[2, 1, 1]} />
+        <PanelExtruded
+          position={[1, -0.6, -7]}
+          scale={[2, 1, 1]}
+          color={"#b9b9b9"}
+        />
       </group>
 
       <group rotation={[Math.PI / 2, 0, 0]}>
-        <PanelExtruded position={[-4, -0.6, -7]} scale={[2, 1, 1]} />
+        <PanelExtruded
+          position={[-4, -0.6, -7]}
+          scale={[2, 1, 1]}
+          color={"#b9b9b9"}
+        />
       </group>
 
       <group rotation={[Math.PI / 2, 0, 0]}>
-        <PanelExtruded position={[-10, -0.6, -7]} scale={[2, 1, 1]} />
+        <PanelExtruded
+          position={[-10, -0.6, -7]}
+          scale={[2, 1, 1]}
+          color={"#b9b9b9"}
+        />
       </group>
 
       {/* Behind wall*/}
@@ -219,19 +250,19 @@ export default function Scene3({ textureCube }) {
       >
         <meshStandardMaterial color="#ededed" metalness={0.5} roughness={0.1} />
         <Text
-          position={[-7, 3.5, 0.2]}
+          position={[-8, 4.2, 0.2]}
           rotation={[0, 0, 0]}
           color={"#007bff"}
-          fontSize={0.6}
+          fontSize={0.5}
         >
           Gondar AS
         </Text>
       </RoundedBox>
 
-      <group scale={[0.75, 0.4, 0.55]}>
+      <group scale={[0.95, 0.4, 0.5]}>
         <gridHelper
           args={[20, 10, "#d9d9d9", "#d9d9d9"]}
-          position={[-6.5, 12, -1]}
+          position={[-4.2, 12, -1]}
           rotation={[Math.PI / 2, 0, 0]}
         />
       </group>
@@ -271,7 +302,7 @@ export default function Scene3({ textureCube }) {
         <Barchart
           posx={-2}
           posy={44}
-          posz={-1.7}
+          posz={-3.1}
           length={7}
           roty={0}
           maxheight={4}
@@ -305,7 +336,7 @@ export default function Scene3({ textureCube }) {
         smoothness={4}
         receiveShadow={true}
       >
-        <meshStandardMaterial color="white" metalness={0.01} roughness={0.01} />
+        <meshStandardMaterial color="white" metalness={0.01} roughness={0.9} />
         <Text
           position={[-9, -5.5, 0.15]}
           rotation={[0, 0, 0]}
@@ -313,6 +344,15 @@ export default function Scene3({ textureCube }) {
           fontSize={0.6}
         ></Text>
       </RoundedBox>
+
+      <group scale={[0.95, 0.4, 0.5]}>
+        <gridHelper
+          args={[20, 10, "#d9d9d9", "#d9d9d9"]}
+          position={[-4.2, 0.6, 10]}
+          rotation={[0, 0, 0]}
+        />
+      </group>
+
       {/*Left Wall*/}
       {/*<RoundedBox
         args={[12.5, 12, 0.25]}

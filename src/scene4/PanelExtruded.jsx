@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import React, { useRef, useEffect } from "react";
 
-export default function PanelExtruded({ position, scale }) {
+export default function PanelExtruded({ position, scale, color }) {
   {
     // Givs interesting shape on bar
     //let shape = new THREE.Shape();
@@ -34,11 +34,7 @@ export default function PanelExtruded({ position, scale }) {
           castShadow={true}
           receiveShadow={true}
         >
-          <meshStandardMaterial
-            color={"white"}
-            metalness={0.5}
-            roughness={0.1}
-          />
+          <meshStandardMaterial color={color} metalness={0.5} roughness={0.9} />
         </mesh>
       </group>
     );

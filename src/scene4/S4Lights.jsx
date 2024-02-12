@@ -31,7 +31,7 @@ export default function S4Lights() {
       />
 
       <directionalLight
-        position={[0, -1, 1]}
+        position={[-0, -1, 1]}
         intensity={10}
         color="#ffffff"
         castShadow={false}
