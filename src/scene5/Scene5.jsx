@@ -7,6 +7,8 @@ import Barchart from "./components/chart/Barchart";
 import MyPieChart from "./components/chart/MyPieChart";
 import MyLineChart from "./components/chart/MyLineChart";
 
+import WallsAndFloor from "./components/WallsAndFloor";
+
 import PanelExtruded from "./components/PanelExtruded";
 
 import Lights from "./env/Lights";
@@ -65,6 +67,8 @@ export default function Scene5({ textureCube }) {
 
       <Lights />
       <Ground />
+
+      <WallsAndFloor />
 
       {/*Behind row panels*/}
       <PanelExtruded position={[-10, 0.21, 2]} scale={[3, 3, 1]} />

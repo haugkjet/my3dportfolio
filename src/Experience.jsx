@@ -4,10 +4,6 @@ import { Pathtracer } from "@react-three/gpu-pathtracer";
 import { useControls } from "leva";
 
 import { Canvas } from "@react-three/fiber";
-import { BakeShadows, SoftShadows, OrbitControls } from "@react-three/drei";
-import { Perf } from "r3f-perf";
-import { SRGBColorSpace } from "three";
-import { Environment, Sky } from "@react-three/drei";
 
 import Scene1Chart from "./scene1chart/Scene1Chart";
 import Scene2Box from "./scene2box/Scene2Box";
@@ -17,7 +13,7 @@ import Scene5 from "./scene5/Scene5";
 import { Fog } from "three";
 
 export default function Experience() {
-  const [currentScene, setCurrentScene] = useState("sceneOne");
+  const [currentScene, setCurrentScene] = useState("sceneFive");
 
   // Define Leva controls
   const { sceneSelector } = useControls({
