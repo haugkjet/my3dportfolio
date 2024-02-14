@@ -1,4 +1,4 @@
-export default function S5Lights() {
+export default function Lights() {
   return (
     <>
       <directionalLight

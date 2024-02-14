@@ -9,7 +9,7 @@ import MyLineChart from "./components/chart/MyLineChart";
 
 import PanelExtruded from "./components/PanelExtruded";
 
-import S5Lights from "./env/S5Lights";
+import Lights from "./env/Lights";
 import Ground from "./env/Ground";
 
 export default function Scene5({ textureCube }) {
@@ -63,7 +63,7 @@ export default function Scene5({ textureCube }) {
       <Perf position="top-left" />
       <OrbitControls dampingFactor={0.9} />
 
-      <S5Lights />
+      <Lights />
       <Ground />
 
       {/*Behind row panels*/}
