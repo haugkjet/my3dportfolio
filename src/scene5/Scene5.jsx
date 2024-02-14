@@ -10,6 +10,7 @@ import MyLineChart from "./components/chart/MyLineChart";
 import WallsAndFloor from "./components/WallsAndFloor";
 
 import PanelExtruded from "./components/PanelExtruded";
+import PanelGrid from "./PanelGrid";
 
 import Lights from "./env/Lights";
 import Ground from "./env/Ground";
@@ -46,6 +47,15 @@ export default function Scene5({ textureCube }) {
   ];
   const linethickness = 0.1; // Thickness of the line
 
+  let width = 20;
+  let height = 20;
+  let depth = 12;
+  let thickness = 0.25;
+
+  let baseposX = 20;
+  let baseposY = 0;
+  let baseposZ = 0;
+
   return (
     <>
       {/*
@@ -68,7 +78,44 @@ export default function Scene5({ textureCube }) {
       <Lights />
       <Ground />
 
-      <WallsAndFloor />
+      {/*New scene*/}
+
+      <WallsAndFloor
+        baseposX={baseposX}
+        baseposY={baseposY}
+        baseposZ={baseposZ}
+        width={20}
+        height={10}
+        depth={12}
+        thickness={0.25}
+      />
+
+      <PanelGrid
+        baseposX={baseposX}
+        baseposY={baseposY}
+        baseposZ={baseposZ}
+      ></PanelGrid>
+
+      <group
+        position={[baseposX, baseposY - 1, baseposZ + thickness * 2]}
+        rotation={[-Math.PI / 2, 0, 0]}
+      >
+        <PanelGrid baseposX={0} baseposY={0} baseposZ={0}></PanelGrid>
+      </group>
+
+      <Barchart
+        posx={-baseposX + 6}
+        posy={baseposY + 1}
+        posz={baseposZ}
+        length={3}
+        roty={0}
+        title={""}
+        maxheight={3}
+      />
+
+      {/*End New scene*/}
+
+      {/*Below will be phased out*/}
 
       {/*Behind row panels*/}
       <PanelExtruded position={[-10, 0.21, 2]} scale={[3, 3, 1]} />

@@ -1,10 +1,14 @@
 import { RoundedBox, Text } from "@react-three/drei";
-export default function WallsAndFloor() {
-  let width = 20;
-  let height = 10;
-  let depth = 12;
-  let thickness = 0.25;
 
+export default function WallsAndFloor({
+  baseposX,
+  baseposY,
+  baseposZ,
+  width,
+  height,
+  depth,
+  thickness,
+}) {
   /*GridScale factors muse be tuned to match the grid with the floor size for now*/
 
   /* Floor: */
@@ -23,7 +27,7 @@ export default function WallsAndFloor() {
 
       <RoundedBox
         args={[width, height, thickness]}
-        position={[16, height / 2, 0]}
+        position={[baseposX, baseposY + height / 2, baseposZ]}
         radius={0.0}
         smoothness={4}
         receiveShadow={true}
@@ -31,7 +35,11 @@ export default function WallsAndFloor() {
       >
         <meshStandardMaterial color="#ededed" metalness={0.5} roughness={0.1} />
         <Text
-          position={[-8, 4.4, 0.2]}
+          position={[
+            -baseposX / 2,
+            baseposY + height / 2 - 0.8,
+            baseposZ + 0.2,
+          ]}
           rotation={[0, 0, 0]}
           color={"#007bff"}
           fontSize={0.5}
@@ -57,7 +65,7 @@ export default function WallsAndFloor() {
       {/*Floor*/}
       <RoundedBox
         args={[width, depth, thickness]}
-        position={[16, 0, depth / 2]}
+        position={[baseposX, baseposY, baseposZ + depth / 2]}
         rotation={[-Math.PI / 2, 0, 0]}
         radius={0.0}
         smoothness={4}
@@ -81,33 +89,6 @@ export default function WallsAndFloor() {
           />
         </group>
       </RoundedBox>
-
-      {/*Left Wall*/}
-      {
-        <RoundedBox
-          args={[depth, height, thickness]}
-          position={[-width / 2, height / 2, depth / 2]}
-          rotation={[0, -Math.PI / 2, 0]}
-          radius={0.0}
-          smoothness={4}
-          receiveShadow={true}
-          visible={false}
-        >
-          <meshStandardMaterial
-            color="brown"
-            metalness={0.01}
-            roughness={0.01}
-          />
-          <Text
-            position={[-9, 5.5, 0.15]}
-            rotation={[0, 0, 0]}
-            color={"white"}
-            fontSize={0.6}
-          >
-            Floor
-          </Text>
-        </RoundedBox>
-      }
     </>
   );
 }

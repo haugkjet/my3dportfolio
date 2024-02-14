@@ -39,7 +39,7 @@ export default function Barchart({
         colorList,
         maxheight
       );
-      const position = [i * 1.2 - posx, 0.01 + posy, j * 1.5 + posz]; // Adjust the position based on your needs
+      const position = [i * 1.1 - posx, 0.01 + posy, j * 1.5 + posz]; // Adjust the position based on your needs
       const scale = [1, 1, 1]; // Adjust the scale based on your needs
 
       cubesData.push({ text, color, position, scale, value });
