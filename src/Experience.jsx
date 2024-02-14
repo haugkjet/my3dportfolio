@@ -13,7 +13,7 @@ import Scene5 from "./scene5/Scene5";
 import { Fog } from "three";
 
 export default function Experience() {
-  const [currentScene, setCurrentScene] = useState("sceneFive");
+  const [currentScene, setCurrentScene] = useState("sceneOne");
 
   // Define Leva controls
   const { sceneSelector } = useControls({
