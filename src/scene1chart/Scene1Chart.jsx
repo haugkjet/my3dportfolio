@@ -1,12 +1,18 @@
-import Barchart from "../Barchart";
 import { RoundedBox } from "@react-three/drei";
-import { Environment, Sky } from "@react-three/drei";
+import { BakeShadows, SoftShadows, OrbitControls } from "@react-three/drei";
+import { Perf } from "r3f-perf";
+
 import Lights from "../Lights";
 import Ground from "../Ground";
+
+import Barchart from "../Barchart";
 
 export default function Scene1Chart() {
   return (
     <>
+      <Perf position="top-left" />
+      <OrbitControls dampingFactor={0.9} />
+
       <Ground />
       <Lights />
       <RoundedBox

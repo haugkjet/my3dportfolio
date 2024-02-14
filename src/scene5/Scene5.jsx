@@ -1,16 +1,18 @@
-import Barchart from "../Barchart";
 import { RoundedBox, Text } from "@react-three/drei";
+
 import { BakeShadows, SoftShadows, OrbitControls } from "@react-three/drei";
 import { Perf } from "r3f-perf";
-import MyPieChart from "../MyPieChart";
-import MyLineChart from "../MyLineChart";
 
-import Lights from "../Lights";
-import S4Lights from "./S4Lights";
-import Ground from "../Ground";
-import PanelExtruded from "./PanelExtruded";
+import Barchart from "./components/chart/Barchart";
+import MyPieChart from "./components/chart/MyPieChart";
+import MyLineChart from "./components/chart/MyLineChart";
 
-export default function Scene4({ textureCube }) {
+import PanelExtruded from "./components/PanelExtruded";
+
+import S5Lights from "./env/S5Lights";
+import Ground from "./env/Ground";
+
+export default function Scene5({ textureCube }) {
   const data1 = [
     { value: 75, color: "#007bff" },
     { value: 25, color: "#ffa04c" },
@@ -56,13 +58,12 @@ export default function Scene4({ textureCube }) {
   sunset: 'venice_sunset_1k.hdr',
   warehouse: 'empty_warehouse_01_1k.hdr',
   */}
-
       <BakeShadows />
       <SoftShadows size={25} samples={50} focus={0.01} />
       <Perf position="top-left" />
       <OrbitControls dampingFactor={0.9} />
 
-      <S4Lights />
+      <S5Lights />
       <Ground />
 
       {/*Behind row panels*/}

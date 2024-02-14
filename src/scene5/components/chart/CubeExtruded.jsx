@@ -1,16 +1,10 @@
 import * as THREE from "three";
 
-import React, { useRef, useEffect } from "react";
+import React from "react";
 
 import { Text } from "@react-three/drei";
 
-export default function CubeExtruded({
-  position,
-  value,
-  text,
-  color,
-  textureCube,
-}) {
+export default function CubeExtruded({ position, value, color, textureCube }) {
   // Givs interesting shape on bar
   //let shape = new THREE.Shape();
   //let angleStep = Math.PI * 1.5;
@@ -18,14 +12,12 @@ export default function CubeExtruded({
 
   let shape = new THREE.Shape();
   let angleStep = Math.PI * 0.5;
-  let radius = 0.05;
+  let radius = 0.0;
 
   shape.absarc(0.5, 0.5, radius, angleStep * 0, angleStep * 1, false);
   shape.absarc(-0.5, 0.5, radius, angleStep * 1, angleStep * 2, false);
   shape.absarc(-0.5, -0.5, radius, angleStep * 2, angleStep * 3, false);
   shape.absarc(0.5, -0.5, radius, angleStep * 3, angleStep * 4, false);
-
-  const geometryRef = useRef();
 
   // Animate the depth of the ExtrudeGeometry
 

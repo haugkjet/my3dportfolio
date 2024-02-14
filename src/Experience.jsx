@@ -4,12 +4,7 @@ import { Pathtracer } from "@react-three/gpu-pathtracer";
 import { useControls } from "leva";
 
 import { Canvas } from "@react-three/fiber";
-import {
-  BakeShadows,
-  SoftShadows,
-  useHelper,
-  OrbitControls,
-} from "@react-three/drei";
+import { BakeShadows, SoftShadows, OrbitControls } from "@react-three/drei";
 import { Perf } from "r3f-perf";
 import { SRGBColorSpace } from "three";
 import { Environment, Sky } from "@react-three/drei";
@@ -18,10 +13,11 @@ import Scene1Chart from "./scene1chart/Scene1Chart";
 import Scene2Box from "./scene2box/Scene2Box";
 import Scene3Dashboard from "./scene3dashboard/Scene3Dashboard";
 import Scene4 from "./scene4/Scene4";
+import Scene5 from "./scene5/Scene5";
 import { Fog } from "three";
 
 export default function Experience() {
-  const [currentScene, setCurrentScene] = useState("sceneOne");
+  const [currentScene, setCurrentScene] = useState("sceneFive");
 
   // Define Leva controls
   const { sceneSelector } = useControls({
@@ -32,6 +28,7 @@ export default function Experience() {
         SceneTwo: "sceneTwo",
         SceneThree: "sceneThree",
         SceneFour: "sceneFour",
+        SceneFive: "sceneFive",
       },
       onChange: (value) => setCurrentScene(value),
     },
@@ -58,15 +55,12 @@ export default function Experience() {
         }}
       >
         <color attach="background" args={["#e7f3ff"]} />
-        <BakeShadows />
-        <SoftShadows size={25} samples={50} focus={0.01} />
-        <Perf position="top-left" />
-        <OrbitControls dampingFactor={0.9} />
 
         {currentScene === "sceneOne" && <Scene1Chart />}
         {currentScene === "sceneTwo" && <Scene2Box />}
         {currentScene === "sceneThree" && <Scene3Dashboard />}
         {currentScene === "sceneFour" && <Scene4 />}
+        {currentScene === "sceneFive" && <Scene5 />}
       </Canvas>
     </>
   );

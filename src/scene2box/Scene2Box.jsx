@@ -2,7 +2,15 @@ import React, { useState, useEffect } from "react";
 import Lights from "../Lights";
 import Ground from "../Ground";
 
-import { Text } from "@react-three/drei";
+import {} from "@react-three/drei";
+import {
+  BakeShadows,
+  SoftShadows,
+  OrbitControls,
+  Text,
+} from "@react-three/drei";
+import { Perf } from "r3f-perf";
+
 import axios from "axios";
 import MyPieChart from "../MyPieChart";
 
@@ -50,6 +58,9 @@ function Scene2Box() {
 
   return (
     <>
+      <Perf position="top-left" />
+      <OrbitControls dampingFactor={0.9} />
+
       <Ground />
       <Lights />
       <PriceCube position={[-2, 0, 0]} currencyPair="BTC-USD" />

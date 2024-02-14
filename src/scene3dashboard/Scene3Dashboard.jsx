@@ -2,7 +2,9 @@ import Barchart from "../Barchart";
 import { RoundedBox, Text } from "@react-three/drei";
 import MyPieChart from "../MyPieChart";
 import MyLineChart from "../MyLineChart";
-import { Environment, Sky } from "@react-three/drei";
+import { BakeShadows, SoftShadows, OrbitControls } from "@react-three/drei";
+import { Perf } from "r3f-perf";
+
 import Lights from "../Lights";
 import Ground from "../Ground";
 
@@ -54,6 +56,12 @@ export default function Scene3Dashboard({ textureCube }) {
   */}
 
       {/*<Environment preset="studio" background blur={0.9} />*/}
+
+      <BakeShadows />
+      <SoftShadows size={25} samples={50} focus={0.01} />
+      <Perf position="top-left" />
+      <OrbitControls dampingFactor={0.9} />
+
       <Lights />
       <Ground />
 
