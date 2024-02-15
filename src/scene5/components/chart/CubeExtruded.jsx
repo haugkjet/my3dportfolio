@@ -37,7 +37,6 @@ export default function CubeExtruded({ position, value, color, textureCube }) {
       >
         <meshStandardMaterial
           color={color}
-          envMap={textureCube}
           transparent={false}
           opacity={0.8}
           metalness={0.7}

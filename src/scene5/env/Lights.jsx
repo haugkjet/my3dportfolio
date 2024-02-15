@@ -1,3 +1,5 @@
+import { RoundedBox } from "@react-three/drei";
+
 export default function Lights() {
   return (
     <>
@@ -14,6 +16,7 @@ export default function Lights() {
         shadow-camera-bottom={-20}
         shadow-camera-left={-20}
       />
+      {/*<RoundedBox position={[-15, 10, 15]}></RoundedBox>*/}
       <directionalLight
         position={[15, 10, -10]}
         intensity={5}

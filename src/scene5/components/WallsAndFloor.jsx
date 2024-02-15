@@ -33,7 +33,13 @@ export default function WallsAndFloor({
         receiveShadow={true}
         visible={true}
       >
-        <meshStandardMaterial color="#ededed" metalness={0.5} roughness={0.1} />
+        <meshStandardMaterial
+          color="#ededed"
+          transparent={true}
+          opacity={0.5}
+          metalness={0.7}
+          roughness={0.01}
+        />
         <Text
           position={[
             -baseposX / 2,
@@ -44,7 +50,7 @@ export default function WallsAndFloor({
           color={"#007bff"}
           fontSize={0.5}
         >
-          Behind Wall
+          Results 2024
         </Text>
         <group
           scale={[
@@ -71,7 +77,50 @@ export default function WallsAndFloor({
         smoothness={4}
         receiveShadow={true}
       >
-        <meshStandardMaterial color="white" metalness={0.01} roughness={0.9} />
+        <meshStandardMaterial
+          color="white"
+          transparent={true}
+          opacity={0.7}
+          metalness={0.1}
+          roughness={0.01}
+        />
+        <Text
+          position={[0, -depth / 2 + 1, thickness / 2 + 0.01]}
+          rotation={[0, 0, 0]}
+          color={"#007bff"}
+          fontSize={0.7}
+        >
+          Report 2024
+        </Text>
+        <group scale={[gridScaleXFloor, gridScaleYFloor, gridScaleZFloor]}>
+          <gridHelper
+            args={[width * gridScaleXFloor, width * 0.5, "#d9d9d9", "#d9d9d9"]}
+            position={[0, 0, thickness / 2 + 0.01]}
+            rotation={[Math.PI / 2, 0, 0]}
+            visible={true}
+          />
+        </group>
+      </RoundedBox>
+      {/*Left Wall skip for now*/}
+      {/* <RoundedBox
+        args={[height, depth, thickness]}
+        position={[
+          baseposX - width / 2,
+          baseposY + height / 2,
+          baseposZ + depth / 2,
+        ]}
+        rotation={[-Math.PI / 2, Math.PI / 2, 0]}
+        radius={0.0}
+        smoothness={4}
+        receiveShadow={true}
+      >
+        <meshStandardMaterial
+          color="white"
+          transparent={true}
+          opacity={0.5}
+          metalness={0.01}
+          roughness={0.9}
+        />
         <Text
           position={[-9, -5.5, 0.15]}
           rotation={[0, 0, 0]}
@@ -84,11 +133,11 @@ export default function WallsAndFloor({
           <gridHelper
             args={[width * gridScaleXFloor, width * 0.5, "#d9d9d9", "#d9d9d9"]}
             position={[0, 0, thickness / 2 + 0.01]}
-            rotation={[Math.PI / 2, 0, 0]}
+            rotation={[Math.PI / 2, Math.PI / 2, 0]}
             visible={true}
           />
         </group>
-      </RoundedBox>
+      </RoundedBox>*/}
     </>
   );
 }

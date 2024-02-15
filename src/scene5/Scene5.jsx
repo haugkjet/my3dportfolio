@@ -1,4 +1,4 @@
-import { RoundedBox, Text } from "@react-three/drei";
+import { ContactShadows, RoundedBox, Text } from "@react-three/drei";
 
 import { BakeShadows, SoftShadows, OrbitControls } from "@react-three/drei";
 import { Perf } from "r3f-perf";
@@ -50,7 +50,7 @@ export default function Scene5({ textureCube }) {
 
   let width = 35;
   let height = 15;
-  let depth = 22;
+  let depth = 23;
   let thickness = 0.25;
 
   let baseposX = 0;
@@ -72,7 +72,8 @@ export default function Scene5({ textureCube }) {
   warehouse: 'empty_warehouse_01_1k.hdr',
   */}
       <BakeShadows />
-      <SoftShadows size={25} samples={50} focus={0.01} />
+      <SoftShadows size={25} samples={50} focus={0.1} />
+
       <Perf position="top-left" />
       <OrbitControls dampingFactor={0.9} />
 
