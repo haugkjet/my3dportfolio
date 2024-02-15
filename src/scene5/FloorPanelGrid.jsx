@@ -80,7 +80,7 @@ export default function FloorPanelGrid({ baseposX, baseposY, baseposZ }) {
         <Barchart
           posx={(-baseposX + offsetX[2]) / 0.3 + 4}
           posy={(baseposY + thickness) / 0.3 + 0.26}
-          posz={baseposZ + offsetZ[0] / 0.3 - 2}
+          posz={(baseposZ + offsetZ[0]) / 0.3 - 2}
           length={8}
           roty={0}
           title={""}
@@ -156,7 +156,7 @@ export default function FloorPanelGrid({ baseposX, baseposY, baseposZ }) {
         <Barchart
           posx={(-baseposX + offsetX[0]) / 0.3 + 4}
           posy={(baseposY + thickness) / 0.3 + 0.26}
-          posz={baseposZ + offsetZ[0] / 0.3 - 2}
+          posz={(baseposZ + offsetZ[0]) / 0.3 - 2}
           length={8}
           roty={0}
           title={""}
@@ -220,7 +220,7 @@ export default function FloorPanelGrid({ baseposX, baseposY, baseposZ }) {
         <Barchart
           posx={(-baseposX + offsetX[1]) / 0.3 + 4}
           posy={(baseposY + thickness) / 0.3 + 0.26}
-          posz={baseposZ + offsetZ[1] / 0.3 - 2}
+          posz={(baseposZ + offsetZ[1]) / 0.3 - 2}
           length={8}
           roty={0}
           title={""}

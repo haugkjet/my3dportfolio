@@ -47,12 +47,12 @@ export default function Scene5({ textureCube }) {
   ];
   const linethickness = 0.1; // Thickness of the line
 
-  let width = 20;
+  let width = 35;
   let height = 20;
-  let depth = 12;
+  let depth = 22;
   let thickness = 0.25;
 
-  let baseposX = 20;
+  let baseposX = 25;
   let baseposY = 0;
   let baseposZ = 0;
 
@@ -84,16 +84,34 @@ export default function Scene5({ textureCube }) {
         baseposX={baseposX}
         baseposY={baseposY}
         baseposZ={baseposZ}
-        width={20}
-        height={10}
-        depth={12}
+        width={width}
+        height={height}
+        depth={depth}
         thickness={0.25}
       />
 
       <FloorPanelGrid
-        baseposX={baseposX}
+        baseposX={baseposX - width / 2 + 10}
         baseposY={baseposY}
         baseposZ={baseposZ}
+      ></FloorPanelGrid>
+
+      <FloorPanelGrid
+        baseposX={baseposX - width / 2 + 10 + 15}
+        baseposY={baseposY}
+        baseposZ={baseposZ}
+      ></FloorPanelGrid>
+
+      <FloorPanelGrid
+        baseposX={baseposX - width / 2 + 10 + 15}
+        baseposY={baseposY}
+        baseposZ={baseposZ + 10}
+      ></FloorPanelGrid>
+
+      <FloorPanelGrid
+        baseposX={baseposX - width / 2 + 10}
+        baseposY={baseposY}
+        baseposZ={baseposZ + 10}
       ></FloorPanelGrid>
 
       {/*End New scene*/}
