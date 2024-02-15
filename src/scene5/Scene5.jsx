@@ -10,7 +10,7 @@ import MyLineChart from "./components/chart/MyLineChart";
 import WallsAndFloor from "./components/WallsAndFloor";
 
 import PanelExtruded from "./components/PanelExtruded";
-import PanelGrid from "./PanelGrid";
+import FloorPanelGrid from "./FloorPanelGrid";
 
 import Lights from "./env/Lights";
 import Ground from "./env/Ground";
@@ -90,28 +90,11 @@ export default function Scene5({ textureCube }) {
         thickness={0.25}
       />
 
-      <PanelGrid
+      <FloorPanelGrid
         baseposX={baseposX}
         baseposY={baseposY}
         baseposZ={baseposZ}
-      ></PanelGrid>
-
-      <group
-        position={[baseposX, baseposY - 1, baseposZ + thickness * 2]}
-        rotation={[-Math.PI / 2, 0, 0]}
-      >
-        <PanelGrid baseposX={0} baseposY={0} baseposZ={0}></PanelGrid>
-      </group>
-
-      <Barchart
-        posx={-baseposX + 6}
-        posy={baseposY + 1}
-        posz={baseposZ}
-        length={3}
-        roty={0}
-        title={""}
-        maxheight={3}
-      />
+      ></FloorPanelGrid>
 
       {/*End New scene*/}
 
