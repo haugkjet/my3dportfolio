@@ -1,9 +1,16 @@
 import React, { createContext, useContext, useState } from "react";
 
+import { useControls } from "leva";
+
 const ThemeContext = createContext(); // Create a context
 
 export const ThemeProvider = ({ children }) => {
-  const [darkMode, setDarkMode] = useState(false); // Example state
+  const { darkMode } = useControls({
+    darkMode: {
+      value: false,
+      label: "Dark Mode",
+    },
+  });
 
   const currentSettings = darkMode
     ? {
@@ -42,13 +49,13 @@ export const ThemeProvider = ({ children }) => {
         floorGridColor1: "#d9d9d9",
         floorGridColor2: "#d9d9d9",
         groundColor: "#4fa7ff",
-        extrudedPanelColor: "fff",
+        extrudedPanelColor: "#ffffff",
         extrudedPanelGridColor1: "orange",
         extrudedPanelGridColor2: "#d9d9d9",
       }; // Light mode settings
 
   return (
-    <ThemeContext.Provider value={{ currentSettings, setDarkMode }}>
+    <ThemeContext.Provider value={{ currentSettings }}>
       {children}
     </ThemeContext.Provider>
   );
