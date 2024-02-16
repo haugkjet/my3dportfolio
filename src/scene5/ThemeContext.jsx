@@ -8,24 +8,28 @@ export const ThemeProvider = ({ children }) => {
   const currentSettings = darkMode
     ? {
         theme: "dark",
-        background: "black",
-        chartcolor1: "red",
-        chartcolor2: "green",
+        background: "#00244c",
+        fogcolor: "#00244c",
+        chartcolor1: "#0062cc", // Blue
+        chartcolor2: "#b27035", // Orange
         linecolor: "orange",
         behindWallColor: "#000",
         behindWallTextColor: "#fff",
-        behindWallGridColor1: "#fff",
-        behindWallGridColor2: "#fff",
+        behindWallGridColor1: "#3b3b3b",
+        behindWallGridColor2: "#3b3b3b",
         floorColor: "#000",
         floorTextColor: "#fff",
-        floorGridColor1: "#fff",
-        floorGridColor2: "#fff",
-        groundColor: "#000",
-        extrudedPanelColor: "#000",
+        floorGridColor1: "#3b3b3b",
+        floorGridColor2: "#3b3b3b",
+        groundColor: "#00244c",
+        extrudedPanelColor: "#222222",
+        extrudedPanelGridColor1: "orange",
+        extrudedPanelGridColor2: "#636363",
       } // Dark mode settings
     : {
         theme: "light",
         background: "#e7f3ff", // Light blue
+        fogcolor: "#e7f3ff",
         chartcolor1: "#007bff", // Blue
         chartcolor2: "#ffa04c", // Orange
         linecolor: "red",
@@ -39,6 +43,8 @@ export const ThemeProvider = ({ children }) => {
         floorGridColor2: "#d9d9d9",
         groundColor: "#4fa7ff",
         extrudedPanelColor: "fff",
+        extrudedPanelGridColor1: "orange",
+        extrudedPanelGridColor2: "#d9d9d9",
       }; // Light mode settings
 
   return (

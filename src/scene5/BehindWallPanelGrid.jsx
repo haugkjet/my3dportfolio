@@ -73,7 +73,12 @@ export default function BehindWallPanelGrid({ baseposX, baseposY, baseposZ }) {
 
       <group scale={[0.3, 0.3, 0.3]}>
         <gridHelper
-          args={[10, 10, "orange", "#d9d9d9"]}
+          args={[
+            10,
+            10,
+            currentSettings.extrudedPanelGridColor1,
+            currentSettings.extrudedPanelGridColor2,
+          ]}
           position={[
             (baseposX + offsetX[0]) / 0.3,
             (baseposY + thickness) / 0.3 + 0.26,
@@ -104,7 +109,12 @@ export default function BehindWallPanelGrid({ baseposX, baseposY, baseposZ }) {
 
       <group scale={[0.3, 0.3, 0.3]}>
         <gridHelper
-          args={[10, 10, "orange", "#d9d9d9"]}
+          args={[
+            10,
+            10,
+            currentSettings.extrudedPanelGridColor1,
+            currentSettings.extrudedPanelGridColor2,
+          ]}
           position={[
             (baseposX + offsetX[1]) / 0.3,
             (baseposY + thickness) / 0.3 + 0.26,
@@ -150,7 +160,12 @@ export default function BehindWallPanelGrid({ baseposX, baseposY, baseposZ }) {
 
       <group scale={[0.3, 0.3, 0.3]}>
         <gridHelper
-          args={[10, 10, "orange", "#d9d9d9"]}
+          args={[
+            10,
+            10,
+            currentSettings.extrudedPanelGridColor1,
+            currentSettings.extrudedPanelGridColor2,
+          ]}
           position={[
             (baseposX + offsetX[2]) / 0.3,
             (baseposY + thickness) / 0.3 + 0.26,
@@ -184,7 +199,12 @@ export default function BehindWallPanelGrid({ baseposX, baseposY, baseposZ }) {
 
       <group scale={[0.3, 0.3, 0.3]}>
         <gridHelper
-          args={[10, 10, "orange", "#d9d9d9"]}
+          args={[
+            10,
+            10,
+            currentSettings.extrudedPanelGridColor1,
+            currentSettings.extrudedPanelGridColor2,
+          ]}
           position={[
             (baseposX + offsetX[0]) / 0.3,
             (baseposY + thickness) / 0.3 + 0.26,
@@ -218,7 +238,12 @@ export default function BehindWallPanelGrid({ baseposX, baseposY, baseposZ }) {
       />
       <group scale={[0.3, 0.3, 0.3]}>
         <gridHelper
-          args={[10, 10, "orange", "#d9d9d9"]}
+          args={[
+            10,
+            10,
+            currentSettings.extrudedPanelGridColor1,
+            currentSettings.extrudedPanelGridColor2,
+          ]}
           position={[
             (baseposX + offsetX[1]) / 0.3,
             (baseposY + thickness) / 0.3 + 0.26,

@@ -86,6 +86,12 @@ export default function Scene5({ textureCube }) {
       <OrbitControls dampingFactor={0.9} />
 
       <color attach="background" args={[currentSettings.background]} />
+      <fog
+        attach="fog"
+        color={currentSettings.fogcolor}
+        near={0.015}
+        far={250}
+      />
 
       <Lights />
       <Ground />

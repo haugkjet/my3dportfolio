@@ -61,6 +61,7 @@ function Scene2Box() {
       <Perf position="top-left" />
       <OrbitControls dampingFactor={0.9} />
       <color attach="background" args={["#e7f3ff"]} />
+      <fog attach="fog" color="#e7f3ff" near={0.015} far={250} />
 
       <Ground />
       <Lights />

@@ -63,6 +63,7 @@ export default function Scene4({ textureCube }) {
       <OrbitControls dampingFactor={0.9} />
 
       <color attach="background" args={["#e7f3ff"]} />
+      <fog attach="fog" color="#e7f3ff" near={0.015} far={250} />
 
       <S4Lights />
       <Ground />

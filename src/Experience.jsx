@@ -51,7 +51,6 @@ export default function Experience() {
             //gl.outputColorSpace = SRGBColorSpace;
             //gl.toneMapping = THREE.ACESFilmicToneMapping;
             //gl.toneMappingExposure = 0.5;
-            scene.fog = new Fog(0xe7f3ff, 0.015, 350);
           }}
         >
           {currentScene === "sceneOne" && <Scene1Chart />}

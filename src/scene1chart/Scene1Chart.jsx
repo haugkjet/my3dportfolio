@@ -12,6 +12,7 @@ export default function Scene1Chart() {
     <>
       <Perf position="top-left" />
       <OrbitControls dampingFactor={0.9} />
+      <fog attach="fog" color="#e7f3ff" near={0.015} far={250} />
 
       <Ground />
       <Lights />
