@@ -15,6 +15,7 @@ export default function Scene1Chart() {
 
       <Ground />
       <Lights />
+      <color attach="background" args={["#e7f3ff"]} />
       <RoundedBox
         position={[-60, 25, 0]}
         rotation={[0, Math.PI / 2, 0]}

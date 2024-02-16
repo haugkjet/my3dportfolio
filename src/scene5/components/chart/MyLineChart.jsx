@@ -2,9 +2,11 @@ import React, { useMemo } from "react";
 import { Canvas } from "@react-three/fiber";
 import * as THREE from "three";
 import { Box, Points } from "@react-three/drei";
+import { useTheme } from "../../ThemeContext"; // Adjust the path as necessary
 
 // Component to render the line
 const Line = ({ points, thickness }) => {
+  const { currentSettings } = useTheme();
   const path = useMemo(() => {
     const curve = new THREE.CatmullRomCurve3(
       points.map((point) => new THREE.Vector3(...point))
@@ -20,7 +22,7 @@ const Line = ({ points, thickness }) => {
   return (
     <group>
       <mesh geometry={tubeGeometry}>
-        <meshStandardMaterial color={"red"} />
+        <meshStandardMaterial color={currentSettings.linecolor} />
       </mesh>
     </group>
   );

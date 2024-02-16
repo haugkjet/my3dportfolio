@@ -1,4 +1,5 @@
 import { RoundedBox, Text } from "@react-three/drei";
+import { useTheme } from "../ThemeContext"; // Adjust the path as necessary
 
 export default function WallsAndFloor({
   baseposX,
@@ -10,6 +11,8 @@ export default function WallsAndFloor({
   thickness,
 }) {
   /*GridScale factors muse be tuned to match the grid with the floor size for now*/
+
+  const { currentSettings } = useTheme();
 
   /* Floor: */
   let gridScaleXFloor = 0.9;
@@ -34,7 +37,7 @@ export default function WallsAndFloor({
         visible={true}
       >
         <meshStandardMaterial
-          color="#ededed"
+          color={currentSettings.behindWallColor}
           transparent={true}
           opacity={0.5}
           metalness={0.7}
@@ -47,7 +50,7 @@ export default function WallsAndFloor({
             baseposZ + 0.2,
           ]}
           rotation={[0, 0, 0]}
-          color={"#007bff"}
+          color={currentSettings.behindWallTextColor}
           fontSize={0.5}
         >
           Results 2024
@@ -60,7 +63,12 @@ export default function WallsAndFloor({
           ]}
         >
           <gridHelper
-            args={[height, height, "#d9d9d9", "#d9d9d9"]}
+            args={[
+              height,
+              height,
+              currentSettings.behindWallGridColor1,
+              currentSettings.behindWallGridColor2,
+            ]}
             position={[0, 0, thickness / 2 + 0.01]}
             rotation={[Math.PI / 2, 0, 0]}
             visible={true}
@@ -78,7 +86,7 @@ export default function WallsAndFloor({
         receiveShadow={true}
       >
         <meshStandardMaterial
-          color="white"
+          color={currentSettings.floorColor}
           transparent={true}
           opacity={0.7}
           metalness={0.1}
@@ -87,14 +95,19 @@ export default function WallsAndFloor({
         <Text
           position={[0, -depth / 2 + 1, thickness / 2 + 0.01]}
           rotation={[0, 0, 0]}
-          color={"#007bff"}
+          color={currentSettings.floorTextColor}
           fontSize={0.7}
         >
           Report 2024
         </Text>
         <group scale={[gridScaleXFloor, gridScaleYFloor, gridScaleZFloor]}>
           <gridHelper
-            args={[width * gridScaleXFloor, width * 0.5, "#d9d9d9", "#d9d9d9"]}
+            args={[
+              width * gridScaleXFloor,
+              width * 0.5,
+              currentSettings.floorGridColor1,
+              currentSettings.floorGridColor2,
+            ]}
             position={[0, 0, thickness / 2 + 0.01]}
             rotation={[Math.PI / 2, 0, 0]}
             visible={true}

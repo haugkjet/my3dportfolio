@@ -16,7 +16,15 @@ import BehindWallPanelGrid from "./BehindWallPanelGrid";
 import Lights from "./env/Lights";
 import Ground from "./env/Ground";
 
+import React from "react";
+
+import { useTheme } from "./ThemeContext"; // Adjust the path as necessary
+
 export default function Scene5({ textureCube }) {
+  const { currentSettings } = useTheme();
+
+  // Inside your component or theme context
+
   const data1 = [
     { value: 75, color: "#007bff" },
     { value: 25, color: "#ffa04c" },
@@ -76,6 +84,8 @@ export default function Scene5({ textureCube }) {
 
       <Perf position="top-left" />
       <OrbitControls dampingFactor={0.9} />
+
+      <color attach="background" args={[currentSettings.background]} />
 
       <Lights />
       <Ground />

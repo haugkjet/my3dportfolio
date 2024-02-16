@@ -1,6 +1,8 @@
 import CubeExtruded from "./CubeExtruded";
 import { Text } from "@react-three/drei";
 
+import { useTheme } from "../../ThemeContext"; // Adjust the path as necessary
+
 const getRandomValue = (maxheight) => Math.floor(Math.random() * maxheight) + 1;
 const getRandomElement = (array) =>
   array[Math.floor(Math.random() * array.length)];
@@ -27,9 +29,11 @@ export default function Barchart({
   title,
   maxheight,
 }) {
+  const { currentSettings } = useTheme();
+
   const cubesData = [];
 
-  const colorList = ["#007bff", "#ffa04c"];
+  const colorList = [currentSettings.chartcolor1, currentSettings.chartcolor2];
   const textList = ["Cube", "CubeCool", "Cubebig"];
 
   for (let i = 0; i < length; i++) {
@@ -64,7 +68,7 @@ export default function Barchart({
         <Text
           position={[-posx + length / 2, posy + 0.05, posz + 3]}
           rotation={[-Math.PI / 2, 0, 0]}
-          color={0x000000}
+          color={currentSettings.chartcolor1}
           fontSize={1}
         >
           {title}

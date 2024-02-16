@@ -62,6 +62,8 @@ export default function Scene3Dashboard({ textureCube }) {
       <Perf position="top-left" />
       <OrbitControls dampingFactor={0.9} />
 
+      <color attach="background" args={["#e7f3ff"]} />
+
       <Lights />
       <Ground />
 

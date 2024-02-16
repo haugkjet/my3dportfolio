@@ -1,7 +1,9 @@
 import React from "react";
 import { Text } from "@react-three/drei";
+import { useTheme } from "../ThemeContext"; // Adjust the path as necessary
 
 export default function Ground() {
+  const { currentSettings } = useTheme();
   return (
     <>
       <gridHelper args={[500, 1, "orange", "grey"]} position={[0, 0.001, 0]} />
@@ -16,7 +18,11 @@ export default function Ground() {
         scale={[500, 500, 1]}
       >
         <planeGeometry attach="geometry" />
-        <meshStandardMaterial color="#4fa7ff" metalness={0.1} roughness={0.6} />
+        <meshStandardMaterial
+          color={currentSettings.groundColor}
+          metalness={0.1}
+          roughness={0.6}
+        />
       </mesh>
     </>
   );

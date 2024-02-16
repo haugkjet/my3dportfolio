@@ -1,28 +1,31 @@
 import { Text } from "@react-three/drei";
+
+import { useTheme } from "./ThemeContext"; // Adjust the path as necessary
 import PanelExtruded from "./components/PanelExtruded";
 import Barchart from "./components/chart/Barchart";
 import MyPieChart from "./components/chart/MyPieChart";
 import MyLineChart from "./components/chart/MyLineChart";
 
 export default function BehindWallPanelGrid({ baseposX, baseposY, baseposZ }) {
+  const { currentSettings } = useTheme();
   let thickness = 0.25;
 
   let offsetX = [-5, 0, 5];
   let offsetZ = [3, 7, 10];
 
   const data1 = [
-    { value: 75, color: "#007bff" },
-    { value: 25, color: "#ffa04c" },
+    { value: 75, color: currentSettings.chartcolor1 },
+    { value: 25, color: currentSettings.chartcolor2 },
   ];
 
   const data2 = [
-    { value: 35, color: "#007bff" },
-    { value: 45, color: "#ffa04c" },
+    { value: 35, color: currentSettings.chartcolor1 },
+    { value: 45, color: currentSettings.chartcolor2 },
   ];
 
   const data3 = [
-    { value: 20, color: "#007bff" },
-    { value: 80, color: "#ffa04c" },
+    { value: 20, color: currentSettings.chartcolor1 },
+    { value: 80, color: currentSettings.chartcolor2 },
   ];
 
   const linedata = [
@@ -53,6 +56,7 @@ export default function BehindWallPanelGrid({ baseposX, baseposY, baseposZ }) {
           baseposZ + offsetZ[0],
         ]}
         scale={[3, 3, 1]}
+        color={currentSettings.extrudedPanelColor}
       />
 
       <group
@@ -95,6 +99,7 @@ export default function BehindWallPanelGrid({ baseposX, baseposY, baseposZ }) {
           baseposZ + offsetZ[0],
         ]}
         scale={[3, 3, 1]}
+        color={currentSettings.extrudedPanelColor}
       />
 
       <group scale={[0.3, 0.3, 0.3]}>
@@ -140,6 +145,7 @@ export default function BehindWallPanelGrid({ baseposX, baseposY, baseposZ }) {
           baseposZ + offsetZ[0],
         ]}
         scale={[3, 3, 1]}
+        color={currentSettings.extrudedPanelColor}
       />
 
       <group scale={[0.3, 0.3, 0.3]}>
@@ -173,6 +179,7 @@ export default function BehindWallPanelGrid({ baseposX, baseposY, baseposZ }) {
           baseposZ + offsetZ[1],
         ]}
         scale={[3, 3, 1]}
+        color={currentSettings.extrudedPanelColor}
       />
 
       <group scale={[0.3, 0.3, 0.3]}>
@@ -194,6 +201,7 @@ export default function BehindWallPanelGrid({ baseposX, baseposY, baseposZ }) {
           baseposZ + offsetZ[1],
         ]}
         scale={[3, 3, 1]}
+        color={currentSettings.extrudedPanelColor}
       />
 
       {/*Middle row charts*/}
@@ -239,6 +247,7 @@ export default function BehindWallPanelGrid({ baseposX, baseposY, baseposZ }) {
           baseposZ + offsetZ[1],
         ]}
         scale={[3, 3, 1]}
+        color={currentSettings.extrudedPanelColor}
       />
 
       {/*<group scale={[0.3, 0.3, 0.3]}>
@@ -272,6 +281,7 @@ export default function BehindWallPanelGrid({ baseposX, baseposY, baseposZ }) {
           baseposZ + offsetZ[2],
         ]}
         scale={[2, 1, 1]}
+        color={currentSettings.extrudedPanelColor}
       />
       <PanelExtruded
         position={[
@@ -280,6 +290,7 @@ export default function BehindWallPanelGrid({ baseposX, baseposY, baseposZ }) {
           baseposZ + offsetZ[2],
         ]}
         scale={[2, 1, 1]}
+        color={currentSettings.extrudedPanelColor}
       />
       <PanelExtruded
         position={[
@@ -288,6 +299,7 @@ export default function BehindWallPanelGrid({ baseposX, baseposY, baseposZ }) {
           baseposZ + offsetZ[2],
         ]}
         scale={[2, 1, 1]}
+        color={currentSettings.extrudedPanelColor}
       />
 
       <Text
