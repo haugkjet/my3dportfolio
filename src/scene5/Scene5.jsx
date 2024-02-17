@@ -1,3 +1,7 @@
+import React, { useMemo } from "react";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { CatmullRomCurve3, Vector3 } from "three";
+import { useControls } from "leva";
 import { Html, ContactShadows, RoundedBox, Text } from "@react-three/drei";
 
 import {
@@ -21,12 +25,39 @@ import BehindWallPanelGrid from "./BehindWallPanelGrid";
 import Lights from "./env/Lights";
 import Ground from "./env/Ground";
 
-import React from "react";
-import * as THREE from "three";
-import { Canvas, useLoader } from "@react-three/fiber";
-import { TextureLoader, PlaneGeometry, MeshBasicMaterial } from "three";
+import { useLoader } from "@react-three/fiber";
 
 import { useTheme } from "./ThemeContext"; // Adjust the path as necessary
+
+const CameraPathAnimation = () => {
+  const { camera } = useThree();
+  const curve = useMemo(
+    () =>
+      new CatmullRomCurve3([
+        new Vector3(-25, 10, 40),
+        new Vector3(0, 15, 40),
+        new Vector3(25, 10, 40),
+        new Vector3(1, 2, 30),
+        new Vector3(-1, 2, 10),
+        new Vector3(-25, 10, 40), // Looping back to start for a continuous path
+      ]),
+    []
+  );
+
+  // Leva checkbox to toggle animation
+  const { animate } = useControls({ animate: false });
+
+  useFrame(({ clock }) => {
+    if (animate) {
+      const t = (clock.getElapsedTime() * 0.04) % 1; // Adjust speed and ensure looping
+      const position = curve.getPoint(t);
+      camera.position.copy(position);
+      camera.lookAt(0, 0, 0); // Adjust as needed to focus the camera
+    }
+  });
+
+  return null;
+};
 
 export default function Scene5({ textureCube }) {
   const { currentSettings } = useTheme();
@@ -155,6 +186,8 @@ export default function Scene5({ textureCube }) {
           baseposZ={baseposZ - height + 1}
         ></BehindWallPanelGrid>
       </group>
+
+      <CameraPathAnimation />
 
       {/*End New scene*/}
 
