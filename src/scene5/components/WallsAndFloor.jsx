@@ -1,4 +1,4 @@
-import { RoundedBox, Text } from "@react-three/drei";
+import { RoundedBox, Text, Html } from "@react-three/drei";
 import { useTheme } from "../ThemeContext"; // Adjust the path as necessary
 
 export default function WallsAndFloor({
@@ -36,6 +36,35 @@ export default function WallsAndFloor({
         receiveShadow={true}
         visible={true}
       >
+        <Html
+          position={[-width / 2, height / 2, 0]}
+          // Allows positioning in 3D space but doesn't follow the camera
+        >
+          <div
+            style={{
+              padding: "10px",
+              background: "black",
+              borderRadius: "10px",
+              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+              fontFamily: '"Roboto", sans-serif', // Using Roboto font
+              fontWeight: "bold", // Ensure text is bold
+            }}
+          >
+            <h1
+              style={{
+                fontSize: "1.2em",
+                color: "#a9a9a9",
+                margin: "0 0 10px 0",
+              }}
+            >
+              Welcome
+            </h1>
+            <p style={{ fontSize: "1.0em", margin: 0, color: "#afafaf" }}>
+              Annual results 2024
+            </p>
+          </div>
+        </Html>
+
         <meshStandardMaterial
           color={currentSettings.behindWallColor}
           transparent={true}

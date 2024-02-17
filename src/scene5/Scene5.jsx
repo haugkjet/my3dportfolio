@@ -1,6 +1,11 @@
-import { ContactShadows, RoundedBox, Text } from "@react-three/drei";
+import { Html, ContactShadows, RoundedBox, Text } from "@react-three/drei";
 
-import { BakeShadows, SoftShadows, OrbitControls } from "@react-three/drei";
+import {
+  BakeShadows,
+  SoftShadows,
+  OrbitControls,
+  Svg,
+} from "@react-three/drei";
 import { Perf } from "r3f-perf";
 
 import Barchart from "./components/chart/Barchart";
@@ -17,6 +22,9 @@ import Lights from "./env/Lights";
 import Ground from "./env/Ground";
 
 import React from "react";
+import * as THREE from "three";
+import { Canvas, useLoader } from "@react-three/fiber";
+import { TextureLoader, PlaneGeometry, MeshBasicMaterial } from "three";
 
 import { useTheme } from "./ThemeContext"; // Adjust the path as necessary
 
@@ -79,6 +87,7 @@ export default function Scene5({ textureCube }) {
   sunset: 'venice_sunset_1k.hdr',
   warehouse: 'empty_warehouse_01_1k.hdr',
   */}
+
       <BakeShadows />
       <SoftShadows size={25} samples={50} focus={0.1} />
 
