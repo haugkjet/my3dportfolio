@@ -13,6 +13,7 @@ import {
 import { Perf } from "r3f-perf";
 
 import Barchart from "./components/chart/Barchart";
+import BarchartV2 from "./components/chart/BarchartV2";
 import MyPieChart from "./components/chart/MyPieChart";
 import MyLineChart from "./components/chart/MyLineChart";
 

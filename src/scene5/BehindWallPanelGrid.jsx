@@ -3,6 +3,7 @@ import { Text } from "@react-three/drei";
 import { useTheme } from "./ThemeContext"; // Adjust the path as necessary
 import PanelExtruded from "./components/PanelExtruded";
 import Barchart from "./components/chart/Barchart";
+import BarchartV2 from "./components/chart/BarchartV2";
 import MyPieChart from "./components/chart/MyPieChart";
 import MyLineChart from "./components/chart/MyLineChart";
 
@@ -46,6 +47,18 @@ export default function BehindWallPanelGrid({ baseposX, baseposY, baseposZ }) {
   ];
 
   const linethickness = 0.1; // Thickness of the line
+
+  // Sample data
+  const barchartV2data = [
+    { label: "Milk", value: 0.3, color: currentSettings.chartcolor1 },
+    { label: "Bread", value: 0.1, color: currentSettings.chartcolor2 },
+    { label: "Vegies", value: 0.2, color: currentSettings.chartcolor1 },
+    { label: "Meat", value: -0.2, color: currentSettings.chartcolor2 },
+    { label: "Drinks", value: 0.1, color: currentSettings.chartcolor1 },
+    { label: "Meat", value: -0.2, color: currentSettings.chartcolor2 },
+
+    // Add more data points here
+  ];
 
   return (
     <>
@@ -287,17 +300,17 @@ export default function BehindWallPanelGrid({ baseposX, baseposY, baseposZ }) {
         />
         </group>*/}
 
-      <MyPieChart
-        data={data2}
+      <group
         position={[
           baseposX + offsetX[2],
           baseposY + thickness / 2 + 0.26,
           baseposZ + offsetZ[1],
         ]}
-        radius={1.2}
-        title={"Sales"}
-        depth={0.1}
-      />
+        scale={[0.13, 0.13, 0.13]}
+        rotation={[-Math.PI / 2, 0, 0]}
+      >
+        <BarchartV2 data={barchartV2data} />
+      </group>
 
       <PanelExtruded
         position={[
