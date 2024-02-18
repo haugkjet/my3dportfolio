@@ -14,9 +14,15 @@ const Bar = ({ position, dimensions, color }) => {
 
 const GridLines = ({ size, divisions, orientation }) => {
   const gridRef = useRef();
+  const { currentSettings } = useTheme();
   return (
     <gridHelper
-      args={[size, divisions, "orange", "#292929"]}
+      args={[
+        size,
+        divisions,
+        currentSettings.extrudedPanelGridColor1,
+        currentSettings.extrudedPanelGridColor2,
+      ]}
       ref={gridRef}
       rotation={orientation === "horizontal" ? [Math.PI / 2, 0, 0] : [0, 0, 0]}
     />
@@ -35,23 +41,29 @@ const AxisLabel = ({ position, text }) => (
   </Text>
 );
 
-const LegendItem = ({ position, color, text }) => (
-  <>
-    <Box args={[0.5, 0.5, 0.1]} position={position}>
-      <meshStandardMaterial color={color} metalness={0.7} roughness={0.1} />
-    </Box>
-    <Text
-      color={"#000"}
-      anchorX="left"
-      anchorY="middle"
-      position={[position[0] + 0.6, position[1], position[2]]}
-    >
-      {text}
-    </Text>
-  </>
-);
+function LegendItem({ position, color, text }) {
+  const { currentSettings } = useTheme();
+
+  return (
+    <>
+      <Box args={[0.5, 0.5, 0.1]} position={position}>
+        <meshStandardMaterial color={color} metalness={0.7} roughness={0.1} />
+      </Box>
+      <Text
+        color={currentSettings.floorTextColor}
+        anchorX="left"
+        anchorY="middle"
+        position={[position[0] + 0.6, position[1], position[2]]}
+      >
+        {text}
+      </Text>
+    </>
+  );
+}
 
 export default function BarchartV2({ data }) {
+  const { currentSettings } = useTheme();
+
   const maxValue = Math.max(...data.map((d) => d.value));
   const scale = 10 / maxValue; // Example scaling factor
 
