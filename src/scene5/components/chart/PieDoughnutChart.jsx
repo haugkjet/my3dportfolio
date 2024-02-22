@@ -7,28 +7,32 @@ const createPieSegmentShape = (
   outerRadius,
   startAngle,
   endAngle,
-  gapSize
+  gapSize = 0.05
 ) => {
-  const adjustedStartAngle = startAngle + gapSize / 2;
-  const adjustedEndAngle = endAngle - gapSize / 2;
+  // Calculate the angular size of the gap for both the inner and outer radii
+  const innerGapAngle = gapSize / innerRadius; // Smaller angle for the inner radius
+  const outerGapAngle = gapSize / outerRadius + 0.05; // Larger angle for the outer radius
+
+  // Adjust the start and end angles to include the gap, differentiating between inner and outer edges
+  const adjustedStartAngle = startAngle + innerGapAngle / 2;
+  const adjustedEndAngle = endAngle - outerGapAngle / 2;
 
   const shape = new THREE.Shape();
   const startOuter = new THREE.Vector2(
-    Math.cos(startAngle) * outerRadius,
-    Math.sin(startAngle) * outerRadius
+    Math.cos(adjustedStartAngle) * outerRadius,
+    Math.sin(adjustedStartAngle) * outerRadius
   );
-  const endOuter = new THREE.Vector2(
-    Math.cos(endAngle) * outerRadius,
-    Math.sin(endAngle) * outerRadius
+  shape.moveTo(
+    Math.cos(adjustedStartAngle) * innerRadius,
+    Math.sin(adjustedStartAngle) * innerRadius
   );
-  shape.moveTo(startOuter.x, startOuter.y);
-  shape.absarc(0, 0, outerRadius, startAngle, endAngle);
-  /* shape.lineTo(
-    endOuter.x + Math.cos(endAngle) * innerRadius,
-    endOuter.y + Math.sin(endAngle) * innerRadius
-  );*/
-  shape.absarc(0, 0, innerRadius, endAngle, startAngle, true);
   shape.lineTo(startOuter.x, startOuter.y);
+  shape.absarc(0, 0, outerRadius, adjustedStartAngle, adjustedEndAngle, false);
+  const endInnerX = Math.cos(adjustedEndAngle) * innerRadius;
+  const endInnerY = Math.sin(adjustedEndAngle) * innerRadius;
+  shape.lineTo(endInnerX, endInnerY);
+  shape.absarc(0, 0, innerRadius, adjustedEndAngle, adjustedStartAngle, true);
+
   return shape;
 };
 
