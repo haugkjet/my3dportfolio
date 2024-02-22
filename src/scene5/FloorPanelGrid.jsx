@@ -4,6 +4,7 @@ import PanelExtruded from "./components/PanelExtruded";
 import Barchart from "./components/chart/Barchart";
 import MyPieChart from "./components/chart/MyPieChart";
 import MyLineChart from "./components/chart/MyLineChart";
+import PieDoughnutChart from "./components/chart/PieDoughnutChart";
 
 export default function FloorPanelGrid({ baseposX, baseposY, baseposZ }) {
   const { currentSettings } = useTheme();
@@ -46,6 +47,16 @@ export default function FloorPanelGrid({ baseposX, baseposY, baseposZ }) {
   ];
 
   const linethickness = 0.1; // Thickness of the line
+
+  // Example usage
+  const datapiedough = [
+    { value: 60, color: "#007bff" },
+    { value: 40, color: "#ffa04c" },
+    { value: 40, color: "#007bff" },
+    { value: 40, color: "#ffa04c" },
+
+    // Add more segments as needed
+  ];
 
   return (
     <>
@@ -136,7 +147,7 @@ export default function FloorPanelGrid({ baseposX, baseposY, baseposZ }) {
         <MyLineChart data={linedata2} thickness={linethickness} />
       </group>
 
-      <MyPieChart
+      {/*   <MyPieChart
         data={data3}
         position={[
           baseposX + offsetX[1],
@@ -146,7 +157,18 @@ export default function FloorPanelGrid({ baseposX, baseposY, baseposZ }) {
         radius={1.2}
         title={"Sales"}
         depth={0.1}
-      />
+      />*/}
+
+      <group
+        scale={[0.6, 0.6, 0.6]}
+        position={[
+          baseposX + offsetX[1],
+          baseposY + thickness / 2 + 0.26,
+          baseposZ + offsetZ[0],
+        ]}
+      >
+        <PieDoughnutChart data={datapiedough} />
+      </group>
 
       <PanelExtruded
         position={[

@@ -40,7 +40,7 @@ const PieSegment = ({
   endAngle,
   color,
 }) => {
-  const extrudeSettings = { depth: 1, bevelEnabled: false };
+  const extrudeSettings = { depth: 0.1, bevelEnabled: false };
   const segmentShape = createPieSegmentShape(
     innerRadius,
     outerRadius,
