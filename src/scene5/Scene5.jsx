@@ -15,6 +15,8 @@ import { Perf } from "r3f-perf";
 import Barchart from "./components/chart/Barchart";
 import BarchartV2 from "./components/chart/BarchartV2";
 import MyPieChart from "./components/chart/MyPieChart";
+import PieDoughnutChart from "./components/chart/PieDoughnutChart";
+
 import MyLineChart from "./components/chart/MyLineChart";
 
 import WallsAndFloor from "./components/WallsAndFloor";
@@ -96,6 +98,16 @@ export default function Scene5({ textureCube }) {
   ];
   const linethickness = 0.1; // Thickness of the line
 
+  // Example usage
+  const datapiedough = [
+    { value: 60, color: "#007bff" },
+    { value: 40, color: "#ffa04c" },
+    { value: 40, color: "#007bff" },
+    { value: 40, color: "#ffa04c" },
+
+    // Add more segments as needed
+  ];
+
   let width = 35;
   let height = 15;
   let depth = 23;
@@ -138,6 +150,10 @@ export default function Scene5({ textureCube }) {
       <Ground />
 
       {/*New scene*/}
+
+      <group scale={[0.5, 0.5, 0.5]} position={[-12.5, 0, 7]}>
+        <PieDoughnutChart data={datapiedough} />
+      </group>
 
       <WallsAndFloor
         baseposX={baseposX}
