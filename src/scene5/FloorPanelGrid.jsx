@@ -50,10 +50,10 @@ export default function FloorPanelGrid({ baseposX, baseposY, baseposZ }) {
 
   // Example usage
   const datapiedough = [
-    { value: 60, color: "#007bff" },
-    { value: 40, color: "#ffa04c" },
-    { value: 40, color: "#007bff" },
-    { value: 40, color: "#ffa04c" },
+    { label: "Milk", value: 20, color: currentSettings.chartcolor1 },
+    { label: "Bread", value: 10, color: currentSettings.chartcolor2 },
+    { label: "Vegies", value: 20, color: currentSettings.chartcolor1 },
+    { label: "Meat", value: 25, color: currentSettings.chartcolor2 },
 
     // Add more segments as needed
   ];
@@ -164,7 +164,7 @@ export default function FloorPanelGrid({ baseposX, baseposY, baseposZ }) {
         position={[
           baseposX + offsetX[1],
           baseposY + thickness / 2 + 0.26,
-          baseposZ + offsetZ[0],
+          baseposZ + offsetZ[0] - 0.3,
         ]}
       >
         <PieDoughnutChart data={datapiedough} />

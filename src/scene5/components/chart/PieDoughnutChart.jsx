@@ -1,5 +1,7 @@
 import React from "react";
 import * as THREE from "three";
+import { Box, Text } from "@react-three/drei";
+import { useTheme } from "../../ThemeContext"; // Adjust the path as necessary
 
 // A function to create the shape for extrusion
 const createPieSegmentShape = (
@@ -60,8 +62,32 @@ const PieSegment = ({
   );
 };
 
+function LegendItem({ position, color, text }) {
+  const { currentSettings } = useTheme();
+
+  return (
+    <>
+      <Box args={[0.2, 0.2, 0.1]} position={position}>
+        <meshStandardMaterial color={color} metalness={0.7} roughness={0.1} />
+      </Box>
+      <Text
+        color={currentSettings.floorTextColor}
+        anchorX="left"
+        anchorY="middle"
+        position={[position[0] + 0.2, position[1], position[2]]}
+        fontSize={0.2}
+      >
+        {text}
+      </Text>
+    </>
+  );
+}
+
 // The full PieChart component
 const PieDoughnutChart = ({ data }) => {
+  const categories = [
+    ...new Set(data.map((d) => ({ color: d.color, label: d.label }))),
+  ];
   const segments = data.map((item, index) => {
     // Assuming each item has a 'value' and we calculate the total to get percentages
     const total = data.reduce((acc, item) => acc + item.value, 0);
@@ -72,18 +98,31 @@ const PieDoughnutChart = ({ data }) => {
             .slice(0, index)
             .reduce((acc, item) => acc + (item.value / total) * 2 * Math.PI, 0);
     const endAngle = startAngle + (item.value / total) * 2 * Math.PI;
+
     return (
       <PieSegment
         key={index}
         innerRadius={1}
-        outerRadius={2}
+        outerRadius={1.6}
         startAngle={startAngle}
         endAngle={endAngle}
         color={item.color}
       />
     );
   });
-  return <group rotation={[-Math.PI / 2, 0, 0]}>{segments}</group>;
+  return (
+    <group rotation={[-Math.PI / 2, 0, 0]}>
+      {segments}
+      {categories.map((category, index) => (
+        <LegendItem
+          key={index}
+          position={[-data.length / 2 - 0.2, index / 3 - 2.7, 0]}
+          color={category.color}
+          text={category.label}
+        />
+      ))}
+    </group>
+  );
 };
 
 export default PieDoughnutChart;
