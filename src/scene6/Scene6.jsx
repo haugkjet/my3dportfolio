@@ -62,7 +62,7 @@ const CameraPathAnimation = () => {
   return null;
 };
 
-export default function Scene5({ textureCube }) {
+export default function Scene6({ textureCube }) {
   const { currentSettings } = useTheme();
 
   // Inside your component or theme context

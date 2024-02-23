@@ -10,8 +10,9 @@ import Scene2Box from "./scene2box/Scene2Box";
 import Scene3Dashboard from "./scene3dashboard/Scene3Dashboard";
 import Scene4 from "./scene4/Scene4";
 import Scene5 from "./scene5/Scene5";
+import Scene6 from "./scene6/Scene6";
 
-import { ThemeProvider } from "./scene5/ThemeContext"; // Import the provider
+import { ThemeProvider } from "./ThemeContext"; // Import the provider
 
 import { Fog } from "three";
 
@@ -28,6 +29,7 @@ export default function Experience() {
         SceneThree: "sceneThree",
         SceneFour: "sceneFour",
         SceneFive: "sceneFive",
+        SceneSix: "sceneSix",
       },
       onChange: (value) => setCurrentScene(value),
     },
@@ -58,6 +60,7 @@ export default function Experience() {
           {currentScene === "sceneThree" && <Scene3Dashboard />}
           {currentScene === "sceneFour" && <Scene4 />}
           {currentScene === "sceneFive" && <Scene5 />}
+          {currentScene === "sceneSix" && <Scene6 />}
         </Canvas>
       </ThemeProvider>
     </>
