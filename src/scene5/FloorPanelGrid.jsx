@@ -50,10 +50,19 @@ export default function FloorPanelGrid({ baseposX, baseposY, baseposZ }) {
 
   // Example usage
   const datapiedough = [
-    { label: "Milk", value: 20, color: currentSettings.chartcolor1 },
-    { label: "Bread", value: 10, color: currentSettings.chartcolor2 },
-    { label: "Vegies", value: 20, color: currentSettings.chartcolor1 },
-    { label: "Meat", value: 25, color: currentSettings.chartcolor2 },
+    { label: "Milk", value: 25.5, color: currentSettings.chartcolor1 },
+    { label: "Bread", value: 13.3, color: currentSettings.chartcolor2 },
+    { label: "Vegies", value: 16.7, color: currentSettings.chartcolor1 },
+    { label: "Meat", value: 19.5, color: currentSettings.chartcolor2 },
+
+    // Add more segments as needed
+  ];
+
+  // Example usage
+  const datapiedough2 = [
+    { label: "Domestic", value: 25.5, color: currentSettings.chartcolor1 },
+    { label: "US", value: 13.3, color: currentSettings.chartcolor2 },
+    { label: "China", value: 16.7, color: currentSettings.chartcolor1 },
 
     // Add more segments as needed
   ];
@@ -167,7 +176,12 @@ export default function FloorPanelGrid({ baseposX, baseposY, baseposZ }) {
           baseposZ + offsetZ[0] - 0.3,
         ]}
       >
-        <PieDoughnutChart data={datapiedough} />
+        <PieDoughnutChart
+          data={datapiedough}
+          innerRadius={0.9}
+          outerRadius={1.7}
+          gapSize={0.1}
+        />
       </group>
 
       <PanelExtruded
@@ -256,6 +270,7 @@ export default function FloorPanelGrid({ baseposX, baseposY, baseposZ }) {
         title={"EPS"}
         depth={0.1}
       />
+
       <group scale={[0.3, 0.3, 0.3]}>
         <gridHelper
           args={[
