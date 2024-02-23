@@ -299,14 +299,30 @@ export default function FloorPanelGrid({ baseposX, baseposY, baseposZ }) {
       </group>
 
       <PanelExtruded
+        scale={[3, 3, 1]}
+        color={currentSettings.extrudedPanelColor}
         position={[
           baseposX + offsetX[2],
           baseposY + thickness / 2,
           baseposZ + offsetZ[1],
         ]}
-        scale={[3, 3, 1]}
-        color={currentSettings.extrudedPanelColor}
       />
+
+      <group
+        scale={[0.6, 0.6, 0.6]}
+        position={[
+          baseposX + offsetX[2],
+          baseposY + thickness / 2 + 0.26,
+          baseposZ + offsetZ[1] - 0.26,
+        ]}
+      >
+        <PieDoughnutChart
+          data={datapiedough2}
+          innerRadius={0.5}
+          outerRadius={1.4}
+          gapSize={0.01}
+        />
+      </group>
 
       {/*<group scale={[0.3, 0.3, 0.3]}>
         <gridHelper
@@ -319,18 +335,6 @@ export default function FloorPanelGrid({ baseposX, baseposY, baseposZ }) {
           rotation={[0, 0, 0]}
         />
         </group>*/}
-
-      <MyPieChart
-        data={data2}
-        position={[
-          baseposX + offsetX[2],
-          baseposY + thickness / 2 + 0.26,
-          baseposZ + offsetZ[1],
-        ]}
-        radius={1.2}
-        title={"Sales"}
-        depth={0.1}
-      />
 
       <PanelExtruded
         position={[
