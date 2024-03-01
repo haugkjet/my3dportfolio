@@ -3,6 +3,8 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { CatmullRomCurve3, Vector3 } from "three";
 import { useControls } from "leva";
 import { Html, ContactShadows, RoundedBox, Text } from "@react-three/drei";
+import DataCell from "./components/DataCell";
+import ChartjsPlane from "./components/chart/ChartjsPlane";
 
 import {
   BakeShadows,
@@ -65,39 +67,6 @@ const CameraPathAnimation = () => {
 export default function Scene6({ textureCube }) {
   const { currentSettings } = useTheme();
 
-  // Inside your component or theme context
-
-  const data1 = [
-    { value: 75, color: "#007bff" },
-    { value: 25, color: "#ffa04c" },
-  ];
-
-  const data2 = [
-    { value: 12.5, color: "#007bff" },
-    { value: 12.5, color: "#ffa04c" },
-    { value: 25, color: "#007bff" },
-    { value: 25, color: "#ffa04c" },
-    { value: 25, color: "#007bff" },
-  ];
-
-  const data3 = [
-    { value: 5, color: "#007bff" },
-    { value: 10, color: "#ffa04c" },
-    { value: 25, color: "#007bff" },
-    { value: 50, color: "#ffa04c" },
-    { value: 10, color: "#007bff" },
-  ];
-
-  const linedata = [
-    { x: -10, y: 1 }, // Assuming all points lie on a flat plane (z=0)
-    { x: -9, y: 3 },
-    { x: -1, y: 6 },
-
-    { x: 1, y: 7 },
-    { x: 7, y: 8 },
-  ];
-  const linethickness = 0.1; // Thickness of the line
-
   let width = 35;
   let height = 15;
   let depth = 23;
@@ -106,6 +75,9 @@ export default function Scene6({ textureCube }) {
   let baseposX = 0;
   let baseposY = 0;
   let baseposZ = 0;
+
+  let marginX = 5;
+  let marginZ = 5;
 
   return (
     <>
@@ -127,6 +99,8 @@ export default function Scene6({ textureCube }) {
 
       <Perf position="top-left" />
       <OrbitControls dampingFactor={0.9} />
+
+      
 
       <color attach="background" args={[currentSettings.background]} />
       <fog
@@ -151,7 +125,36 @@ export default function Scene6({ textureCube }) {
         thickness={0.25}
       />
 
-      <FloorPanelGrid
+      <DataCell
+        scale={[1, 1, 1]}
+        position={[
+          baseposX - width / 2 + marginX,
+          baseposY,
+          baseposZ + marginZ,
+        ]}
+      ></DataCell>
+
+      <DataCell
+        scale={[1, 1, 1]}
+        panelscale={[3, 3, 1]}
+        position={[
+          baseposX - width / 2 + marginX + 4,
+          baseposY,
+          baseposZ + marginZ,
+        ]}
+      ></DataCell>
+
+      <DataCell
+        scale={[1, 1, 1]}
+        panelscale={[3, 1, 1]}
+        position={[
+          baseposX - width / 2 + marginX + 9,
+          baseposY,
+          baseposZ + marginZ,
+        ]}
+      ></DataCell>
+
+      {/*  <FloorPanelGrid
         baseposX={baseposX - width / 2 + 10}
         baseposY={baseposY}
         baseposZ={baseposZ}
@@ -173,9 +176,9 @@ export default function Scene6({ textureCube }) {
         baseposX={baseposX - width / 2 + 10}
         baseposY={baseposY}
         baseposZ={baseposZ + 10}
-      ></FloorPanelGrid>
+></FloorPanelGrid>*/}
 
-      <group rotation={[Math.PI / 2, 0, 0]}>
+      {/*  <group rotation={[Math.PI / 2, 0, 0]}>
         <BehindWallPanelGrid
           baseposX={baseposX - width / 2 + 10}
           baseposY={baseposY}
@@ -188,7 +191,7 @@ export default function Scene6({ textureCube }) {
           baseposY={baseposY}
           baseposZ={baseposZ - height + 1}
         ></BehindWallPanelGrid>
-      </group>
+</group>*/}
 
       <CameraPathAnimation />
 

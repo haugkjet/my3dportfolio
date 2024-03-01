@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import React, { useState, useEffect, useRef } from "react";
-import { Pathtracer } from "@react-three/gpu-pathtracer";
+
 import { useControls } from "leva";
 
 import { Canvas } from "@react-three/fiber";

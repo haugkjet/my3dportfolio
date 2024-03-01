@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import * as THREE from "three";
 import { Box, Text } from "@react-three/drei";
 import { useTheme } from "../../../ThemeContext"; // Adjust the path as necessary
@@ -9,7 +9,8 @@ const createPieSegmentShape = (
   outerRadius,
   startAngle,
   endAngle,
-  gapSize
+  gapSize,
+  position
 ) => {
   // Calculate the angular size of the gap for both the inner and outer radii
   const innerGapAngle = gapSize / innerRadius; // Smaller angle for the inner radius
@@ -47,6 +48,7 @@ const PieSegment = ({
   color,
   value,
   gapSize,
+  scale,
 }) => {
   const extrudeSettings = { depth: 0.1, bevelEnabled: false };
   const segmentShape = createPieSegmentShape(
@@ -65,12 +67,12 @@ const PieSegment = ({
   const textPositionY = textRadius * Math.sin(midpointAngle);
 
   return (
-    <mesh geometry={geometry} position={[0, 0, 0]}>
+    <mesh geometry={geometry} position={[0, 0, 0.3]}>
       <meshStandardMaterial color={color} metalness={0.4} roughness={0.1} />
       <Text
         position={[textPositionX, textPositionY, 0.12]} // Slightly above the segment to avoid z-fighting
         rotation={[0, 0, midpointAngle + Math.PI / 2]} // Rotate text to align with the segment
-        fontSize={0.16}
+        fontSize={0.16 * outerRadius}
         color="black"
         anchorX="center"
         anchorY="middle"
@@ -109,6 +111,7 @@ const PieDoughnutChart = ({
   outerRadius,
   gapSize,
   title,
+  scale,
 }) => {
   const categories = [
     ...new Set(
@@ -138,23 +141,24 @@ const PieDoughnutChart = ({
           color={item.color}
           value={item.value}
           gapSize={gapSize}
+          scale={scale}
         ></PieSegment>
       </>
     );
   });
   return (
-    <group rotation={[-Math.PI / 2, 0, 0]}>
+    <group rotation={[-Math.PI / 2, 0, 0]} scale={scale}>
       {segments}
-      {categories.map((category, index) => (
+      {categories.map((category, index, scale) => (
         <LegendItem
           key={index}
-          position={[-data.length / 2 - 0.2, index / 3 - 2.7, 0]}
+          position={[scale.x, index / 3, 0.3]}
           color={category.color}
           text={category.label}
         />
       ))}
       <Text
-        position={[0, -2.5, 0]}
+        position={[0, -1.5, 0.3]}
         rotation={[0, 0, 0]}
         color={"grey"}
         fontSize={0.2 * outerRadius}
