@@ -6,6 +6,7 @@ import { Html, ContactShadows, RoundedBox, Text } from "@react-three/drei";
 import DataCell from "./components/DataCell";
 import ChartjsPlane from "./components/chart/ChartjsPlane";
 
+
 import {
   BakeShadows,
   SoftShadows,
@@ -15,6 +16,7 @@ import {
 import { Perf } from "r3f-perf";
 
 import Barchart from "./components/chart/Barchart";
+import BarchartMerged from "./components/chart/BarchartMerged";
 import BarchartV2 from "./components/chart/BarchartV2";
 import MyPieChart from "./components/chart/MyPieChart";
 import PieDoughnutChart from "./components/chart/PieDoughnutChart";
@@ -100,15 +102,13 @@ export default function Scene6({ textureCube }) {
       <Perf position="top-left" />
       <OrbitControls dampingFactor={0.9} />
 
-      
-
       <color attach="background" args={[currentSettings.background]} />
       <fog
         attach="fog"
         color={currentSettings.fogcolor}
         near={0.015}
         far={250}
-      />
+/>
 
       <Lights />
       <Ground />
@@ -123,81 +123,93 @@ export default function Scene6({ textureCube }) {
         height={height}
         depth={depth}
         thickness={0.25}
-      />
+/>
 
-      <DataCell
-        scale={[1, 1, 1]}
-        position={[
-          baseposX - width / 2 + marginX,
-          baseposY,
-          baseposZ + marginZ,
-        ]}
-      ></DataCell>
 
-      <DataCell
-        scale={[1, 1, 1]}
-        panelscale={[3, 3, 1]}
-        position={[
-          baseposX - width / 2 + marginX + 4,
-          baseposY,
-          baseposZ + marginZ,
-        ]}
-      ></DataCell>
+  {/*    <Barchart posx={0} posy={0} posz={0} textureCube={textureCube} 
+    length={6}
+    roty={0}
+    title={"Basic"}
+    maxheight={4}
+/>*/}
 
-      <DataCell
-        scale={[1, 1, 1]}
-        panelscale={[3, 1, 1]}
-        position={[
-          baseposX - width / 2 + marginX + 9,
-          baseposY,
-          baseposZ + marginZ,
-        ]}
-      ></DataCell>
+<group position={[-13, 0, 3]}>
+<BarchartMerged posx={0} posy={0} posz={0} 
+    length={6}
+    roty={0}
+    title={"Merged"}
+    maxheight={4}
+  />
+</group>
+<group position={[-3, 0, 3]}>
+<BarchartMerged posx={0} posy={0} posz={0} 
+    length={6}
+    roty={0}
+    title={"Merged"}
+    maxheight={4}
+  />
+</group><group position={[7, 0, 3]}>
+<BarchartMerged posx={0} posy={0} posz={0} 
+    length={6}
+    roty={0}
+    title={"Merged"}
+    maxheight={4}
+  />
+</group>
 
-      {/*  <FloorPanelGrid
-        baseposX={baseposX - width / 2 + 10}
-        baseposY={baseposY}
-        baseposZ={baseposZ}
-      ></FloorPanelGrid>
+<group position={[-13, 0, 10]}>
+<BarchartMerged posx={0} posy={0} posz={0} 
+    length={6}
+    roty={0}
+    title={"Merged"}
+    maxheight={4}
+  />
+</group>
+<group position={[-3, 0, 10]}>
+<BarchartMerged posx={0} posy={0} posz={0} 
+    length={6}
+    roty={0}
+    title={"Merged"}
+    maxheight={4}
+  />
+</group><group position={[7, 0, 10]}>
+<BarchartMerged posx={0} posy={0} posz={0} 
+    length={6}
+    roty={0}
+    title={"Merged"}
+    maxheight={4}
+  />
+</group>
+<group position={[-13, 0, 17]}>
+<BarchartMerged posx={0} posy={0} posz={0} 
+    length={6}
+    roty={0}
+    title={"Merged"}
+    maxheight={4}
+  />
+</group>
+<group position={[-3, 0, 17]}>
+<BarchartMerged posx={0} posy={0} posz={0} 
+    length={6}
+    roty={0}
+    title={"Merged"}
+    maxheight={4}
+  />
+</group><group position={[7, 0, 17]}>
+<BarchartMerged posx={0} posy={0} posz={0} 
+    length={6}
+    roty={0}
+    title={"Merged"}
+    maxheight={4}
+  />
+</group>
 
-      <FloorPanelGrid
-        baseposX={baseposX - width / 2 + 10 + 15}
-        baseposY={baseposY}
-        baseposZ={baseposZ}
-      ></FloorPanelGrid>
 
-      <FloorPanelGrid
-        baseposX={baseposX - width / 2 + 10 + 15}
-        baseposY={baseposY}
-        baseposZ={baseposZ + 10}
-      ></FloorPanelGrid>
-
-      <FloorPanelGrid
-        baseposX={baseposX - width / 2 + 10}
-        baseposY={baseposY}
-        baseposZ={baseposZ + 10}
-></FloorPanelGrid>*/}
-
-      {/*  <group rotation={[Math.PI / 2, 0, 0]}>
-        <BehindWallPanelGrid
-          baseposX={baseposX - width / 2 + 10}
-          baseposY={baseposY}
-          baseposZ={baseposZ - height + 1}
-        ></BehindWallPanelGrid>
-      </group>
-      <group rotation={[Math.PI / 2, 0, 0]}>
-        <BehindWallPanelGrid
-          baseposX={baseposX - width / 2 + 25}
-          baseposY={baseposY}
-          baseposZ={baseposZ - height + 1}
-        ></BehindWallPanelGrid>
-</group>*/}
 
       <CameraPathAnimation />
 
       {/*End New scene*/}
 
-      {/*Below will be phased out*/}
     </>
   );
 }
