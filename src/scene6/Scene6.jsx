@@ -143,8 +143,129 @@ export default function Scene6({ textureCube }) {
           maxheight={4}
         />
       </group>
+
       <group position={[-3, 0, 3]}>
-        <BarchartTextureAtlas
+        <BarchartMerged
+          posx={0}
+          posy={0}
+          posz={0}
+          length={6}
+          roty={0}
+          title={"Merged"}
+          maxheight={4}
+        />
+      </group>
+
+      <group position={[7, 0, 3]}>
+        <BarchartMerged
+          posx={0}
+          posy={0}
+          posz={0}
+          length={6}
+          roty={0}
+          title={"Merged"}
+          maxheight={4}
+        />
+      </group>
+
+      <group position={[-13, 0, 7]}>
+        <BarchartMerged
+          posx={0}
+          posy={0}
+          posz={0}
+          length={6}
+          roty={0}
+          title={"Merged"}
+          maxheight={4}
+        />
+      </group>
+
+      <group position={[-3, 0, 7]}>
+        <BarchartMerged
+          posx={0}
+          posy={0}
+          posz={0}
+          length={6}
+          roty={0}
+          title={"Merged"}
+          maxheight={4}
+        />
+      </group>
+
+      <group position={[7, 0, 7]}>
+        <BarchartMerged
+          posx={0}
+          posy={0}
+          posz={0}
+          length={6}
+          roty={0}
+          title={"Merged"}
+          maxheight={4}
+        />
+      </group>
+
+      <group position={[-13, 0, 12]}>
+        <BarchartMerged
+          posx={0}
+          posy={0}
+          posz={0}
+          length={6}
+          roty={0}
+          title={"Merged"}
+          maxheight={4}
+        />
+      </group>
+
+      <group position={[-3, 0, 12]}>
+        <BarchartMerged
+          posx={0}
+          posy={0}
+          posz={0}
+          length={6}
+          roty={0}
+          title={"Merged"}
+          maxheight={4}
+        />
+      </group>
+
+      <group position={[7, 0, 12]}>
+        <BarchartMerged
+          posx={0}
+          posy={0}
+          posz={0}
+          length={6}
+          roty={0}
+          title={"Merged"}
+          maxheight={4}
+        />
+      </group>
+
+      <group position={[-13, 0, 17]}>
+        <BarchartMerged
+          posx={0}
+          posy={0}
+          posz={0}
+          length={6}
+          roty={0}
+          title={"Merged"}
+          maxheight={4}
+        />
+      </group>
+
+      <group position={[-3, 0, 17]}>
+        <BarchartMerged
+          posx={0}
+          posy={0}
+          posz={0}
+          length={6}
+          roty={0}
+          title={"Merged"}
+          maxheight={4}
+        />
+      </group>
+
+      <group position={[7, 0, 17]}>
+        <BarchartMerged
           posx={0}
           posy={0}
           posz={0}
