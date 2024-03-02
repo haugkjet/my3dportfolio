@@ -6,7 +6,6 @@ import { Html, ContactShadows, RoundedBox, Text } from "@react-three/drei";
 import DataCell from "./components/DataCell";
 import ChartjsPlane from "./components/chart/ChartjsPlane";
 
-
 import {
   BakeShadows,
   SoftShadows,
@@ -17,6 +16,7 @@ import { Perf } from "r3f-perf";
 
 import Barchart from "./components/chart/Barchart";
 import BarchartMerged from "./components/chart/BarchartMerged";
+import BarchartTextureAtlas from "./components/chart/BarchartTextureAtlas";
 import BarchartV2 from "./components/chart/BarchartV2";
 import MyPieChart from "./components/chart/MyPieChart";
 import PieDoughnutChart from "./components/chart/PieDoughnutChart";
@@ -108,7 +108,7 @@ export default function Scene6({ textureCube }) {
         color={currentSettings.fogcolor}
         near={0.015}
         far={250}
-/>
+      />
 
       <Lights />
       <Ground />
@@ -123,93 +123,41 @@ export default function Scene6({ textureCube }) {
         height={height}
         depth={depth}
         thickness={0.25}
-/>
+      />
 
-
-  {/*    <Barchart posx={0} posy={0} posz={0} textureCube={textureCube} 
+      {/*    <Barchart posx={0} posy={0} posz={0} textureCube={textureCube} 
     length={6}
     roty={0}
     title={"Basic"}
     maxheight={4}
 />*/}
 
-<group position={[-13, 0, 3]}>
-<BarchartMerged posx={0} posy={0} posz={0} 
-    length={6}
-    roty={0}
-    title={"Merged"}
-    maxheight={4}
-  />
-</group>
-<group position={[-3, 0, 3]}>
-<BarchartMerged posx={0} posy={0} posz={0} 
-    length={6}
-    roty={0}
-    title={"Merged"}
-    maxheight={4}
-  />
-</group><group position={[7, 0, 3]}>
-<BarchartMerged posx={0} posy={0} posz={0} 
-    length={6}
-    roty={0}
-    title={"Merged"}
-    maxheight={4}
-  />
-</group>
-
-<group position={[-13, 0, 10]}>
-<BarchartMerged posx={0} posy={0} posz={0} 
-    length={6}
-    roty={0}
-    title={"Merged"}
-    maxheight={4}
-  />
-</group>
-<group position={[-3, 0, 10]}>
-<BarchartMerged posx={0} posy={0} posz={0} 
-    length={6}
-    roty={0}
-    title={"Merged"}
-    maxheight={4}
-  />
-</group><group position={[7, 0, 10]}>
-<BarchartMerged posx={0} posy={0} posz={0} 
-    length={6}
-    roty={0}
-    title={"Merged"}
-    maxheight={4}
-  />
-</group>
-<group position={[-13, 0, 17]}>
-<BarchartMerged posx={0} posy={0} posz={0} 
-    length={6}
-    roty={0}
-    title={"Merged"}
-    maxheight={4}
-  />
-</group>
-<group position={[-3, 0, 17]}>
-<BarchartMerged posx={0} posy={0} posz={0} 
-    length={6}
-    roty={0}
-    title={"Merged"}
-    maxheight={4}
-  />
-</group><group position={[7, 0, 17]}>
-<BarchartMerged posx={0} posy={0} posz={0} 
-    length={6}
-    roty={0}
-    title={"Merged"}
-    maxheight={4}
-  />
-</group>
-
-
+      <group position={[-13, 0, 3]}>
+        <BarchartMerged
+          posx={0}
+          posy={0}
+          posz={0}
+          length={6}
+          roty={0}
+          title={"Merged"}
+          maxheight={4}
+        />
+      </group>
+      <group position={[-3, 0, 3]}>
+        <BarchartTextureAtlas
+          posx={0}
+          posy={0}
+          posz={0}
+          length={6}
+          roty={0}
+          title={"Merged"}
+          maxheight={4}
+        />
+      </group>
 
       <CameraPathAnimation />
 
       {/*End New scene*/}
-
     </>
   );
 }
