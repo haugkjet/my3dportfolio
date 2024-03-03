@@ -41,6 +41,7 @@ const BarChartTextureAtlas = ({ texturePath }) => {
       new BoxGeometry(1, 6, 1),
       new BoxGeometry(1, 7, 1),
       new BoxGeometry(1, 8, 1),
+      new BoxGeometry(1, 9, 1),
     ];
 
     // Adjust UVs for each cube
@@ -53,6 +54,7 @@ const BarChartTextureAtlas = ({ texturePath }) => {
     adjustUVsToSinglePixel(cubeGeometries[4], 0.4, 0.275); // Example coordinates
     adjustUVsToSinglePixel(cubeGeometries[5], 0.3, 0.475); // Example coordinates
     adjustUVsToSinglePixel(cubeGeometries[6], 1.2, 0.675); // Example coordinates
+    adjustUVsToSinglePixel(cubeGeometries[7], 0.7, 0.475); // Example coordinates
 
     const material = new MeshStandardMaterial({
       map: textureAtlas,

@@ -83,6 +83,12 @@ export default function BarchartMerged() {
     })
       .translate(4.4, 0, 0)
       .rotateX(-Math.PI / 2),
+    new THREE.ExtrudeGeometry(shape, {
+      depth: Math.floor(Math.random() * 5) + 1,
+      bevelEnabled: false,
+    })
+      .translate(5.5, 0, 0)
+      .rotateX(-Math.PI / 2),
   ];
 
   adjustUVsToSinglePixel(geometries[0], 0.01, 0.875); // Example coordinates
@@ -90,6 +96,7 @@ export default function BarchartMerged() {
   adjustUVsToSinglePixel(geometries[2], 0.3, 0.175); // Example coordinates
   adjustUVsToSinglePixel(geometries[3], 0.4, 0.275); // Example coordinates
   adjustUVsToSinglePixel(geometries[4], 0.3, 0.275); // Example coordinates
+  adjustUVsToSinglePixel(geometries[5], 0.2, 0.775); // Example coordinates
 
   const material = new MeshStandardMaterial({
     map: textureAtlas,
