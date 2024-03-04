@@ -276,6 +276,78 @@ export default function Scene6({ textureCube }) {
         />
       </group>
 
+      <group position={[-13, 8, -0.2]}>
+        <BarchartMerged
+          posx={0}
+          posy={0}
+          posz={0}
+          length={6}
+          roty={0}
+          title={"Merged"}
+          maxheight={4}
+        />
+      </group>
+
+      <group position={[-13, 2, -0.2]}>
+        <BarchartMerged
+          posx={0}
+          posy={0}
+          posz={0}
+          length={6}
+          roty={0}
+          title={"Merged"}
+          maxheight={4}
+        />
+      </group>
+
+      <group position={[-3, 8, -0.2]}>
+        <BarchartMerged
+          posx={0}
+          posy={0}
+          posz={0}
+          length={6}
+          roty={0}
+          title={"Merged"}
+          maxheight={4}
+        />
+      </group>
+
+      <group position={[-3, 2, -0.2]}>
+        <BarchartMerged
+          posx={0}
+          posy={0}
+          posz={0}
+          length={6}
+          roty={0}
+          title={"Merged"}
+          maxheight={4}
+        />
+      </group>
+
+      <group position={[7, 8, -0.2]}>
+        <BarchartMerged
+          posx={0}
+          posy={0}
+          posz={0}
+          length={6}
+          roty={0}
+          title={"Merged"}
+          maxheight={4}
+        />
+      </group>
+
+      <group position={[7, 2, -0.2]}>
+        <BarchartMerged
+          posx={0}
+          posy={0}
+          posz={0}
+          length={6}
+          roty={0}
+          title={"Merged"}
+          maxheight={4}
+        />
+      </group>
+
       <CameraPathAnimation />
 
       {/*End New scene*/}
