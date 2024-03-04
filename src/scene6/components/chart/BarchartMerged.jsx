@@ -51,52 +51,73 @@ export default function BarchartMerged() {
 
   // Animate the depth of the ExtrudeGeometry
 
-  // Example geometries you want to merge
-  const geometries = [
-    new THREE.ExtrudeGeometry(shape, {
-      depth: Math.floor(Math.random() * 5) + 1,
-      bevelEnabled: false,
-    })
-      .translate(0, 0, 0)
-      .rotateX(-Math.PI / 2),
-    new THREE.ExtrudeGeometry(shape, {
-      depth: Math.floor(Math.random() * 5) + 1,
-      bevelEnabled: false,
-    })
-      .translate(1.1, 0, 0)
-      .rotateX(-Math.PI / 2),
-    new THREE.ExtrudeGeometry(shape, {
-      depth: Math.floor(Math.random() * 5) + 1,
-      bevelEnabled: false,
-    })
-      .translate(2.2, 0, 0)
-      .rotateX(-Math.PI / 2),
-    new THREE.ExtrudeGeometry(shape, {
-      depth: Math.floor(Math.random() * 5) + 1,
-      bevelEnabled: false,
-    })
-      .translate(3.3, 0, 0)
-      .rotateX(-Math.PI / 2),
-    new THREE.ExtrudeGeometry(shape, {
-      depth: Math.floor(Math.random() * 5) + 1,
-      bevelEnabled: false,
-    })
-      .translate(4.4, 0, 0)
-      .rotateX(-Math.PI / 2),
-    new THREE.ExtrudeGeometry(shape, {
-      depth: Math.floor(Math.random() * 5) + 1,
-      bevelEnabled: false,
-    })
-      .translate(5.5, 0, 0)
-      .rotateX(-Math.PI / 2),
-  ];
+  const basepositions = [
+    { x: -25, y: -10, z: 0 },
+    { x: -10, y: -10, z: 0 },
+    { x: 5, y: -10, z: 0 },
+    { x: 20, y: -10, z: 0 },
 
-  adjustUVsToSinglePixel(geometries[0], 0.01, 0.875); // Example coordinates
-  adjustUVsToSinglePixel(geometries[1], 0.02, 0.775); // Example coordinates
-  adjustUVsToSinglePixel(geometries[2], 0.3, 0.175); // Example coordinates
-  adjustUVsToSinglePixel(geometries[3], 0.4, 0.275); // Example coordinates
-  adjustUVsToSinglePixel(geometries[4], 0.3, 0.275); // Example coordinates
-  adjustUVsToSinglePixel(geometries[5], 0.2, 0.775); // Example coordinates
+    { x: -25, y: -20, z: 0 },
+    { x: -10, y: -20, z: 0 },
+    { x: 5, y: -20, z: 0 },
+    { x: 20, y: -20, z: 0 },
+
+    { x: -25, y: -30, z: 0 },
+    { x: -10, y: -30, z: 0 },
+    { x: 5, y: -30, z: 0 },
+    { x: 20, y: -30, z: 0 },
+
+    { x: -25, y: -37, z: 0 },
+    { x: -10, y: -37, z: 0 },
+    { x: 5, y: -37, z: 0 },
+    { x: 20, y: -37, z: 0 },
+
+    { x: -25, y: 0, z: 20 },
+    { x: -10, y: 0, z: 20 },
+    { x: 5, y: 0, z: 20 },
+    { x: 20, y: 0, z: 20 },
+
+    { x: -25, y: 0, z: 12 },
+    { x: -10, y: 0, z: 12 },
+    { x: 5, y: 0, z: 12 },
+    { x: 20, y: 0, z: 12 },
+
+    { x: -25, y: 0, z: 5 },
+    { x: -10, y: 0, z: 5 },
+    { x: 5, y: 0, z: 5 },
+    { x: 20, y: 0, z: 5 },
+  ];
+  let positions = [];
+
+  basepositions.forEach((position) => {
+    for (let i = 0; i < 8; i++) {
+      positions.push({
+        x: position.x + i * 1.1,
+        y: position.y,
+        z: position.z,
+      });
+    }
+  });
+
+  // Initialize an array to hold the geometries
+  let geometries = [];
+
+  // Loop through each position and create an extruded geometry
+  positions.forEach((position) => {
+    // Create the extruded geometry
+    const extrudedGeometry = new THREE.ExtrudeGeometry(shape, {
+      depth: Math.floor(Math.random() * 5) + 1,
+      bevelEnabled: false,
+    })
+      .translate(position.x, position.y, position.z)
+      .rotateX(-Math.PI / 2);
+
+    geometries.push(extrudedGeometry);
+  });
+
+  for (let i = 0; i < geometries.length; i++) {
+    adjustUVsToSinglePixel(geometries[i], Math.random(), Math.random());
+  }
 
   const material = new MeshStandardMaterial({
     map: textureAtlas,
