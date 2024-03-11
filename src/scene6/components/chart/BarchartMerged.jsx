@@ -102,6 +102,22 @@ export default function BarchartMerged() {
   // Initialize an array to hold the geometries
   let geometries = [];
 
+  const text1 = `Sales` + "\u00A0".repeat(13);
+  const text2 = `EPS` + "\u00A0".repeat(13);
+  const text3 = `Dividend` + "\u00A0".repeat(7);
+  const text4 = `Data` + "\u00A0".repeat(10);
+
+  const hundredSpaces = "\u00A0".repeat(100);
+  const severalLineBreaks = "\n".repeat(10);
+  const floorBarsText = `${text1} ${hundredSpaces} ${text2} ${hundredSpaces} ${text3} ${hundredSpaces} ${text4} 
+  ${severalLineBreaks} \n\n\n\n ${text1} ${hundredSpaces} ${text2} ${hundredSpaces} ${text3} ${hundredSpaces} ${text4} 
+  ${severalLineBreaks} \n\n\n\n ${text1} ${hundredSpaces} ${text2} ${hundredSpaces} ${text3} ${hundredSpaces} ${text4} 
+  ${severalLineBreaks} ${text1} ${hundredSpaces} ${text2} ${hundredSpaces} ${text3} ${hundredSpaces} ${text4}  `;
+
+  const wallBarsText = `${text1} ${hundredSpaces} ${text2} ${hundredSpaces} ${text3} ${hundredSpaces} ${text4} 
+  ${severalLineBreaks} ${text1} ${hundredSpaces} ${text2} ${hundredSpaces} ${text3} ${hundredSpaces} ${text4} 
+  ${severalLineBreaks} ${text1} ${hundredSpaces} ${text2} ${hundredSpaces} ${text3} ${hundredSpaces} ${text4} `;
+
   // Loop through each position and create an extruded geometry
   positions.forEach((position) => {
     // Create the extruded geometry
@@ -133,6 +149,22 @@ export default function BarchartMerged() {
         material={material}
         position={[0, 0.24, 0.8]}
       />
+      <Text
+        position={[1.5, 0.27, 28]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        color={currentSettings.behindWallTextColor}
+        fontSize={0.5}
+      >
+        {floorBarsText}
+      </Text>
+      <Text
+        position={[1.5, 12, 0.3]}
+        rotation={[0, 0, 0]}
+        color={currentSettings.behindWallTextColor}
+        fontSize={0.5}
+      >
+        {wallBarsText}
+      </Text>
     </>
   );
 }
