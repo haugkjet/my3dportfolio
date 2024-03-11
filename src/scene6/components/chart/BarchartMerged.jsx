@@ -131,7 +131,7 @@ export default function BarchartMerged() {
       <MergedMeshes
         geometries={geometries}
         material={material}
-        position={[0, 0, 0]}
+        position={[0, 0.24, 0.8]}
       />
     </>
   );
