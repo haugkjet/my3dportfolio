@@ -68,6 +68,7 @@ function Scene2Box() {
       <PriceCube position={[-2, 0, 0]} currencyPair="BTC-USD" />
       <PriceCube position={[0, 0, 0]} currencyPair="ETH-USD" />
       <PriceCube position={[2, 0, 0]} currencyPair="ADA-USD" />
+      <PriceCube position={[4, 0, 0]} currencyPair="SOL-USD" />
     </>
   );
 }

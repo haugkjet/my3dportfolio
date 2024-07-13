@@ -11,6 +11,7 @@ import Scene3Dashboard from "./scene3dashboard/Scene3Dashboard";
 import Scene4 from "./scene4/Scene4";
 import Scene5 from "./scene5/Scene5";
 import Scene6 from "./scene6/Scene6";
+import Scene7 from "./scene7/Scene7";
 
 import { ThemeProvider } from "./ThemeContext"; // Import the provider
 
@@ -30,6 +31,7 @@ export default function Experience() {
         SceneFour: "sceneFour",
         SceneFive: "sceneFive",
         SceneSix: "sceneSix",
+        SceneSeven: "sceneSeven",
       },
       onChange: (value) => setCurrentScene(value),
     },
@@ -61,6 +63,7 @@ export default function Experience() {
           {currentScene === "sceneFour" && <Scene4 />}
           {currentScene === "sceneFive" && <Scene5 />}
           {currentScene === "sceneSix" && <Scene6 />}
+          {currentScene === "sceneSeven" && <Scene7 />}
         </Canvas>
       </ThemeProvider>
     </>
