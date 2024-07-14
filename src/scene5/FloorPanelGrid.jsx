@@ -118,11 +118,7 @@ export default function FloorPanelGrid({ baseposX, baseposY, baseposZ }) {
       </group>
 
       <PanelExtruded
-        position={[
-          baseposX + offsetX[1],
-          baseposY + thickness / 2,
-          baseposZ + offsetZ[0],
-        ]}
+        position={[baseposX, baseposY, baseposZ]}
         scale={[3, 3, 1]}
         color={currentSettings.extrudedPanelColor}
       />

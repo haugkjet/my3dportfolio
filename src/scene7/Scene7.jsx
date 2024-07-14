@@ -51,21 +51,36 @@ const fetchPrice = async (currencyPair) => {
 };
 
 // A simple 3D cube component that displays the cryptocurrency price
-const PriceCube = ({ position, currencyPair }) => {
+const PriceCube2 = ({ position, textposition, currencyPair }) => {
   const [price, setPrice] = useState("Loading...");
+
+  const { currentSettings } = useTheme();
+
+  const posX = position.x;
+  const posY = position.y + 0.22;
+  const posZ = position.z;
 
   useEffect(() => {
     fetchPrice(currencyPair).then(setPrice);
   }, [currencyPair]);
 
   return (
-    <mesh position={position}>
-      <boxGeometry args={[2, 2, 1]} />
-      <meshStandardMaterial color="red" />
-      <Text position={[0, 0.3, 0.51]} fontSize={0.1} color={"black"}>
-        {currencyPair.split("-")[0]}: ${price}
+    <>
+      <PanelExtruded
+        position={position}
+        scale={[3, 3, 1]}
+        color={currentSettings.extrudedPanelColor}
+      />
+
+      <Text
+        position={textposition}
+        rotation={[-Math.PI / 2, 0, 0]}
+        color={"#007bff"}
+        fontSize={0.3}
+      >
+        {currencyPair.split("-")[0]}: ${Number(price).toFixed(3)}
       </Text>
-    </mesh>
+    </>
   );
 };
 
@@ -156,12 +171,65 @@ export default function Scene6({ textureCube }) {
         thickness={0.25}
       />
 
-      <PriceCube position={[-5, 0.75, 5]} currencyPair="BTC-USD" />
-      <PriceCube position={[-2.5, 0.75, 5]} currencyPair="ETH-USD" />
-      <PriceCube position={[0, 0.75, 5]} currencyPair="ADA-USD" />
-      <PriceCube position={[2.5, 0.75, 5]} currencyPair="SOL-USD" />
-      <PriceCube position={[5, 0.75, 5]} currencyPair="BNB-USD" />
-      <PriceCube position={[7.5, 0.75, 5]} currencyPair="USDT-USD" />
+      <PriceCube2
+        position={[baseposX - 10, baseposY + thickness / 2, baseposZ + 10]}
+        textposition={[
+          baseposX - 10,
+          baseposY + thickness / 2 + 0.22,
+          baseposZ + 10,
+        ]}
+        currencyPair="BTC-USD"
+      />
+
+      <PriceCube2
+        position={[baseposX - 6, baseposY + thickness / 2, baseposZ + 10]}
+        textposition={[
+          baseposX - 6,
+          baseposY + thickness / 2 + 0.22,
+          baseposZ + 10,
+        ]}
+        currencyPair="ETH-USD"
+      />
+
+      <PriceCube2
+        position={[baseposX - 2, baseposY + thickness / 2, baseposZ + 10]}
+        textposition={[
+          baseposX - 2,
+          baseposY + thickness / 2 + 0.22,
+          baseposZ + 10,
+        ]}
+        currencyPair="SOL-USD"
+      />
+
+      <PriceCube2
+        position={[baseposX + 2, baseposY + thickness / 2, baseposZ + 10]}
+        textposition={[
+          baseposX + 2,
+          baseposY + thickness / 2 + 0.22,
+          baseposZ + 10,
+        ]}
+        currencyPair="BNB-USD"
+      />
+
+      <PriceCube2
+        position={[baseposX + 6, baseposY + thickness / 2, baseposZ + 10]}
+        textposition={[
+          baseposX + 6,
+          baseposY + thickness / 2 + 0.22,
+          baseposZ + 10,
+        ]}
+        currencyPair="USDT-USD"
+      />
+
+      <PriceCube2
+        position={[baseposX + 10, baseposY + thickness / 2, baseposZ + 10]}
+        textposition={[
+          baseposX + 10,
+          baseposY + thickness / 2 + 0.22,
+          baseposZ + 10,
+        ]}
+        currencyPair="ADA-USD"
+      />
 
       {/*    <Barchart posx={0} posy={0} posz={0} textureCube={textureCube} 
     length={6}
