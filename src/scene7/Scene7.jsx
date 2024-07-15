@@ -79,6 +79,7 @@ const PriceCube2 = ({ position, textposition, currencyPair }) => {
         fontSize={0.3}
       >
         {currencyPair.split("-")[0]}: ${Number(price).toFixed(3)}
+        {"\n\nHolding: 0.2\nTotal: 100 USD"}
       </Text>
     </>
   );
@@ -229,6 +230,66 @@ export default function Scene6({ textureCube }) {
           baseposZ + 10,
         ]}
         currencyPair="ADA-USD"
+      />
+
+      <PriceCube2
+        position={[baseposX - 10, baseposY + thickness / 2, baseposZ + 16]}
+        textposition={[
+          baseposX - 10,
+          baseposY + thickness / 2 + 0.22,
+          baseposZ + 16,
+        ]}
+        currencyPair="USD-NOK"
+      />
+
+      <PriceCube2
+        position={[baseposX - 6, baseposY + thickness / 2, baseposZ + 16]}
+        textposition={[
+          baseposX - 6,
+          baseposY + thickness / 2 + 0.22,
+          baseposZ + 16,
+        ]}
+        currencyPair="EUR-NOK"
+      />
+
+      <PriceCube2
+        position={[baseposX - 2, baseposY + thickness / 2, baseposZ + 16]}
+        textposition={[
+          baseposX - 2,
+          baseposY + thickness / 2 + 0.22,
+          baseposZ + 16,
+        ]}
+        currencyPair="CHF-NOK"
+      />
+
+      <PriceCube2
+        position={[baseposX + 2, baseposY + thickness / 2, baseposZ + 16]}
+        textposition={[
+          baseposX + 2,
+          baseposY + thickness / 2 + 0.22,
+          baseposZ + 16,
+        ]}
+        currencyPair="CNY-NOK"
+      />
+
+      <PriceCube2
+        position={[baseposX + 6, baseposY + thickness / 2, baseposZ + 16]}
+        textposition={[
+          baseposX + 6,
+          baseposY + thickness / 2 + 0.22,
+          baseposZ + 16,
+        ]}
+        currencyPair="DKK-NOK"
+      />
+
+      <PriceCube2
+        position={[baseposX + 10, baseposY + thickness / 2, baseposZ + 16]}
+        textposition={[
+          baseposX + 10,
+          baseposY + thickness / 2 + 0.22,
+          baseposZ + 16,
+        ]}
+        currencyPair="SEK-NOK"
       />
 
       {/*    <Barchart posx={0} posy={0} posz={0} textureCube={textureCube} 
