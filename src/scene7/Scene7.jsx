@@ -51,7 +51,14 @@ const fetchPrice = async (currencyPair) => {
 };
 
 // A simple 3D cube component that displays the cryptocurrency price
-const PriceCube2 = ({ position, textposition, currencyPair }) => {
+const PriceCube2 = ({
+  position,
+  textposition,
+  currencyPair,
+  amount,
+  name,
+  assettype,
+}) => {
   const [price, setPrice] = useState("Loading...");
 
   const { currentSettings } = useTheme();
@@ -78,8 +85,11 @@ const PriceCube2 = ({ position, textposition, currencyPair }) => {
         color={"#007bff"}
         fontSize={0.3}
       >
+        {name + "\n"}
+        {assettype + "\n"}
         {currencyPair.split("-")[0]}: ${Number(price).toFixed(3)}
-        {"\n\nHolding: 0.2\nTotal: 100 USD"}
+        {"\n\nAmount:" + amount}
+        {"\n\nTotal:" + Number(amount * Number(price)).toFixed(3)}
       </Text>
     </>
   );
@@ -130,6 +140,15 @@ export default function Scene6({ textureCube }) {
   let marginX = 5;
   let marginZ = 5;
 
+  const data = [
+    { asset: "BTC-USD", amount: 1.23, name: "Coinbase", assettype: "Crypto" },
+    { asset: "ETH-USD", amount: 2.0, name: "Wallet", assettype: "Crypto" },
+    { asset: "NOK-USD", amount: 2000, name: "HYBank1", assettype: "Cash" },
+    { asset: "NOK-USD", amount: 3000, name: "HYBank1", assettype: "Cash" },
+    { asset: "NOK-USD", amount: 4000, name: "Etrade", assettype: "Stocks" },
+    { asset: "NOK-USD", amount: 6000, name: "Vanguard", assettype: "MutualF" },
+  ];
+
   return (
     <>
       {/*
@@ -179,7 +198,10 @@ export default function Scene6({ textureCube }) {
           baseposY + thickness / 2 + 0.22,
           baseposZ + 10,
         ]}
-        currencyPair="BTC-USD"
+        currencyPair={data[0].asset}
+        amount={data[0].amount}
+        name={data[0].name}
+        assettype={data[0].assettype}
       />
 
       <PriceCube2
@@ -189,7 +211,10 @@ export default function Scene6({ textureCube }) {
           baseposY + thickness / 2 + 0.22,
           baseposZ + 10,
         ]}
-        currencyPair="ETH-USD"
+        currencyPair={data[1].asset}
+        amount={data[1].amount}
+        name={data[1].name}
+        assettype={data[1].assettype}
       />
 
       <PriceCube2
@@ -199,7 +224,10 @@ export default function Scene6({ textureCube }) {
           baseposY + thickness / 2 + 0.22,
           baseposZ + 10,
         ]}
-        currencyPair="SOL-USD"
+        currencyPair={data[2].asset}
+        amount={data[2].amount}
+        name={data[2].name}
+        assettype={data[2].assettype}
       />
 
       <PriceCube2
@@ -209,7 +237,10 @@ export default function Scene6({ textureCube }) {
           baseposY + thickness / 2 + 0.22,
           baseposZ + 10,
         ]}
-        currencyPair="BNB-USD"
+        currencyPair={data[3].asset}
+        amount={data[3].amount}
+        name={data[3].name}
+        assettype={data[3].assettype}
       />
 
       <PriceCube2
@@ -219,7 +250,10 @@ export default function Scene6({ textureCube }) {
           baseposY + thickness / 2 + 0.22,
           baseposZ + 10,
         ]}
-        currencyPair="USDT-USD"
+        currencyPair={data[4].asset}
+        amount={data[4].amount}
+        name={data[4].name}
+        assettype={data[4].assettype}
       />
 
       <PriceCube2
@@ -229,7 +263,10 @@ export default function Scene6({ textureCube }) {
           baseposY + thickness / 2 + 0.22,
           baseposZ + 10,
         ]}
-        currencyPair="ADA-USD"
+        currencyPair={data[5].asset}
+        amount={data[5].amount}
+        name={data[5].name}
+        assettype={data[5].assettype}
       />
 
       <PriceCube2
@@ -240,6 +277,7 @@ export default function Scene6({ textureCube }) {
           baseposZ + 16,
         ]}
         currencyPair="USD-NOK"
+        amount={0.0}
       />
 
       <PriceCube2
@@ -250,6 +288,7 @@ export default function Scene6({ textureCube }) {
           baseposZ + 16,
         ]}
         currencyPair="EUR-NOK"
+        amount={0.0}
       />
 
       <PriceCube2
@@ -260,6 +299,7 @@ export default function Scene6({ textureCube }) {
           baseposZ + 16,
         ]}
         currencyPair="CHF-NOK"
+        amount={0.0}
       />
 
       <PriceCube2
@@ -270,6 +310,7 @@ export default function Scene6({ textureCube }) {
           baseposZ + 16,
         ]}
         currencyPair="CNY-NOK"
+        amount={0.0}
       />
 
       <PriceCube2
@@ -280,6 +321,7 @@ export default function Scene6({ textureCube }) {
           baseposZ + 16,
         ]}
         currencyPair="DKK-NOK"
+        amount={0.0}
       />
 
       <PriceCube2
@@ -290,6 +332,7 @@ export default function Scene6({ textureCube }) {
           baseposZ + 16,
         ]}
         currencyPair="SEK-NOK"
+        amount={0.0}
       />
 
       {/*    <Barchart posx={0} posy={0} posz={0} textureCube={textureCube} 
