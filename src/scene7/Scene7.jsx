@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { CatmullRomCurve3, Vector3 } from "three";
 import { useControls } from "leva";
@@ -125,7 +125,28 @@ const CameraPathAnimation = () => {
   return null;
 };
 
-export default function Scene6({ textureCube }) {
+const Box = ({ position, amount, asset, name, assettype }) => {
+  const meshRef = useRef();
+
+  return (
+    <mesh position={position} ref={meshRef}>
+      <boxGeometry args={[3, 0.5, 3]} />
+      <meshStandardMaterial color="lightblue" />
+      <Text
+        position={[0, 0.5, 0]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        color="black"
+        anchorX="center"
+        anchorY="middle"
+        fontSize={0.4}
+      >
+        {`${name}\n${assettype}\n${asset}\n${amount}`}
+      </Text>
+    </mesh>
+  );
+};
+
+export default function Scene7({ textureCube }) {
   const { currentSettings } = useTheme();
 
   let width = 35;
@@ -140,14 +161,95 @@ export default function Scene6({ textureCube }) {
   let marginX = 5;
   let marginZ = 5;
 
-  const data = [
-    { asset: "BTC-USD", amount: 1.23, name: "Coinbase", assettype: "Crypto" },
-    { asset: "ETH-USD", amount: 2.0, name: "Wallet", assettype: "Crypto" },
-    { asset: "NOK-USD", amount: 2000, name: "HYBank1", assettype: "Cash" },
-    { asset: "NOK-USD", amount: 3000, name: "HYBank1", assettype: "Cash" },
-    { asset: "NOK-USD", amount: 4000, name: "Etrade", assettype: "Stocks" },
-    { asset: "NOK-USD", amount: 6000, name: "Vanguard", assettype: "MutualF" },
-  ];
+  const [assets, setAssets] = useState([
+    {
+      asset: "BTC-NOK",
+      amount: 0.1,
+      name: "Coinbase",
+      assettype: "Crypto",
+      total: 0,
+    },
+    {
+      asset: "ETH-NOK",
+      amount: 2.1,
+      name: "Wallet",
+      assettype: "Crypto",
+      total: 0,
+    },
+    {
+      asset: "SOL-NOK",
+      amount: 3.1,
+      name: "Wallet",
+      assettype: "Crypto",
+      total: 0,
+    },
+
+    {
+      asset: "NOK-USD",
+      amount: 4000,
+      name: "HYBank1",
+      assettype: "Cash",
+      total: 0,
+    },
+    {
+      asset: "NOK-USD",
+      amount: 3000,
+      name: "HYBank1",
+      assettype: "Cash",
+      total: 0,
+    },
+    {
+      asset: "NOK-USD",
+      amount: 50000,
+      name: "Etrade",
+      assettype: "Stocks",
+      total: 0,
+    },
+    {
+      asset: "NOK-USD",
+      amount: 6000,
+      name: "Vanguard",
+      assettype: "MutualF",
+      total: 0,
+    },
+  ]);
+
+  const [totalSum, setTotalSum] = useState(0);
+
+  useEffect(() => {
+    const fetchPricesAndUpdateAssets = async () => {
+      const updatedAssets = await Promise.all(
+        assets.map(async (asset) => {
+          if (asset.assettype === "Crypto") {
+            try {
+              const response = await axios.get(
+                `https://api.coinbase.com/v2/prices/${asset.asset}/spot`
+              );
+              const price = parseFloat(response.data.data.amount);
+              return {
+                ...asset,
+                total: asset.amount * price,
+              };
+            } catch (error) {
+              console.error(`Error fetching price for ${asset.asset}:`, error);
+              return asset;
+            }
+          } else
+            return {
+              ...asset,
+              total: asset.amount,
+            };
+        })
+      );
+      setAssets(updatedAssets);
+
+      // Calculate total sum
+      const sum = updatedAssets.reduce((acc, asset) => acc + asset.total, 0);
+      setTotalSum(sum);
+    };
+
+    fetchPricesAndUpdateAssets();
+  }, []);
 
   return (
     <>
@@ -191,148 +293,27 @@ export default function Scene6({ textureCube }) {
         thickness={0.25}
       />
 
-      <PriceCube2
-        position={[baseposX - 10, baseposY + thickness / 2, baseposZ + 10]}
-        textposition={[
-          baseposX - 10,
-          baseposY + thickness / 2 + 0.22,
-          baseposZ + 10,
-        ]}
-        currencyPair={data[0].asset}
-        amount={data[0].amount}
-        name={data[0].name}
-        assettype={data[0].assettype}
-      />
+      {assets.map((asset, index) => (
+        <Box
+          key={index}
+          position={[index * 5 - (assets.length - 1) * 2.5, 0.5, 10]}
+          amount={asset.total.toFixed(2)}
+          asset={asset.asset}
+          name={asset.name}
+          assettype={asset.assettype}
+        />
+      ))}
 
-      <PriceCube2
-        position={[baseposX - 6, baseposY + thickness / 2, baseposZ + 10]}
-        textposition={[
-          baseposX - 6,
-          baseposY + thickness / 2 + 0.22,
-          baseposZ + 10,
-        ]}
-        currencyPair={data[1].asset}
-        amount={data[1].amount}
-        name={data[1].name}
-        assettype={data[1].assettype}
-      />
-
-      <PriceCube2
-        position={[baseposX - 2, baseposY + thickness / 2, baseposZ + 10]}
-        textposition={[
-          baseposX - 2,
-          baseposY + thickness / 2 + 0.22,
-          baseposZ + 10,
-        ]}
-        currencyPair={data[2].asset}
-        amount={data[2].amount}
-        name={data[2].name}
-        assettype={data[2].assettype}
-      />
-
-      <PriceCube2
-        position={[baseposX + 2, baseposY + thickness / 2, baseposZ + 10]}
-        textposition={[
-          baseposX + 2,
-          baseposY + thickness / 2 + 0.22,
-          baseposZ + 10,
-        ]}
-        currencyPair={data[3].asset}
-        amount={data[3].amount}
-        name={data[3].name}
-        assettype={data[3].assettype}
-      />
-
-      <PriceCube2
-        position={[baseposX + 6, baseposY + thickness / 2, baseposZ + 10]}
-        textposition={[
-          baseposX + 6,
-          baseposY + thickness / 2 + 0.22,
-          baseposZ + 10,
-        ]}
-        currencyPair={data[4].asset}
-        amount={data[4].amount}
-        name={data[4].name}
-        assettype={data[4].assettype}
-      />
-
-      <PriceCube2
-        position={[baseposX + 10, baseposY + thickness / 2, baseposZ + 10]}
-        textposition={[
-          baseposX + 10,
-          baseposY + thickness / 2 + 0.22,
-          baseposZ + 10,
-        ]}
-        currencyPair={data[5].asset}
-        amount={data[5].amount}
-        name={data[5].name}
-        assettype={data[5].assettype}
-      />
-
-      <PriceCube2
-        position={[baseposX - 10, baseposY + thickness / 2, baseposZ + 16]}
-        textposition={[
-          baseposX - 10,
-          baseposY + thickness / 2 + 0.22,
-          baseposZ + 16,
-        ]}
-        currencyPair="USD-NOK"
-        amount={0.0}
-      />
-
-      <PriceCube2
-        position={[baseposX - 6, baseposY + thickness / 2, baseposZ + 16]}
-        textposition={[
-          baseposX - 6,
-          baseposY + thickness / 2 + 0.22,
-          baseposZ + 16,
-        ]}
-        currencyPair="EUR-NOK"
-        amount={0.0}
-      />
-
-      <PriceCube2
-        position={[baseposX - 2, baseposY + thickness / 2, baseposZ + 16]}
-        textposition={[
-          baseposX - 2,
-          baseposY + thickness / 2 + 0.22,
-          baseposZ + 16,
-        ]}
-        currencyPair="CHF-NOK"
-        amount={0.0}
-      />
-
-      <PriceCube2
-        position={[baseposX + 2, baseposY + thickness / 2, baseposZ + 16]}
-        textposition={[
-          baseposX + 2,
-          baseposY + thickness / 2 + 0.22,
-          baseposZ + 16,
-        ]}
-        currencyPair="CNY-NOK"
-        amount={0.0}
-      />
-
-      <PriceCube2
-        position={[baseposX + 6, baseposY + thickness / 2, baseposZ + 16]}
-        textposition={[
-          baseposX + 6,
-          baseposY + thickness / 2 + 0.22,
-          baseposZ + 16,
-        ]}
-        currencyPair="DKK-NOK"
-        amount={0.0}
-      />
-
-      <PriceCube2
-        position={[baseposX + 10, baseposY + thickness / 2, baseposZ + 16]}
-        textposition={[
-          baseposX + 10,
-          baseposY + thickness / 2 + 0.22,
-          baseposZ + 16,
-        ]}
-        currencyPair="SEK-NOK"
-        amount={0.0}
+      <Box
+        position={[0, 0, 17]}
+        amount={Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "NOK",
+        }).format(totalSum)}
+        asset="Total:"
+        name={""}
+        assettype={""}
+        color="gold"
       />
 
       {/*    <Barchart posx={0} posy={0} posz={0} textureCube={textureCube} 
