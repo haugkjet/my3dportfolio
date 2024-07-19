@@ -1,0 +1,97 @@
+[
+  {
+    "asset": "BTC-NOK",
+    "amount": 14.008,
+    "name": "Wallet",
+    "assettype": "Crypto"
+  },
+  {
+    "asset": "BTC-NOK",
+    "amount": 0.12,
+    "name": "Coinbase",
+    "assettype": "Crypto"
+  },
+  {
+    "asset": "BTC-NOK",
+    "amount": 0.0326,
+    "name": "Binance",
+    "assettype": "Crypto"
+  },
+
+  {
+    "asset": "ETH-NOK",
+    "amount": 448,
+    "name": "Wallet",
+    "assettype": "Crypto"
+  },
+  {
+    "asset": "ETH-NOK",
+    "amount": 96,
+    "name": "Wallet ST",
+    "assettype": "Crypto"
+  },
+  {
+    "asset": "ETH-NOK",
+    "amount": 0.064,
+    "name": "Coinbase",
+    "assettype": "Crypto"
+  },
+  {
+    "asset": "BNB-NOK",
+    "amount": 448,
+    "name": "Wallet",
+    "assettype": "Crypto"
+  },
+
+  {
+    "asset": "ADA-NOK",
+    "amount": 7170,
+    "name": "Coinbase",
+    "assettype": "Crypto"
+  },
+
+  {
+    "asset": "SOL-NOK",
+    "amount": 53,
+    "name": "Wallet",
+    "assettype": "Crypto"
+  },
+  {
+    "asset": "XMR-NOK",
+    "amount": 196,
+    "name": "Wallet",
+    "assettype": "Crypto"
+  },
+
+  {
+    "asset": "NOK-USD",
+    "amount": 1518255,
+    "name": "Nordnet",
+    "assettype": "Stocks"
+  },
+  {
+    "asset": "NOK-USD",
+    "amount": 3444000,
+    "name": "M Funds",
+    "assettype": "Mutual F"
+  },
+  {
+    "asset": "NOK-USD",
+    "amount": 66940,
+    "name": "IPS MFunds",
+    "assettype": "Mutual F"
+  },
+  {
+    "asset": "NOK-USD",
+    "amount": 25205,
+    "name": "Skagen KT",
+    "assettype": "Mutual F"
+  },
+
+  {
+    "asset": "NOK-USD",
+    "amount": 6041558,
+    "name": "Banks",
+    "assettype": "Cash"
+  }
+]
