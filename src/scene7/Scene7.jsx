@@ -125,11 +125,11 @@ const CameraPathAnimation = () => {
   return null;
 };
 
-const Box = ({ position, amount, asset, name, assettype }) => {
+const Box = ({ position, amount, asset, name, assettype, onClick }) => {
   const meshRef = useRef();
 
   return (
-    <mesh position={position} ref={meshRef}>
+    <mesh position={position} ref={meshRef} onClick={onClick}>
       <boxGeometry args={[3, 0.5, 3]} />
       <meshStandardMaterial color="lightblue" />
       <Text
@@ -143,6 +143,54 @@ const Box = ({ position, amount, asset, name, assettype }) => {
         {`${name}\n${assettype}\n${asset}\n${amount}`}
       </Text>
     </mesh>
+  );
+};
+
+const FileInputBox = ({ onFileLoad }) => {
+  const { camera, scene } = useThree();
+  const fileInputRef = useRef();
+
+  const handleClick = (event) => {
+    console.log("Button clicked");
+    event.stopPropagation();
+    fileInputRef.current.click();
+  };
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const jsonData = JSON.parse(e.target.result);
+          onFileLoad(jsonData);
+        } catch (error) {
+          console.error("Error parsing JSON file:", error);
+        }
+      };
+      reader.readAsText(file);
+    }
+  };
+
+  return (
+    <>
+      <Box
+        position={[-10, 0, 18]}
+        amount="Click to load"
+        asset="Load File"
+        color="orange"
+        onClick={handleClick}
+      />
+      <Html>
+        <input
+          type="file"
+          ref={fileInputRef}
+          style={{ display: "none" }}
+          accept=".json"
+          onChange={handleFileChange}
+        />
+      </Html>
+    </>
   );
 };
 
@@ -165,72 +213,44 @@ export default function Scene7({ textureCube }) {
 
   const [totalSum, setTotalSum] = useState(0);
 
-  useEffect(() => {
-    const fetchPricesAndUpdateAssets = async () => {
-      let assetsData;
-      try {
-        // First, try to fetch assets.json
-        const assetsResponse = await fetch("data/assets.json");
-        if (!assetsResponse.ok) {
-          throw new Error("assets.json not found");
-        }
-        assetsData = await assetsResponse.json();
-      } catch (error) {
-        console.warn(
-          "Couldn't load assets.json, falling back to assetsDemo.json"
-        );
-        try {
-          // If assets.json fails, try to fetch assetsDemo.json
-          const demoResponse = await fetch("data/assetsDemo.json");
-          if (!demoResponse.ok) {
-            throw new Error("assetsDemo.json not found");
-          }
-          assetsData = await demoResponse.json();
-        } catch (demoError) {
-          console.error("Error fetching assets data:", demoError);
-          return; // Exit the function if both files fail to load
-        }
-      }
-
-      try {
-        const updatedAssets = await Promise.all(
-          assetsData.map(async (asset) => {
-            if (asset.assettype === "Crypto") {
-              try {
-                const response = await axios.get(
-                  `https://api.coinbase.com/v2/prices/${asset.asset}/spot`
-                );
-                const price = parseFloat(response.data.data.amount);
-                return {
-                  ...asset,
-                  total: asset.amount * price,
-                };
-              } catch (error) {
-                console.error(
-                  `Error fetching price for ${asset.asset}:`,
-                  error
-                );
-                return asset;
-              }
-            } else
+  const processAssets = async (assetsData) => {
+    try {
+      const updatedAssets = await Promise.all(
+        assetsData.map(async (asset) => {
+          if (asset.assettype === "Crypto") {
+            try {
+              const response = await axios.get(
+                `https://api.coinbase.com/v2/prices/${asset.asset}/spot`
+              );
+              const price = parseFloat(response.data.data.amount);
               return {
                 ...asset,
-                total: asset.amount,
+                total: asset.amount * price,
               };
-          })
-        );
-        setAssets(updatedAssets);
+            } catch (error) {
+              console.error(`Error fetching price for ${asset.asset}:`, error);
+              return asset;
+            }
+          } else
+            return {
+              ...asset,
+              total: asset.amount,
+            };
+        })
+      );
+      setAssets(updatedAssets);
 
-        // Calculate total sum
-        const sum = updatedAssets.reduce((acc, asset) => acc + asset.total, 0);
-        setTotalSum(sum);
-      } catch (error) {
-        console.error("Error fetching assets data:", error);
-      }
-    };
+      // Calculate total sum
+      const sum = updatedAssets.reduce((acc, asset) => acc + asset.total, 0);
+      setTotalSum(sum);
+    } catch (error) {
+      console.error("Error fetching assets data:", error);
+    }
+  };
 
-    fetchPricesAndUpdateAssets();
-  }, []);
+  const handleFileLoad = (jsonData) => {
+    processAssets(jsonData);
+  };
 
   return (
     <>
@@ -273,6 +293,8 @@ export default function Scene7({ textureCube }) {
         depth={depth}
         thickness={0.25}
       />
+
+      <FileInputBox onFileLoad={handleFileLoad} />
 
       {assets.map((asset, index) => (
         <Box
