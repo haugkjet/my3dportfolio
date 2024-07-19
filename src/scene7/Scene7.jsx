@@ -149,7 +149,7 @@ const Box = ({ position, amount, asset, name, assettype }) => {
 export default function Scene7({ textureCube }) {
   const { currentSettings } = useTheme();
 
-  let width = 35;
+  let width = 85;
   let height = 15;
   let depth = 23;
   let thickness = 0.25;
@@ -161,91 +161,72 @@ export default function Scene7({ textureCube }) {
   let marginX = 5;
   let marginZ = 5;
 
-  const [assets, setAssets] = useState([
-    {
-      asset: "BTC-NOK",
-      amount: 0.1,
-      name: "Coinbase",
-      assettype: "Crypto",
-      total: 0,
-    },
-    {
-      asset: "ETH-NOK",
-      amount: 2.1,
-      name: "Wallet",
-      assettype: "Crypto",
-      total: 0,
-    },
-    {
-      asset: "SOL-NOK",
-      amount: 3.1,
-      name: "Wallet",
-      assettype: "Crypto",
-      total: 0,
-    },
-
-    {
-      asset: "NOK-USD",
-      amount: 4000,
-      name: "HYBank1",
-      assettype: "Cash",
-      total: 0,
-    },
-    {
-      asset: "NOK-USD",
-      amount: 3000,
-      name: "HYBank1",
-      assettype: "Cash",
-      total: 0,
-    },
-    {
-      asset: "NOK-USD",
-      amount: 50000,
-      name: "Etrade",
-      assettype: "Stocks",
-      total: 0,
-    },
-    {
-      asset: "NOK-USD",
-      amount: 6000,
-      name: "Vanguard",
-      assettype: "MutualF",
-      total: 0,
-    },
-  ]);
+  const [assets, setAssets] = useState([]);
 
   const [totalSum, setTotalSum] = useState(0);
 
   useEffect(() => {
     const fetchPricesAndUpdateAssets = async () => {
-      const updatedAssets = await Promise.all(
-        assets.map(async (asset) => {
-          if (asset.assettype === "Crypto") {
-            try {
-              const response = await axios.get(
-                `https://api.coinbase.com/v2/prices/${asset.asset}/spot`
-              );
-              const price = parseFloat(response.data.data.amount);
+      let assetsData;
+      try {
+        // First, try to fetch assets.json
+        const assetsResponse = await fetch("data/assets.json");
+        if (!assetsResponse.ok) {
+          throw new Error("assets.json not found");
+        }
+        assetsData = await assetsResponse.json();
+      } catch (error) {
+        console.warn(
+          "Couldn't load assets.json, falling back to assetsDemo.json"
+        );
+        try {
+          // If assets.json fails, try to fetch assetsDemo.json
+          const demoResponse = await fetch("data/assetsDemo.json");
+          if (!demoResponse.ok) {
+            throw new Error("assetsDemo.json not found");
+          }
+          assetsData = await demoResponse.json();
+        } catch (demoError) {
+          console.error("Error fetching assets data:", demoError);
+          return; // Exit the function if both files fail to load
+        }
+      }
+
+      try {
+        const updatedAssets = await Promise.all(
+          assetsData.map(async (asset) => {
+            if (asset.assettype === "Crypto") {
+              try {
+                const response = await axios.get(
+                  `https://api.coinbase.com/v2/prices/${asset.asset}/spot`
+                );
+                const price = parseFloat(response.data.data.amount);
+                return {
+                  ...asset,
+                  total: asset.amount * price,
+                };
+              } catch (error) {
+                console.error(
+                  `Error fetching price for ${asset.asset}:`,
+                  error
+                );
+                return asset;
+              }
+            } else
               return {
                 ...asset,
-                total: asset.amount * price,
+                total: asset.amount,
               };
-            } catch (error) {
-              console.error(`Error fetching price for ${asset.asset}:`, error);
-              return asset;
-            }
-          } else
-            return {
-              ...asset,
-              total: asset.amount,
-            };
-        })
-      );
-      setAssets(updatedAssets);
+          })
+        );
+        setAssets(updatedAssets);
 
-      // Calculate total sum
-      const sum = updatedAssets.reduce((acc, asset) => acc + asset.total, 0);
-      setTotalSum(sum);
+        // Calculate total sum
+        const sum = updatedAssets.reduce((acc, asset) => acc + asset.total, 0);
+        setTotalSum(sum);
+      } catch (error) {
+        console.error("Error fetching assets data:", error);
+      }
     };
 
     fetchPricesAndUpdateAssets();

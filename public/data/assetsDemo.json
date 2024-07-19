@@ -1,0 +1,38 @@
+[
+  {
+    "asset": "BTC-USD",
+    "amount": 1.23,
+    "name": "Coinbase",
+    "assettype": "Crypto"
+  },
+  {
+    "asset": "ETH-USD",
+    "amount": 2.0,
+    "name": "Wallet",
+    "assettype": "Crypto"
+  },
+  {
+    "asset": "NOK-USD",
+    "amount": 2000,
+    "name": "HYBank1",
+    "assettype": "Cash"
+  },
+  {
+    "asset": "NOK-USD",
+    "amount": 3000,
+    "name": "HYBank1",
+    "assettype": "Cash"
+  },
+  {
+    "asset": "NOK-USD",
+    "amount": 4000,
+    "name": "Etrade",
+    "assettype": "Stocks"
+  },
+  {
+    "asset": "NOK-USD",
+    "amount": 6000,
+    "name": "Vanguard",
+    "assettype": "MutualF"
+  }
+]
