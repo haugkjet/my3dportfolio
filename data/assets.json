@@ -3,42 +3,57 @@
     "asset": "BTC-USD",
     "amount": 1.23,
     "name": "Coinbase",
-    "assettype": "Crypto"
+    "assettype": "Crypto",
+    "position": [0, 0, 15]
   },
+  {
+    "asset": "SOL-USD",
+    "amount": 5.2,
+    "name": "Coinbase",
+    "assettype": "Crypto",
+    "position": [5, 0, 15]
+  },
+
   {
     "asset": "ETH-USD",
     "amount": 2.0,
     "name": "Wallet",
-    "assettype": "Crypto"
+    "assettype": "Crypto",
+    "position": [0, 0, 25]
   },
   {
     "asset": "NOK-USD",
     "amount": 2000,
     "name": "HYBank1",
-    "assettype": "Cash"
+    "assettype": "Cash",
+    "position": [5, 0, 20]
   },
   {
     "asset": "NOK-USD",
     "amount": 3000,
     "name": "HYBank1",
-    "assettype": "Cash"
+    "assettype": "Cash",
+    "position": [0, 0, 20]
   },
   {
     "asset": "NOK-USD",
     "amount": 4000,
     "name": "Etrade",
-    "assettype": "Stocks"
+    "assettype": "Stocks",
+    "position": [5, 0, 25]
   },
   {
     "asset": "NOK-USD",
     "amount": 6000,
     "name": "Vanguard",
-    "assettype": "MutualF"
+    "assettype": "MutualF",
+    "position": [9, 0, 20]
   },
   {
     "asset": "NOK-USD",
     "amount": 6000,
     "name": "Vanguard",
-    "assettype": "MutualF"
+    "assettype": "MutualF",
+    "position": [13, 0, 20]
   }
 ]
