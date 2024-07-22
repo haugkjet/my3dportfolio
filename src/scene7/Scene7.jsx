@@ -128,19 +128,67 @@ const CameraPathAnimation = () => {
 const Box = ({ position, amount, asset, name, assettype, onClick }) => {
   const meshRef = useRef();
 
+  const { currentSettings } = useTheme();
+
   return (
     <mesh position={position} ref={meshRef} onClick={onClick}>
       <boxGeometry args={[3, 0.5, 3]} />
-      <meshStandardMaterial color="lightblue" />
+      <meshStandardMaterial color={currentSettings.extrudedPanelColor} />
       <Text
-        position={[0, 0.5, 0]}
+        position={[0, 0.26, 0]}
         rotation={[-Math.PI / 2, 0, 0]}
-        color="black"
+        color={currentSettings.floorTextColor}
         anchorX="center"
         anchorY="middle"
         fontSize={0.4}
       >
         {`${name}\n${assettype}\n${asset}\n${amount}`}
+      </Text>
+    </mesh>
+  );
+};
+
+const LoadBox = ({ position, displaytext, onClick }) => {
+  const meshRef = useRef();
+
+  const { currentSettings } = useTheme();
+
+  return (
+    <mesh position={position} ref={meshRef} onClick={onClick}>
+      <boxGeometry args={[4, 0.5, 3]} />
+      <meshStandardMaterial color={currentSettings.extrudedPanelColor} />
+      <Text
+        position={[0, 0.26, 0]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        color={currentSettings.floorTextColor}
+        anchorX="center"
+        anchorY="middle"
+        fontSize={0.4}
+      >
+        {`${displaytext}`}
+      </Text>
+    </mesh>
+  );
+};
+
+const TotalBox = ({ position, amount, asset }) => {
+  const meshRef = useRef();
+
+  const { currentSettings } = useTheme();
+
+  return (
+    <mesh position={position} ref={meshRef}>
+      <boxGeometry args={[5, 0.5, 3]} />
+      <meshStandardMaterial color={currentSettings.extrudedPanelColor} />
+      <Text
+        position={[0, 0.26, -0.5]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        color={currentSettings.floorTextColor}
+        anchorX="center"
+        anchorY="middle"
+        fontSize={0.4}
+      >
+        {`\n${asset}\n${amount}`}
       </Text>
     </mesh>
   );
@@ -174,11 +222,9 @@ const FileInputBox = ({ onFileLoad }) => {
 
   return (
     <>
-      <Box
-        position={[-10, 0, 18]}
-        amount="Click to load"
-        asset="Load File"
-        color="orange"
+      <LoadBox
+        position={[-8, 0, 30]}
+        displaytext="Click to load file"
         onClick={handleClick}
       />
       <Html>
@@ -194,12 +240,48 @@ const FileInputBox = ({ onFileLoad }) => {
   );
 };
 
+const DistributionBox = ({ distribution }) => {
+  const meshRef = useRef();
+
+  const { currentSettings } = useTheme();
+
+  return (
+    <mesh position={[7, 0, 30]} ref={meshRef}>
+      <boxGeometry args={[3, 0.5, 3]} />
+      <meshStandardMaterial color={currentSettings.extrudedPanelColor} />
+      <Text
+        position={[0, 0.26, -1]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        color={currentSettings.floorTextColor}
+        anchorX="center"
+        anchorY="middle"
+        fontSize={0.3}
+      >
+        Asset allocation:
+      </Text>
+      {Object.entries(distribution).map(([assetType, percentage], index) => (
+        <Text
+          key={assetType}
+          position={[0, 0.26, -index * 0.4 + 0.7]}
+          rotation={[-Math.PI / 2, 0, 0]}
+          color={currentSettings.floorTextColor}
+          anchorX="center"
+          anchorY="middle"
+          fontSize={0.2}
+        >
+          {`${assetType}: ${percentage.toFixed(2)}%`}
+        </Text>
+      ))}
+    </mesh>
+  );
+};
+
 export default function Scene7({ textureCube }) {
   const { currentSettings } = useTheme();
 
   let width = 85;
-  let height = 15;
-  let depth = 23;
+  let height = 30;
+  let depth = 40;
   let thickness = 0.25;
 
   let baseposX = 0;
@@ -212,6 +294,8 @@ export default function Scene7({ textureCube }) {
   const [assets, setAssets] = useState([]);
 
   const [totalSum, setTotalSum] = useState(0);
+
+  const [distribution, setDistribution] = useState({});
 
   const processAssets = async (assetsData) => {
     try {
@@ -243,6 +327,16 @@ export default function Scene7({ textureCube }) {
       // Calculate total sum
       const sum = updatedAssets.reduce((acc, asset) => acc + asset.total, 0);
       setTotalSum(sum);
+
+      // Calculate distribution
+      const dist = updatedAssets.reduce((acc, asset) => {
+        if (!acc[asset.assettype]) {
+          acc[asset.assettype] = 0;
+        }
+        acc[asset.assettype] += (asset.total / sum) * 100;
+        return acc;
+      }, {});
+      setDistribution(dist);
     } catch (error) {
       console.error("Error fetching assets data:", error);
     }
@@ -299,7 +393,7 @@ export default function Scene7({ textureCube }) {
       {assets.map((asset, index) => (
         <Box
           key={index}
-          position={[index * 5 - (assets.length - 1) * 2.5, 0.5, 10]}
+          position={asset.position}
           amount={asset.total.toFixed(2)}
           asset={asset.asset}
           name={asset.name}
@@ -307,24 +401,18 @@ export default function Scene7({ textureCube }) {
         />
       ))}
 
-      <Box
-        position={[0, 0, 17]}
+      <TotalBox
+        position={[0, 0, 30]}
         amount={Intl.NumberFormat("en-US", {
           style: "currency",
           currency: "NOK",
         }).format(totalSum)}
         asset="Total:"
-        name={""}
-        assettype={""}
-        color="gold"
       />
 
-      {/*    <Barchart posx={0} posy={0} posz={0} textureCube={textureCube} 
-    length={6}
-    roty={0}
-    title={"Basic"}
-    maxheight={4}
-/>*/}
+      {Object.keys(distribution).length > 0 && (
+        <DistributionBox distribution={distribution} />
+      )}
 
       <CameraPathAnimation />
 
