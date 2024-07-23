@@ -1,10 +1,10 @@
 [
   {
     "asset": "BTC-USD",
-    "amount": 1.23,
+    "amount": 0.83,
     "name": "Coinbase",
     "assettype": "Crypto",
-    "position": [0, 0, 15]
+    "position": [-10, 0, 15]
   },
   {
     "asset": "SOL-USD",
@@ -30,7 +30,7 @@
   },
   {
     "asset": "NOK-USD",
-    "amount": 3000,
+    "amount": 30000,
     "name": "HYBank1",
     "assettype": "Cash",
     "position": [0, 0, 20]
