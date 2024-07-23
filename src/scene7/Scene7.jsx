@@ -51,51 +51,6 @@ const fetchPrice = async (currencyPair) => {
   }
 };
 
-// A simple 3D cube component that displays the cryptocurrency price
-const PriceCube2 = ({
-  position,
-  textposition,
-  currencyPair,
-  amount,
-  name,
-  assettype,
-}) => {
-  const [price, setPrice] = useState("Loading...");
-
-  const { currentSettings } = useTheme();
-
-  const posX = position.x;
-  const posY = position.y + 0.22;
-  const posZ = position.z;
-
-  useEffect(() => {
-    fetchPrice(currencyPair).then(setPrice);
-  }, [currencyPair]);
-
-  return (
-    <>
-      <PanelExtruded
-        position={position}
-        scale={[3, 3, 1]}
-        color={currentSettings.extrudedPanelColor}
-      />
-
-      <Text
-        position={textposition}
-        rotation={[-Math.PI / 2, 0, 0]}
-        color={"#007bff"}
-        fontSize={0.3}
-      >
-        {name + "\n"}
-        {assettype + "\n"}
-        {currencyPair.split("-")[0]}: ${Number(price).toFixed(3)}
-        {"\n\nAmount:" + amount}
-        {"\n\nTotal:" + Number(amount * Number(price)).toFixed(3)}
-      </Text>
-    </>
-  );
-};
-
 const CameraPathAnimation = () => {
   const { camera } = useThree();
   const curve = useMemo(
@@ -172,29 +127,6 @@ const LoadBox = ({ position, displaytext, onClick }) => {
   );
 };
 
-const TotalBox = ({ position, amount, asset }) => {
-  const meshRef = useRef();
-
-  const { currentSettings } = useTheme();
-
-  return (
-    <mesh position={position} ref={meshRef}>
-      <boxGeometry args={[5, 0.5, 3]} />
-      <meshStandardMaterial color={currentSettings.extrudedPanelColor} />
-      <Text
-        position={[0, 0.26, -0.5]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        color={currentSettings.floorTextColor}
-        anchorX="center"
-        anchorY="middle"
-        fontSize={0.4}
-      >
-        {`\n${asset}\n${amount}`}
-      </Text>
-    </mesh>
-  );
-};
-
 const FileInputBox = ({ onFileLoad }) => {
   const { camera, scene } = useThree();
   const fileInputRef = useRef();
@@ -225,7 +157,7 @@ const FileInputBox = ({ onFileLoad }) => {
     <>
       <LoadBox
         position={[-8, 0, 30]}
-        displaytext="Click to load file"
+        displaytext="Load custom file"
         onClick={handleClick}
       />
       <Html>
@@ -238,6 +170,65 @@ const FileInputBox = ({ onFileLoad }) => {
         />
       </Html>
     </>
+  );
+};
+
+const LoadExampleBox = ({ onExampleLoad }) => {
+  const meshRef = useRef();
+
+  const { currentSettings } = useTheme();
+
+  const handleClick = async () => {
+    try {
+      const response = await fetch("data/assets.json");
+      if (!response.ok) {
+        throw new Error("Failed to load example file");
+      }
+      const jsonData = await response.json();
+      onExampleLoad(jsonData);
+    } catch (error) {
+      console.error("Error loading example file:", error);
+    }
+  };
+
+  return (
+    <mesh position={[-13, -0.25, 30]} ref={meshRef} onClick={handleClick}>
+      <boxGeometry args={[3, 1, 3]} />
+      <meshStandardMaterial color={currentSettings.extrudedPanelColor} />
+      <Text
+        position={[0, 0.52, 0]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        color={currentSettings.floorTextColor}
+        anchorX="center"
+        anchorY="middle"
+        fontSize={0.3}
+      >
+        Load Example File
+      </Text>
+    </mesh>
+  );
+};
+
+const TotalBox = ({ position, amount, asset }) => {
+  const meshRef = useRef();
+
+  const { currentSettings } = useTheme();
+
+  return (
+    <mesh position={position} ref={meshRef}>
+      <boxGeometry args={[5, 0.5, 3]} />
+      <meshStandardMaterial color={currentSettings.extrudedPanelColor} />
+      <Text
+        position={[0, 0.26, -0.5]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        color={currentSettings.floorTextColor}
+        anchorX="center"
+        anchorY="middle"
+        fontSize={0.4}
+      >
+        {`\n${asset}\n${amount}`}
+      </Text>
+    </mesh>
   );
 };
 
@@ -374,8 +365,14 @@ export default function Scene7({ textureCube }) {
 
   const [distribution, setDistribution] = useState({});
 
+  const [dataVersion, setDataVersion] = useState(0); // Add this line
+
   const processAssets = async (assetsData) => {
     try {
+      // Clear existing assets
+      setAssets([]);
+      setTotalSum(0);
+      setDistribution({});
       const updatedAssets = await Promise.all(
         assetsData.map(async (asset) => {
           if (asset.assettype === "Crypto") {
@@ -414,6 +411,9 @@ export default function Scene7({ textureCube }) {
         return acc;
       }, {});
       setDistribution(dist);
+
+      // Increment data version to force re-render
+      setDataVersion((prev) => prev + 1);
     } catch (error) {
       console.error("Error fetching assets data:", error);
     }
@@ -422,12 +422,10 @@ export default function Scene7({ textureCube }) {
   const handleFileLoad = (jsonData) => {
     processAssets(jsonData);
   };
-  const data1 = [
-    { value: 25, color: "#007bff", assetclass: "crypto" },
-    { value: 25, color: "#ffa04c", assetclass: "mutualf" },
-    { value: 25, color: "#007bff", assetclass: "cash" },
-    { value: 25, color: "#ffa04c", assetclass: "crypto" },
-  ];
+
+  const handleExampleLoad = (jsonData) => {
+    processAssets(jsonData);
+  };
 
   return (
     <>
@@ -473,9 +471,16 @@ export default function Scene7({ textureCube }) {
 
       <FileInputBox onFileLoad={handleFileLoad} />
 
+      <LoadExampleBox
+        position={[-15, 0, 30]}
+        displaytext="Load example file"
+        onExampleLoad={handleExampleLoad}
+      />
+      <LoadBox position={[-20, 0, 30]} displaytext="View example file" />
+
       {assets.map((asset, index) => (
         <Box
-          key={index}
+          key={`${dataVersion}-${index}`} // Change this line
           position={asset.position}
           amount={asset.total.toFixed(2)}
           asset={asset.asset}
@@ -484,21 +489,31 @@ export default function Scene7({ textureCube }) {
         />
       ))}
 
-      <TotalBox
-        position={[0, 0, 30]}
-        amount={Intl.NumberFormat("en-US", {
-          style: "currency",
-          currency: "NOK",
-        }).format(totalSum)}
-        asset="Total:"
-      />
-
-      {Object.keys(distribution).length > 0 && (
-        <DistributionBox distribution={distribution} />
+      {totalSum > 0 && (
+        <TotalBox
+          key={`total-${dataVersion}`} // Add this line
+          position={[0, 0, 30]}
+          amount={Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "NOK",
+          }).format(totalSum)}
+          asset="Total:"
+        />
       )}
 
       {Object.keys(distribution).length > 0 && (
-        <PieChart distribution={distribution} position={[12, 0.5, 30]} />
+        <DistributionBox
+          key={`distribution-${dataVersion}`}
+          distribution={distribution}
+        />
+      )}
+
+      {Object.keys(distribution).length > 0 && (
+        <PieChart
+          distribution={distribution}
+          key={`distributionpie-${dataVersion}`}
+          position={[12, 0.5, 30]}
+        />
       )}
       <Box position={[12, 0.15, 30]} />
 
