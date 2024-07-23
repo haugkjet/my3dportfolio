@@ -6,6 +6,7 @@ import { Html, ContactShadows, RoundedBox, Text } from "@react-three/drei";
 import DataCell from "./components/DataCell";
 import ChartjsPlane from "./components/chart/ChartjsPlane";
 import axios from "axios";
+import * as THREE from "three";
 
 import {
   BakeShadows,
@@ -276,6 +277,82 @@ const DistributionBox = ({ distribution }) => {
   );
 };
 
+const PieChart = ({ distribution, position = [0, 0, 0], radius = 1.4 }) => {
+  const groupRef = useRef();
+
+  const pieData = useMemo(() => {
+    let startAngle = 0;
+    return Object.entries(distribution).map(([assetType, percentage]) => {
+      const angle = (percentage / 100) * Math.PI * 2;
+      const pieSlice = {
+        startAngle,
+        endAngle: startAngle + angle,
+        percentage,
+        assetType,
+      };
+      startAngle += angle;
+      return pieSlice;
+    });
+  }, [distribution]);
+
+  const colors = useMemo(
+    () => [
+      "red",
+      "blue",
+      "green",
+      "yellow",
+      "purple",
+      "orange",
+      "pink",
+      "cyan",
+    ],
+    []
+  );
+
+  return (
+    <group ref={groupRef} position={position} rotation={[Math.PI / 2, 0, 0]}>
+      {pieData.map((slice, index) => (
+        <group key={slice.assetType}>
+          <mesh>
+            <circleGeometry
+              args={[
+                radius,
+                32,
+                slice.startAngle,
+                slice.endAngle - slice.startAngle,
+              ]}
+            />
+            <meshStandardMaterial
+              color={colors[index % colors.length]}
+              side={THREE.DoubleSide}
+            />
+          </mesh>
+          <Text
+            position={[
+              -Math.sin(
+                slice.startAngle + (slice.endAngle - slice.startAngle) / 2
+              ) *
+                (radius / 2),
+              -Math.cos(
+                slice.startAngle + (slice.endAngle - slice.startAngle) / 2
+              ) *
+                (radius / 2),
+              -0.05,
+            ]}
+            rotation={[Math.PI, 0, 0]}
+            fontSize={0.1}
+            color="black"
+            anchorX="center"
+            anchorY="middle"
+          >
+            {`${slice.assetType}\n${slice.percentage.toFixed(1)}%`}
+          </Text>
+        </group>
+      ))}
+    </group>
+  );
+};
+
 export default function Scene7({ textureCube }) {
   const { currentSettings } = useTheme();
 
@@ -345,6 +422,12 @@ export default function Scene7({ textureCube }) {
   const handleFileLoad = (jsonData) => {
     processAssets(jsonData);
   };
+  const data1 = [
+    { value: 25, color: "#007bff", assetclass: "crypto" },
+    { value: 25, color: "#ffa04c", assetclass: "mutualf" },
+    { value: 25, color: "#007bff", assetclass: "cash" },
+    { value: 25, color: "#ffa04c", assetclass: "crypto" },
+  ];
 
   return (
     <>
@@ -413,6 +496,11 @@ export default function Scene7({ textureCube }) {
       {Object.keys(distribution).length > 0 && (
         <DistributionBox distribution={distribution} />
       )}
+
+      {Object.keys(distribution).length > 0 && (
+        <PieChart distribution={distribution} position={[12, 0.5, 30]} />
+      )}
+      <Box position={[12, 0.15, 30]} />
 
       <CameraPathAnimation />
 
