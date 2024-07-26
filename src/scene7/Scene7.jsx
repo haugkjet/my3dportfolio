@@ -51,6 +51,47 @@ const fetchPrice = async (currencyPair) => {
   }
 };
 
+// Helper function to fetch cryptocurrency prices
+const fetchMetalPrice = async (metal) => {
+  try {
+    const response = await axios.get(`https://api.gold-api.com/price/${metal}`);
+    console.log(response.data.price);
+    return response.data.price;
+  } catch (error) {
+    console.error("Failed to fetch price:", error);
+    return "Error";
+  }
+};
+
+// A simple 3D cube component that displays the cryptocurrency price
+const MetalPriceCube = ({ position, metal }) => {
+  const meshRef = useRef();
+  const [price, setPrice] = useState("Loading...");
+
+  const { currentSettings } = useTheme();
+
+  useEffect(() => {
+    fetchMetalPrice(metal).then(setPrice);
+  }, [metal]);
+
+  return (
+    <mesh position={position} ref={meshRef}>
+      <boxGeometry args={[3, 0.5, 3]} />
+      <meshStandardMaterial color={currentSettings.extrudedPanelColor} />
+      <Text
+        position={[0, 0.26, 0]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        color={currentSettings.floorTextColor}
+        anchorX="center"
+        anchorY="middle"
+        fontSize={0.4}
+      >
+        {metal} {price}
+      </Text>
+    </mesh>
+  );
+};
+
 const CameraPathAnimation = () => {
   const { camera } = useThree();
   const curve = useMemo(
@@ -516,6 +557,9 @@ export default function Scene7({ textureCube }) {
         />
       )}
       <Box position={[12, 0.15, 30]} />
+
+      <MetalPriceCube position={[-34, 0, 10]} metal="XAU"></MetalPriceCube>
+      <MetalPriceCube position={[-34, 0, 14]} metal="XAG"></MetalPriceCube>
 
       <CameraPathAnimation />
 
