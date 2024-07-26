@@ -7,7 +7,7 @@ const ThemeContext = createContext(); // Create a context
 export const ThemeProvider = ({ children }) => {
   const { darkMode } = useControls({
     darkMode: {
-      value: false,
+      value: true,
       label: "Dark Mode",
     },
   });

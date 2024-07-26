@@ -55,8 +55,8 @@ const fetchPrice = async (currencyPair) => {
 const fetchMetalPrice = async (metal) => {
   try {
     const response = await axios.get(`https://api.gold-api.com/price/${metal}`);
-    console.log(response.data.price);
-    return response.data.price;
+    console.log(response.data);
+    return response.data;
   } catch (error) {
     console.error("Failed to fetch price:", error);
     return "Error";
@@ -66,12 +66,12 @@ const fetchMetalPrice = async (metal) => {
 // A simple 3D cube component that displays the cryptocurrency price
 const MetalPriceCube = ({ position, metal }) => {
   const meshRef = useRef();
-  const [price, setPrice] = useState("Loading...");
+  const [data, setData] = useState("Loading...");
 
   const { currentSettings } = useTheme();
 
   useEffect(() => {
-    fetchMetalPrice(metal).then(setPrice);
+    fetchMetalPrice(metal).then(setData);
   }, [metal]);
 
   return (
@@ -86,7 +86,7 @@ const MetalPriceCube = ({ position, metal }) => {
         anchorY="middle"
         fontSize={0.4}
       >
-        {metal} {price}
+        {data.name} {data.price}
       </Text>
     </mesh>
   );
@@ -122,7 +122,7 @@ const CameraPathAnimation = () => {
   return null;
 };
 
-const Box = ({ position, amount, asset, name, assettype, onClick }) => {
+const Box = ({ position, amount, total, asset, name, assettype, onClick }) => {
   const meshRef = useRef();
 
   const { currentSettings } = useTheme();
@@ -137,9 +137,9 @@ const Box = ({ position, amount, asset, name, assettype, onClick }) => {
         color={currentSettings.floorTextColor}
         anchorX="center"
         anchorY="middle"
-        fontSize={0.4}
+        fontSize={0.27}
       >
-        {`${name}\n${assettype}\n${asset}\n${amount}`}
+        {`${asset}\n${assettype}\n${name}\n${amount}\n${total}`}
       </Text>
     </mesh>
   );
@@ -523,9 +523,13 @@ export default function Scene7({ textureCube }) {
         <Box
           key={`${dataVersion}-${index}`} // Change this line
           position={asset.position}
-          amount={asset.total.toFixed(2)}
+          total={Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "NOK",
+          }).format(asset.total)}
           asset={asset.asset}
           name={asset.name}
+          amount={asset.amount}
           assettype={asset.assettype}
         />
       ))}
