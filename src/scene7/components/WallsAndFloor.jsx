@@ -54,7 +54,7 @@ export default function WallsAndFloor({
               style={{
                 fontSize: "1.2em",
                 color: "#a9a9a9",
-                margin: "0 0 10px 0",
+                margin: "0 0 20px 0",
               }}
             >
               Welcome

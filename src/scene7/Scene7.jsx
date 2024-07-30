@@ -63,6 +63,112 @@ const fetchMetalPrice = async (metal) => {
   }
 };
 
+const data = [
+  {
+    asset: "USD-NOK",
+    amount: 1.0,
+    name: "USD-NOK",
+    assettype: "Crypto",
+    position: [-30, 0, 10],
+  },
+  {
+    asset: "NOK-USD",
+    amount: 1200,
+    name: "M Funds",
+    assettype: "Mutual F",
+    position: [8, 0, 10],
+  },
+  {
+    asset: "NOK-USD",
+    amount: 1991801,
+    name: "Santander",
+    assettype: "Cash",
+    position: [-3, 0, 10],
+  },
+];
+
+const rawJsonString = JSON.stringify(data, null, 2);
+
+function ClickableBox() {
+  const [showDialog, setShowDialog] = useState(false);
+  const [copySuccess, setCopySuccess] = useState(false);
+  const { camera } = useThree();
+
+  const handleClick = () => {
+    setShowDialog(!showDialog);
+    setCopySuccess(false);
+  };
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(rawJsonString).then(() => {
+      setCopySuccess(true);
+      setTimeout(() => setCopySuccess(false), 2000);
+    });
+  };
+
+  const buttonStyle = {
+    marginTop: "10px",
+    marginRight: "10px",
+    padding: "5px 10px",
+    backgroundColor: "#4CAF50",
+    color: "white",
+    border: "none",
+    borderRadius: "3px",
+    cursor: "pointer",
+  };
+
+  return (
+    <>
+      <Box args={[1, 1, 1]} onClick={handleClick}>
+        <meshStandardMaterial color="hotpink" />
+      </Box>
+      {showDialog && (
+        <Html
+          center
+          position={[0, 0, 0]}
+          style={{ transform: `translateZ(${camera.position.z + 1}px)` }}
+        >
+          <div
+            style={{
+              background: "white",
+              padding: "20px",
+              borderRadius: "10px",
+              width: "600px",
+              maxHeight: "80vh",
+              overflowY: "auto",
+              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <h3>Raw JSON Data</h3>
+            <pre
+              style={{
+                whiteSpace: "pre-wrap",
+                wordWrap: "break-word",
+                backgroundColor: "#f4f4f4",
+                padding: "10px",
+                borderRadius: "5px",
+                fontSize: "14px",
+              }}
+            >
+              {rawJsonString}
+            </pre>
+            <div>
+              <button
+                onClick={copyToClipboard}
+                style={{ ...buttonStyle, backgroundColor: "#008CBA" }}
+              >
+                {copySuccess ? "Copied!" : "Copy JSON"}
+              </button>
+              <button onClick={handleClick} style={buttonStyle}>
+                Close
+              </button>
+            </div>
+          </div>
+        </Html>
+      )}
+    </>
+  );
+}
 // A simple 3D cube component that displays the cryptocurrency price
 const MetalPriceCube = ({ position, metal }) => {
   const meshRef = useRef();
@@ -564,6 +670,8 @@ export default function Scene7({ textureCube }) {
 
       <MetalPriceCube position={[-34, 0, 10]} metal="XAU"></MetalPriceCube>
       <MetalPriceCube position={[-34, 0, 14]} metal="XAG"></MetalPriceCube>
+
+      <ClickableBox />
 
       <CameraPathAnimation />
 
